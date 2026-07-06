@@ -16,17 +16,14 @@
   <meta property="og:title" content="21 Ridges Bistro & Bar | Pietermaritzburg" />
   <meta property="og:description" content="Good food, great vibes and a premium bar in the heart of Pietermaritzburg. Reserve your table online." />
   <meta property="og:url" content="https://21ridges.co.za/" />
-  <meta property="og:image" content="https://21ridges.co.za/assets/img/hero.svg" />
+  <meta property="og:image" content="https://21ridges.co.za/assets/img/hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/img/favicon.svg" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <!-- Fonts (self-hosted — no external dependency) -->
+  <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Structured data for Google (LocalBusiness / Restaurant) -->
@@ -38,7 +35,7 @@
     "servesCuisine": ["Bistro", "Sushi", "Grill", "Bar"],
     "priceRange": "R59 - R750",
     "url": "https://21ridges.co.za/",
-    "image": "https://21ridges.co.za/assets/img/hero.svg",
+    "image": "https://21ridges.co.za/assets/img/hero.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "22 Doig Street",
@@ -52,6 +49,7 @@
   </script>
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- ============================ Fixed top stack ============================ -->
   <div class="site-top" id="siteTop">
@@ -91,35 +89,41 @@
   <main>
     <!-- ============================ Hero ============================ -->
     <section class="hero" id="home">
-      <div class="hero__bg"><img src="assets/img/hero.svg" alt="Signature dishes at 21 Ridges Bistro & Bar" /></div>
+      <div class="hero__bg"><img src="assets/img/hero.jpg" alt="Candlelit atmosphere at 21 Ridges Bistro & Bar" /></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__vignette" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <p class="eyebrow eyebrow--center" data-reveal>Bistro &amp; Bar · Pietermaritzburg</p>
-        <h1 class="h-display hero__title" data-reveal data-delay="1">
-          Good Food.<span>Great Vibes.</span>
+        <p class="eyebrow eyebrow--center">Bistro &amp; Bar · Pietermaritzburg</p>
+        <h1 class="h-display hero__title">
+          <span class="line"><span>Good Food.</span></span>
+          <span class="line"><span>Great <em>Vibes.</em></span></span>
         </h1>
-        <p class="lead hero__text" data-reveal data-delay="2">
-          A relaxed, upmarket bistro in the heart of Pietermaritzburg — hearty breakfasts,
-          bistro classics, fresh sushi and a premium bar. Come for the food, stay for the atmosphere.
+        <p class="lead hero__text">
+          A dark, welcoming table in the heart of Pietermaritzburg — hearty breakfasts,
+          bistro classics, fresh sushi and a premium bar, best enjoyed after dark.
         </p>
-        <div class="hero__cta" data-reveal data-delay="3">
+        <div class="hero__cta">
           <a href="#reserve" class="btn">Reserve a Table</a>
           <a href="#menu" class="btn btn--ghost">View the Menu</a>
         </div>
       </div>
-      <a href="#about" class="hero__scroll" aria-label="Scroll down">Scroll<span class="line"></span></a>
+      <a href="#about" class="hero__scroll" aria-label="Scroll down">Scroll<span class="rail"></span></a>
     </section>
 
     <!-- ============================ About ============================ -->
-    <section class="section bg-green" id="about">
+    <section class="section bg-ink-2 section--ruled" id="about">
       <div class="container about__grid">
-        <div class="about__media" data-reveal>
-          <img src="assets/img/about.svg" alt="Inside 21 Ridges Bistro & Bar" />
+        <div class="about__media" data-reveal data-clip>
+          <div class="figure">
+            <img src="assets/img/about.jpg" alt="Inside 21 Ridges Bistro & Bar" />
+            <span class="figure__cap">The Room</span>
+          </div>
           <div class="about__badge"><b>2026</b><span>Now Open</span></div>
         </div>
         <div class="about__copy" data-reveal data-delay="1">
           <p class="eyebrow">Your table in the city</p>
-          <h2 class="h-1">A premium taste, <span class="gold-italic">savoured</span> in the heart of Pietermaritzburg</h2>
-          <div class="flourish"><span>❧</span></div>
+          <h2 class="h-1">A premium taste, <span class="script">savoured</span> in the heart of Pietermaritzburg</h2>
+          <div class="flourish flourish--start"><span>❧</span></div>
           <p>
             21 Ridges Bistro &amp; Bar brings memorable flavours and carefully prepared dishes to
             22 Doig Street. From slow mornings over Eggs Benedict to long evenings of grills,
@@ -136,7 +140,7 @@
     </section>
 
     <!-- ============================ Features ============================ -->
-    <section class="section section--tight bg-char">
+    <section class="section section--tight bg-ink">
       <div class="container">
         <div class="features">
           <div class="feature" data-reveal>
@@ -172,7 +176,7 @@
     </section>
 
     <!-- ============================ Menu ============================ -->
-    <section class="section bg-green-900" id="menu">
+    <section class="section bg-panel section--ruled" id="menu">
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
           <p class="eyebrow eyebrow--center">Delight in every bite</p>
@@ -361,12 +365,12 @@
     </section>
 
     <!-- ============================ Chef Recommend ============================ -->
-    <section class="section bg-green">
+    <section class="section bg-ink-2 section--ruled">
       <div class="container chef__grid">
         <div class="chef__copy" data-reveal>
           <p class="eyebrow">Chef recommends</p>
           <h2 class="h-1">Signatures worth<br>the visit</h2>
-          <div class="flourish" style="justify-content:flex-start"><span>❧</span></div>
+          <div class="flourish flourish--start"><span>❧</span></div>
           <p>Not sure where to start? These are the plates our regulars keep coming back for.</p>
           <div class="chef__list">
             <div class="chef__item"><b>Ridges Choice Platter</b><span class="p">R750</span></div>
@@ -377,20 +381,20 @@
           <div style="margin-top:1.8rem"><a href="#reserve" class="btn btn--sm">Reserve to Taste</a></div>
         </div>
         <div class="chef__media" data-reveal data-delay="1">
-          <img src="assets/img/chef.svg" alt="Chef's signature plate at 21 Ridges" />
+          <div class="figure"><img src="assets/img/chef.jpg" alt="Chef's signature plate at 21 Ridges" /></div>
         </div>
       </div>
     </section>
 
     <!-- ============================ Event ============================ -->
-    <section class="section bg-char" id="event">
+    <section class="section bg-ink" id="event">
       <div class="container">
-        <div class="event" data-reveal>
-          <div class="event__bg"><img src="assets/img/event.svg" alt="Sushi & RnB Night at 21 Ridges" /></div>
+        <div class="event" data-reveal data-clip>
+          <div class="event__bg"><img src="assets/img/event.jpg" alt="Sushi & RnB Night at 21 Ridges" /></div>
           <div class="event__inner">
             <p class="event__day">Every Thursday</p>
             <h2 class="h-1">Sushi &amp; RnB Night</h2>
-            <div class="flourish" style="justify-content:flex-start"><span>❧</span></div>
+            <div class="flourish flourish--start"><span>❧</span></div>
             <p class="lead">Fresh rolls, chilled vibes and live beats. Our signature midweek night out —
               gather your crew, book a table and settle in.</p>
             <div style="margin-top:1.6rem;display:flex;gap:1rem;flex-wrap:wrap">
@@ -403,19 +407,19 @@
     </section>
 
     <!-- ============================ Gallery ============================ -->
-    <section class="section bg-green-900" id="gallery">
+    <section class="section bg-panel section--ruled" id="gallery">
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
           <p class="eyebrow eyebrow--center">A look inside</p>
           <h2 class="h-1">The Gallery</h2>
         </div>
         <div class="gallery" data-reveal>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g1.svg" alt="21 Ridges dish" loading="lazy" /></a>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g2.svg" alt="21 Ridges interior" loading="lazy" /></a>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g3.svg" alt="21 Ridges drinks" loading="lazy" /></a>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g4.svg" alt="21 Ridges sushi" loading="lazy" /></a>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g5.svg" alt="21 Ridges plate" loading="lazy" /></a>
-          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g6.svg" alt="21 Ridges bar" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g1.jpg" alt="21 Ridges dish" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g2.jpg" alt="21 Ridges interior" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g3.jpg" alt="21 Ridges drinks" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g4.jpg" alt="21 Ridges sushi" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g5.jpg" alt="21 Ridges plate" loading="lazy" /></a>
+          <a class="gallery__item" href="https://www.instagram.com/21ridgesbistroandbar" target="_blank" rel="noopener"><img src="assets/img/g6.jpg" alt="21 Ridges bar" loading="lazy" /></a>
         </div>
         <div class="gallery__cta" data-reveal>
           <a href="https://www.instagram.com/21ridgesbistroandbar" class="btn btn--ghost" target="_blank" rel="noopener">Follow @21ridgesbistroandbar</a>
@@ -424,7 +428,7 @@
     </section>
 
     <!-- ============================ Reservation ============================ -->
-    <section class="section bg-green" id="reserve">
+    <section class="section bg-ink-2 section--ruled" id="reserve">
       <div class="container reserve__grid">
         <div class="reserve__aside" data-reveal>
           <p class="eyebrow">Your special occasion destination</p>
@@ -517,7 +521,7 @@
     </section>
 
     <!-- ============================ Contact / Map ============================ -->
-    <section class="section bg-char" id="contact">
+    <section class="section bg-ink section--ruled" id="contact">
       <div class="container">
         <div class="section-head section-head--center" data-reveal>
           <p class="eyebrow eyebrow--center">Visit us</p>

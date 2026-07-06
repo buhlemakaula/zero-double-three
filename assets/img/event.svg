@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
-<defs><linearGradient id="lg4" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0%" stop-color="#12362b"/><stop offset="45%" stop-color="#0a1f19"/><stop offset="100%" stop-color="#0a0f0d"/>
-</linearGradient></defs>
-<rect width="1400" height="900" fill="url(#lg4)"/><circle cx="330" cy="93" r="349" fill="#c9a24b" opacity="0.05"/><circle cx="217" cy="60" r="351" fill="#c9a24b" opacity="0.05"/><circle cx="1285" cy="720" r="478" fill="#c9a24b" opacity="0.05"/><circle cx="311" cy="483" r="307" fill="#c9a24b" opacity="0.05"/><circle cx="242" cy="96" r="285" fill="#c9a24b" opacity="0.05"/><circle cx="1298" cy="746" r="492" fill="#c9a24b" opacity="0.05"/>
-<text x="700.0" y="450.0" fill="#f4efe3" opacity="0.28" font-family="Georgia,serif" font-size="42" text-anchor="middle" font-style="italic">Sushi & RnB Night</text>
-</svg>

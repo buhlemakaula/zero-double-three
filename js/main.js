@@ -51,6 +51,31 @@ const CONFIG = {
   /* ---- Year ---- */
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ---- Hero load sequence ---- */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ready = () => requestAnimationFrame(() => document.body.classList.add("is-ready"));
+  if (document.readyState === "complete") ready();
+  else window.addEventListener("load", ready);
+  // Fallback so hero content never gets stuck hidden if load stalls
+  setTimeout(() => document.body.classList.add("is-ready"), 1200);
+
+  /* ---- Hero parallax (subtle, cinematic) ---- */
+  const heroInner = $(".hero__inner");
+  if (heroInner && !reduceMotion) {
+    let ticking = false;
+    const parallax = () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        heroInner.style.transform = `translateY(${y * 0.22}px)`;
+        heroInner.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.75)));
+      }
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (!ticking) { requestAnimationFrame(parallax); ticking = true; }
+    }, { passive: true });
+  }
+
   /* ---- Sticky header shadow ---- */
   const header = $("#header");
   const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 24);

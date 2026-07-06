@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
-<defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0%" stop-color="#12362b"/><stop offset="45%" stop-color="#0a1f19"/><stop offset="100%" stop-color="#0a0f0d"/>
-</linearGradient></defs>
-<rect width="1600" height="1000" fill="url(#lg1)"/><circle cx="215" cy="847" r="546" fill="#c9a24b" opacity="0.05"/><circle cx="408" cy="495" r="420" fill="#c9a24b" opacity="0.05"/><circle cx="1043" cy="789" r="278" fill="#c9a24b" opacity="0.05"/><circle cx="45" cy="836" r="413" fill="#c9a24b" opacity="0.05"/><circle cx="1220" cy="2" r="418" fill="#c9a24b" opacity="0.05"/><circle cx="1154" cy="229" r="618" fill="#c9a24b" opacity="0.05"/>
-<text x="800.0" y="500.0" fill="#f4efe3" opacity="0.28" font-family="Georgia,serif" font-size="48" text-anchor="middle" font-style="italic">Signature dishes — replace with your photo</text>
-</svg>
