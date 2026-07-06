@@ -41,19 +41,26 @@ Search for `id="hoursList"` and set the real trading hours (currently sensible p
 Thursday is flagged as *Sushi & RnB Night*).
 
 ### 4. Photos — `assets/img/`
-The site currently uses elegant SVG placeholders sized to the final layout. Replace them with
-real photos (same filename, or update the `src`). Recommended shots:
+The site now uses your supplied photography (graded for the black-and-gold look). Swap any file
+for a newer/higher-res shot using the **same filename** and it drops straight in. Recommended shots:
 
-| File | Used for | Ideal size |
+| File | Used for | Ideal crop |
 |------|----------|-----------|
-| `hero.svg` | Full-screen hero background | 1600×1000, dark/moody |
-| `about.svg` | Interior / plated dish | 800×1000 (portrait) |
-| `chef.svg` | Chef's signature (round crop) | 900×900 (square) |
-| `event.svg` | Sushi & RnB banner | 1400×900 |
-| `g1`–`g6.svg` | Gallery grid | 600×600 (square) |
+| `hero-1.jpg` `hero-2.jpg` `hero-3.jpg` | Hero slideshow (3 rotating frames) | landscape or centered subject, dark/moody |
+| `about.jpg` | About — moody spread | portrait 4:5 |
+| `chef.jpg` | Chef's signature (round crop) | square, plate centered |
+| `event.jpg` | Sushi & RnB banner | landscape |
+| `g1`–`g6.jpg` | Gallery grid | square |
 
-Tip: if you drop in `.jpg`/`.webp` files, update the matching `src="assets/img/…"` in
-`index.html` (or just keep the `.svg` names). Optimise images before uploading for speed.
+Hero focal points are set per slide in `index.html` via `background-position` (e.g. `center 74%`) —
+adjust if a new photo's subject sits higher or lower. Optimise images before uploading for speed.
+
+### 4b. Logo — `assets/logo/`
+Your logo is built in from `2c3e0b4e` (white-on-black):
+`logo-white.png` / `logo-gold.png` (full lockup) and `mark-white.png` / `mark-gold.png` (the "21"
+monogram). The header uses the gold mark, the hero uses the white lockup, the footer uses the gold
+lockup, and the favicon (`assets/img/favicon.png`) is the gold mark. Drop in official vector/PNG
+versions under `assets/logo/` (same names) when you have them.
 
 ### 5. Domain & SEO — `index.html` `<head>`
 Find-and-replace `21ridges.co.za` with your real domain once registered. This updates the

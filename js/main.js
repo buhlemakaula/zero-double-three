@@ -59,6 +59,38 @@ const CONFIG = {
   // Fallback so hero content never gets stuck hidden if load stalls
   setTimeout(() => document.body.classList.add("is-ready"), 1200);
 
+  /* ---- Hero slideshow (crossfade + Ken Burns) ---- */
+  const slides = $$(".hero__slide");
+  const dotsWrap = $("#heroDots");
+  if (slides.length > 1) {
+    let current = 0;
+    // build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement("button");
+      d.className = "hero__dot" + (i === 0 ? " is-active" : "");
+      d.setAttribute("aria-label", `Show slide ${i + 1}`);
+      d.addEventListener("click", () => go(i, true));
+      dotsWrap.appendChild(d);
+    });
+    const dots = $$(".hero__dot", dotsWrap);
+    let timer;
+    const go = (n, manual) => {
+      slides[current].classList.remove("is-active");
+      dots[current].classList.remove("is-active");
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add("is-active");
+      dots[current].classList.add("is-active");
+      if (manual) restart();
+    };
+    const advance = () => go(current + 1);
+    const restart = () => { clearInterval(timer); timer = setInterval(advance, 6000); };
+    restart();
+    // pause when tab hidden to save cycles
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) clearInterval(timer); else restart();
+    });
+  }
+
   /* ---- Hero parallax (subtle, cinematic) ---- */
   const heroInner = $(".hero__inner");
   if (heroInner && !reduceMotion) {
