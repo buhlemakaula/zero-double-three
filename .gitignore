@@ -17,3 +17,6 @@ vite.config.js
 
 # scratch
 _shot*.mjs
+
+# artifact single-file build
+dist-artifact

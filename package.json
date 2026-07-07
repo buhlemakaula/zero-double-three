@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:artifact": "vite build --config vite.config.artifact.ts && node scripts/pack-artifact.mjs",
     "preview": "vite preview",
     "lint": "tsc -b --noEmit"
   },
@@ -26,6 +27,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }
