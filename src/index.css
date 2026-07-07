@@ -1,0 +1,81 @@
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/manrope';
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Airy ivory canvas + luxe espresso ink + champagne accent */
+  --color-ivory: #FAFAF7;
+  --color-ivory-deep: #F2F0EA;
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #3B3A36;
+  --color-mist: #8C897F;
+  --color-line: #E7E4DC;
+  --color-champagne: #B8935E;
+  --color-champagne-soft: #E9DCC7;
+  --color-forest: #223B2E;
+  --color-bordeaux: #6E2233;
+
+  --radius-luxe: 1.4rem;
+  --shadow-luxe: 0 1px 2px rgba(20,18,14,0.04), 0 18px 50px -20px rgba(20,18,14,0.18);
+  --shadow-float: 0 30px 80px -30px rgba(20,18,14,0.28);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+/* Thin, luxe scrollbars */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: #DAD6CC; border-radius: 99px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.font-display { font-family: var(--font-display); }
+
+/* Editorial display defaults */
+.display-tight {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+.hairline { border-color: var(--color-line); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Soft grain / airy gradient wash used on hero */
+.wash {
+  background:
+    radial-gradient(120% 80% at 85% -10%, rgba(184,147,94,0.10), transparent 55%),
+    radial-gradient(90% 70% at -5% 5%, rgba(34,59,46,0.06), transparent 50%),
+    var(--color-ivory);
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.shimmer::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.6s infinite;
+}

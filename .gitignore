@@ -1,0 +1,19 @@
+# dependencies
+node_modules
+
+# build output
+dist
+
+# TypeScript composite build artifacts
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js
+
+# logs & env
+*.log
+.env
+.env.*
+.DS_Store
+
+# scratch
+_shot*.mjs
