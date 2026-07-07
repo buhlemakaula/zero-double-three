@@ -72,23 +72,18 @@ function runLoader(done) {
    ============================================================ */
 function heroIntro() {
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-  tl.from('.hero__title .w', { yPercent: 120, duration: 1.1, stagger: 0.09 })
-    .from('.hero__eyebrow span', { yPercent: 120, duration: 0.9 }, 0.2)
-    .from('.hero__portrait-mask', { clipPath: 'inset(100% 0 0 0)', duration: 1.2 }, 0.35)
-    .from('.hero__portrait img', { scale: 1.4, duration: 1.4 }, 0.35)
-    .from('.hero__lede span', { yPercent: 120, duration: 0.9, stagger: 0.08 }, 0.5)
-    .from('.scrollcue', { opacity: 0, y: 14, duration: 0.8 }, 0.7)
-    .from('.hero__portrait figcaption', { opacity: 0, duration: 0.8 }, 0.8)
-    .from('.nav', { yPercent: -100, opacity: 0, duration: 0.9 }, 0.3)
+  tl.from('.hero__eyebrow span', { yPercent: 120, duration: 0.9 }, 0)
+    .from('.hero__type .l', { yPercent: 115, opacity: 0, duration: 1.15, stagger: 0.08 }, 0.1)
+    .from('.hero__cut', { yPercent: 8, opacity: 0, clipPath: 'inset(100% 0 0 0)', duration: 1.3 }, 0.35)
+    .from('.hero__lede span', { yPercent: 120, duration: 0.9, stagger: 0.08 }, 0.6)
+    .from('.scrollcue', { opacity: 0, y: 14, duration: 0.8 }, 0.8)
+    .from('.hero__cap', { opacity: 0, duration: 0.8 }, 0.9)
+    .from('.nav', { yPercent: -100, opacity: 0, duration: 0.9 }, 0.25)
 
-  // hero background word drift + portrait parallax
+  // gentle scroll parallax: cutout + ghost move together (stage), type drifts slower
   if (!reduce) {
-    gsap.to('.hero__bgtype span', {
-      xPercent: -12, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    })
-    gsap.to('.hero__title', {
-      yPercent: 18, ease: 'none',
+    gsap.to('.hero__stage', {
+      yPercent: 10, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     })
   }
@@ -312,21 +307,10 @@ function navigation() {
 }
 
 /* ============================================================
-   Swap hero portrait if a real photo is present
-   ============================================================ */
-function tryRealPortrait() {
-  const img = document.getElementById('heroImg')
-  const test = new Image()
-  test.onload = () => { img.src = './img/buhle.jpg' }
-  test.src = './img/buhle.jpg'
-}
-
-/* ============================================================
    BOOT
    ============================================================ */
 window.addEventListener('DOMContentLoaded', () => {
   if (lenis) lenis.stop()
-  tryRealPortrait()
 
   runLoader(() => {
     if (lenis) lenis.start()
