@@ -256,8 +256,10 @@ const CONFIG = {
       }
 
       showStatus("Opening WhatsApp to send your booking to 21 Ridges — tap Send to confirm. We'll reply shortly.", true);
-      // Open WhatsApp with the booking pre-filled to the venue's number
-      window.open(waUrl, "_blank");
+      // Open WhatsApp with the booking pre-filled; fall back to same-tab navigation
+      // if a popup is blocked (e.g. in-app browsers), so the booking is never lost.
+      const win = window.open(waUrl, "_blank");
+      if (!win || win.closed || typeof win.closed === "undefined") { window.location.href = waUrl; }
       form.reset();
       if (dateField) dateField.min = new Date().toISOString().split("T")[0];
     });
