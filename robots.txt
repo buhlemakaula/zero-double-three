@@ -1,0 +1,5 @@
+# 21 Ridges Bistro & Bar
+User-agent: *
+Allow: /
+
+Sitemap: https://21ridges.co.za/sitemap.xml

@@ -6,21 +6,24 @@
    ========================================================================= */
 const CONFIG = {
   // Displayed phone number (what visitors see)
-  phoneDisplay: "033 000 0000",
-  // Dial string for tel: links — international format, no spaces (e.g. +27331234567)
-  phoneDial: "+2733XXXXXXX",
+  phoneDisplay: "078 377 5875",
+  // Dial string for tel: links — international format, no spaces
+  phoneDial: "+27783775875",
 
-  // WhatsApp number in international format WITHOUT the + or spaces (e.g. 27821234567)
-  whatsappNumber: "27XXXXXXXXX",
-  // Pre-filled WhatsApp message
+  // Dedicated bookings WhatsApp — international format WITHOUT the + or spaces.
+  // Every online booking is routed here to confirm reservations.
+  whatsappNumber: "27783775875",
+  // Pre-filled WhatsApp message (used by the quick "WhatsApp us" buttons)
   whatsappText: "Hi 21 Ridges, I'd like to book a table.",
 
-  // Reservation email
+  // Optional: also email a copy of each booking. Leave the placeholder to skip.
+  // Get a free key at https://web3forms.com (30 sec) — bookings still go to WhatsApp regardless.
   email: "hello@21ridges.co.za",
-
-  // Web3Forms access key — get a free one at https://web3forms.com (30 seconds).
-  // Submissions are emailed to the address you registered with Web3Forms.
   web3formsKey: "YOUR-WEB3FORMS-ACCESS-KEY",
+
+  // Google Analytics 4 Measurement ID (e.g. G-XXXXXXXXXX). Leave placeholder to disable.
+  // Create free at https://analytics.google.com → Admin → Data Streams → Web.
+  gaMeasurementId: "G-XXXXXXXXXX",
 };
 
 /* ========================================================================= */
@@ -30,6 +33,21 @@ const CONFIG = {
 
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+
+  /* ---- Analytics (Google Analytics 4) ---- */
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  const gaOn = CONFIG.gaMeasurementId && !CONFIG.gaMeasurementId.includes("XXXX");
+  if (gaOn) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + CONFIG.gaMeasurementId;
+    document.head.appendChild(s);
+    gtag("js", new Date());
+    gtag("config", CONFIG.gaMeasurementId);
+  }
+  // Track a conversion/interaction (no-op until a GA ID is set)
+  const track = (name, params) => { try { gtag("event", name, params || {}); } catch (e) {} };
 
   /* ---- Populate contact links from CONFIG ---- */
   const waHref = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(CONFIG.whatsappText)}`;
@@ -47,6 +65,12 @@ const CONFIG = {
   });
   const keyField = $("#web3formsKey");
   if (keyField) keyField.value = CONFIG.web3formsKey;
+
+  /* ---- Track lead-generating clicks (WhatsApp / call) ---- */
+  $$('[data-contact="whatsapp-link"]').forEach((el) =>
+    el.addEventListener("click", () => track("contact_whatsapp", { method: "whatsapp" })));
+  $$('[data-contact="phone-link"]').forEach((el) =>
+    el.addEventListener("click", () => track("contact_call", { method: "phone" })));
 
   /* ---- Year ---- */
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
@@ -178,7 +202,7 @@ const CONFIG = {
   const dateField = $("#rf-date");
   if (dateField) dateField.min = new Date().toISOString().split("T")[0];
 
-  /* ---- Reservation form submit (Web3Forms) ---- */
+  /* ---- Reservation form → routed to the venue's WhatsApp ---- */
   const form = $("#reservationForm");
   const status = $("#rf-status");
   const submitBtn = $("#rf-submit");
@@ -189,49 +213,53 @@ const CONFIG = {
   };
 
   if (form) {
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      // If no real key configured yet, fall back to WhatsApp so no lead is lost.
-      if (!CONFIG.web3formsKey || CONFIG.web3formsKey.includes("YOUR-WEB3FORMS")) {
-        const d = new FormData(form);
-        const msg =
-          `Hi 21 Ridges, I'd like to book a table.%0A` +
-          `Name: ${d.get("Name")}%0APhone: ${d.get("Phone")}%0A` +
-          `Date: ${d.get("Date")} at ${d.get("Time")}%0AGuests: ${d.get("Guests")}` +
-          (d.get("Notes") ? `%0ANotes: ${d.get("Notes")}` : "");
-        showStatus("Opening WhatsApp to complete your booking…", true);
-        window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`, "_blank");
-        return;
+      const d = new FormData(form);
+      const val = (k) => (d.get(k) || "").toString().trim();
+
+      // Build the reservation message that lands in the venue's WhatsApp
+      const lines = [
+        "New table reservation — 21 Ridges",
+        "",
+        `Name: ${val("Name")}`,
+        `Phone: ${val("Phone")}`,
+        val("Email") ? `Email: ${val("Email")}` : "",
+        `Date: ${val("Date")}`,
+        `Time: ${val("Time")}`,
+        `Guests: ${val("Guests")}`,
+        val("Notes") ? `Notes: ${val("Notes")}` : "",
+      ].filter(Boolean);
+      const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+
+      // Analytics: record the booking as a conversion (lead)
+      track("generate_lead", {
+        currency: "ZAR",
+        value: 1,
+        method: "whatsapp_reservation",
+        guests: val("Guests"),
+        date: val("Date"),
+      });
+      track("reservation_request", { channel: "whatsapp" });
+
+      // Optional automatic email copy (only if a Web3Forms key is configured)
+      if (CONFIG.web3formsKey && !CONFIG.web3formsKey.includes("YOUR-WEB3FORMS")) {
+        try {
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(Object.fromEntries(d)),
+          });
+        } catch (err) { /* email copy is best-effort; WhatsApp is the primary channel */ }
       }
 
-      submitBtn.disabled = true;
-      const original = submitBtn.textContent;
-      submitBtn.textContent = "Sending…";
-      status.className = "form__status";
-
-      try {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(Object.fromEntries(new FormData(form))),
-        });
-        const data = await res.json();
-        if (data.success) {
-          showStatus("Thank you! Your reservation request has been sent — we'll confirm shortly.", true);
-          form.reset();
-          if (dateField) dateField.min = new Date().toISOString().split("T")[0];
-        } else {
-          throw new Error(data.message || "Submission failed");
-        }
-      } catch (err) {
-        showStatus("Sorry, something went wrong. Please call or WhatsApp us and we'll sort it out.", false);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = original;
-      }
+      showStatus("Opening WhatsApp to send your booking to 21 Ridges — tap Send to confirm. We'll reply shortly.", true);
+      // Open WhatsApp with the booking pre-filled to the venue's number
+      window.open(waUrl, "_blank");
+      form.reset();
+      if (dateField) dateField.min = new Date().toISOString().split("T")[0];
     });
   }
 })();

@@ -18,23 +18,45 @@ WhatsApp button, email link and the booking form across the whole site.
 ### 1. Contact details & booking — `js/main.js` → `CONFIG`
 ```js
 const CONFIG = {
-  phoneDisplay:   "033 000 0000",              // ← real phone (what people see)
-  phoneDial:      "+2733XXXXXXX",              // ← same number, intl format for tap-to-call
-  whatsappNumber: "27XXXXXXXXX",               // ← WhatsApp number, intl format, NO + or spaces
-  whatsappText:   "Hi 21 Ridges, I'd like...", // ← optional pre-filled message
-  email:          "hello@21ridges.co.za",      // ← reservations inbox
-  web3formsKey:   "YOUR-WEB3FORMS-ACCESS-KEY", // ← see step 2
+  phoneDisplay:    "078 377 5875",     // shown to visitors
+  phoneDial:       "+27783775875",     // tap-to-call
+  whatsappNumber:  "27783775875",      // ← BOOKINGS WhatsApp (already set)
+  email:           "hello@21ridges.co.za",
+  web3formsKey:    "YOUR-WEB3FORMS-ACCESS-KEY", // optional email copy (step 2)
+  gaMeasurementId: "G-XXXXXXXXXX",     // Google Analytics 4 (step 3)
 };
 ```
 
-> Until a real `web3formsKey` is set, the reservation form **safely falls back to WhatsApp** —
-> it opens a pre-filled booking message so no lead is ever lost.
+**How online bookings work now:** the reservation form composes the booking (name, phone,
+date, time, guests, notes) and **routes it straight to the venue WhatsApp `+27 78 377 5875`** —
+the customer taps *Send* and it lands in your chat to confirm. The floating button, "Call to
+book", and all WhatsApp/phone links point at the same number.
 
-### 2. Reservation form email — Web3Forms (free, no server)
-1. Go to <https://web3forms.com>, enter the email that should receive bookings, and copy the
-   **Access Key** they email you.
-2. Paste it into `CONFIG.web3formsKey` in `js/main.js`.
-That's it — reservation submissions now arrive in that inbox.
+> ⓘ *Fully-automatic server-side WhatsApp sending (no customer tap) needs the paid WhatsApp
+> Business API + a backend. The one-tap wa.me handoff above is the standard, no-cost method for
+> a static site and is what most SA venues use.*
+
+### 2. (Optional) Email copy of every booking — Web3Forms
+Bookings already go to WhatsApp. If you *also* want each one emailed:
+1. Get a free key at <https://web3forms.com> (enter your inbox email).
+2. Paste it into `CONFIG.web3formsKey`. Each submission is then emailed **and** sent to WhatsApp.
+
+### 3. Analytics — Google Analytics 4 (free) + built-in conversion tracking
+1. Create a property at <https://analytics.google.com> → **Admin → Data Streams → Web**, copy the
+   **Measurement ID** (`G-XXXXXXXXXX`).
+2. Paste it into `CONFIG.gaMeasurementId`. The site then loads GA4 and automatically fires these
+   events (mark them as **conversions** in GA4 → Admin → Events):
+   - `generate_lead` &amp; `reservation_request` — a booking was submitted
+   - `contact_whatsapp` — a WhatsApp button was clicked
+   - `contact_call` — a call button was clicked
+3. Also verify the site in <https://search.google.com/search-console> to track search traffic,
+   keywords and impressions, and submit `sitemap.xml`.
+
+**SEO already built in:** keyword-rich title/description, geo meta, Open Graph/Twitter cards,
+`robots.txt`, `sitemap.xml`, Restaurant + FAQ structured data (rich results), a keyword FAQ
+section, fast self-hosted fonts and a preloaded hero. After go-live: create/claim your **Google
+Business Profile** (biggest local-SEO lever), and keep your name/address/phone identical
+everywhere.
 
 ### 3. Opening hours — `index.html`
 Search for `id="hoursList"` and set the real trading hours (currently sensible placeholders;

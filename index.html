@@ -7,44 +7,100 @@
   <!-- ============================================================
        SEO / social  —  replace 21ridges.co.za with your real domain
        ============================================================ -->
-  <title>21 Ridges Bistro &amp; Bar | Pietermaritzburg — Book a Table</title>
-  <meta name="description" content="21 Ridges Bistro & Bar in the heart of Pietermaritzburg. Breakfasts, bistro classics, fresh sushi and a premium bar. Reserve your table online. Thursday Sushi & RnB Night." />
+  <title>21 Ridges Bistro &amp; Bar | Restaurant, Cocktail Bar &amp; Sushi in Pietermaritzburg</title>
+  <meta name="description" content="21 Ridges Bistro &amp; Bar — a premium restaurant, cocktail bar and sushi spot in the heart of Pietermaritzburg (22 Doig Street). Breakfasts, grills, curries, fresh sushi &amp; a premium bar. Book a table on WhatsApp. Thursday Sushi &amp; RnB Night." />
+  <meta name="keywords" content="restaurant Pietermaritzburg, bar Pietermaritzburg, sushi Pietermaritzburg, cocktail bar PMB, bistro Pietermaritzburg, breakfast Pietermaritzburg, book a table Pietermaritzburg, 21 Ridges, Sushi and RnB night, restaurants near me, Doig Street" />
+  <meta name="author" content="21 Ridges Bistro & Bar" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#070706" />
   <link rel="canonical" href="https://21ridges.co.za/" />
 
+  <!-- Local / geo -->
+  <meta name="geo.region" content="ZA-NL" />
+  <meta name="geo.placename" content="Pietermaritzburg" />
+  <meta name="geo.position" content="-29.6006;30.3794" />
+  <meta name="ICBM" content="-29.6006, 30.3794" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="restaurant" />
-  <meta property="og:title" content="21 Ridges Bistro & Bar | Pietermaritzburg" />
-  <meta property="og:description" content="Good food, great vibes and a premium bar in the heart of Pietermaritzburg. Reserve your table online." />
+  <meta property="og:site_name" content="21 Ridges Bistro & Bar" />
+  <meta property="og:title" content="21 Ridges Bistro & Bar | Restaurant, Bar & Sushi in Pietermaritzburg" />
+  <meta property="og:description" content="Good food, great vibes and a premium bar in the heart of Pietermaritzburg. Book your table on WhatsApp." />
   <meta property="og:url" content="https://21ridges.co.za/" />
   <meta property="og:image" content="https://21ridges.co.za/assets/img/hero-1.jpg" />
+  <meta property="og:image:alt" content="Fine dining at 21 Ridges Bistro & Bar, Pietermaritzburg" />
+  <meta property="og:locale" content="en_ZA" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="21 Ridges Bistro & Bar | Pietermaritzburg" />
+  <meta name="twitter:description" content="Restaurant, cocktail bar & sushi in the heart of Pietermaritzburg. Book on WhatsApp." />
+  <meta name="twitter:image" content="https://21ridges.co.za/assets/img/hero-1.jpg" />
 
   <link rel="icon" href="assets/img/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
+  <link rel="preload" as="image" href="assets/img/hero-1.jpg" fetchpriority="high" />
 
   <!-- Fonts (self-hosted — no external dependency) -->
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- Structured data for Google (LocalBusiness / Restaurant) -->
+  <!-- Structured data — Restaurant / LocalBusiness (Google rich results) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Restaurant",
+    "@id": "https://21ridges.co.za/#restaurant",
     "name": "21 Ridges Bistro & Bar",
-    "servesCuisine": ["Bistro", "Sushi", "Grill", "Bar"],
-    "priceRange": "R59 - R750",
+    "description": "Premium restaurant, cocktail bar and sushi spot in the heart of Pietermaritzburg. Breakfasts, bistro classics, grills, curries, fresh sushi and a premium bar.",
+    "servesCuisine": ["Bistro", "Sushi", "Grill", "Seafood", "Bar", "Breakfast"],
+    "priceRange": "RR",
     "url": "https://21ridges.co.za/",
-    "image": "https://21ridges.co.za/assets/img/hero-1.jpg",
+    "telephone": "+27783775875",
+    "image": [
+      "https://21ridges.co.za/assets/img/hero-1.jpg",
+      "https://21ridges.co.za/assets/img/hero-3.jpg",
+      "https://21ridges.co.za/assets/img/event.jpg"
+    ],
+    "logo": "https://21ridges.co.za/assets/logo/logo-white.png",
+    "hasMenu": "https://21ridges.co.za/assets/menu/21-ridges-menu.pdf",
+    "acceptsReservations": "https://wa.me/27783775875",
+    "currenciesAccepted": "ZAR",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "22 Doig Street",
       "addressLocality": "Pietermaritzburg",
       "addressRegion": "KwaZulu-Natal",
+      "postalCode": "3201",
       "addressCountry": "ZA"
     },
-    "acceptsReservations": "True",
-    "sameAs": ["https://www.instagram.com/21ridgesbistroandbar"]
+    "geo": { "@type": "GeoCoordinates", "latitude": -29.6006, "longitude": 30.3794 },
+    "areaServed": ["Pietermaritzburg", "Msunduzi", "KwaZulu-Natal"],
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "10:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday","Friday"], "opens": "10:00", "closes": "23:59" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "23:59" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "21:00" }
+    ],
+    "sameAs": ["https://www.instagram.com/21ridgesbistroandbar"],
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": "https://wa.me/27783775875", "inLanguage": "en-ZA", "actionPlatform": ["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"] },
+      "result": { "@type": "Reservation", "name": "Table reservation at 21 Ridges Bistro & Bar" }
+    }
+  }
+  </script>
+
+  <!-- Structured data — FAQ (eligible for Google FAQ rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Where is 21 Ridges Bistro & Bar located?", "acceptedAnswer": { "@type": "Answer", "text": "We're at 22 Doig Street in the heart of Pietermaritzburg, KwaZulu-Natal." } },
+      { "@type": "Question", "name": "How do I book a table at 21 Ridges?", "acceptedAnswer": { "@type": "Answer", "text": "Fill in the reservation form on our website and it sends your booking straight to our WhatsApp, or message us directly on +27 78 377 5875. We confirm within minutes during opening hours." } },
+      { "@type": "Question", "name": "What is Sushi & RnB Night?", "acceptedAnswer": { "@type": "Answer", "text": "Every Thursday we host Sushi & RnB Night — fresh sushi rolls, chilled vibes and live RnB beats. It's our signature midweek night out." } },
+      { "@type": "Question", "name": "What food does 21 Ridges serve?", "acceptedAnswer": { "@type": "Answer", "text": "A full bistro menu — breakfasts, burgers, grills, curries, pastas and pizzas — plus fresh hand-rolled sushi, sharing platters and a premium bar of cognac, whisky, gin, champagne and cocktails." } },
+      { "@type": "Question", "name": "Is 21 Ridges good for groups and celebrations?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — our space is designed for relaxed meals, celebrations and weekend gatherings, with sharing platters and a full bar. Book ahead on WhatsApp for larger groups." } }
+    ]
   }
   </script>
 </head>
@@ -511,11 +567,46 @@
           </div>
 
           <div class="form__foot">
-            <button type="submit" class="btn btn--full" id="rf-submit">Request Reservation</button>
-            <p class="form__hint">Prefer to chat? <a href="#" data-contact="whatsapp-link" target="_blank" rel="noopener" style="color:var(--gold-300)">Book on WhatsApp</a> instead.</p>
+            <button type="submit" class="btn btn--full" id="rf-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2zm4.5 12c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.8 2.8 0 006 8.9a4.9 4.9 0 001 2.6 11 11 0 004.3 3.8 3.3 3.3 0 002.9.4 2.6 2.6 0 001.7-1.2 2.1 2.1 0 00.1-1.2c-.1-.1-.2-.2-.4-.3z"/></svg>
+              Send Booking via WhatsApp
+            </button>
+            <p class="form__hint">Your booking goes straight to our reservations WhatsApp — we confirm within minutes during opening hours.</p>
             <div class="form__status" id="rf-status" role="status" aria-live="polite"></div>
           </div>
         </form>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ ============================ -->
+    <section class="section bg-panel section--ruled" id="faq">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <p class="eyebrow eyebrow--center">Good to know</p>
+          <h2 class="h-1">Frequently Asked</h2>
+        </div>
+        <div class="faq" data-reveal>
+          <details class="faq__item">
+            <summary>Where is 21 Ridges Bistro &amp; Bar located?</summary>
+            <p>We're at 22 Doig Street in the heart of Pietermaritzburg, KwaZulu-Natal — easy to find and central to the city.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How do I book a table?</summary>
+            <p>Fill in the reservation form above and it sends your booking straight to our WhatsApp, or message us directly on +27 78 377 5875. We confirm within minutes during opening hours.</p>
+          </details>
+          <details class="faq__item">
+            <summary>What is Sushi &amp; RnB Night?</summary>
+            <p>Every Thursday we host Sushi &amp; RnB Night — fresh sushi rolls, chilled vibes and live RnB beats. It's our signature midweek night out; book ahead to secure a table.</p>
+          </details>
+          <details class="faq__item">
+            <summary>What food do you serve?</summary>
+            <p>A full bistro menu — breakfasts, burgers, grills, curries, pastas and pizzas — plus fresh hand-rolled sushi, sharing platters and a premium bar of cognac, whisky, gin, champagne and cocktails.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Are you good for groups and celebrations?</summary>
+            <p>Absolutely. Our space is built for relaxed meals, celebrations and weekend gatherings, with sharing platters and a full bar. WhatsApp us ahead of time for larger groups.</p>
+          </details>
+        </div>
       </div>
     </section>
 
