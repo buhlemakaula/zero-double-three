@@ -256,6 +256,7 @@ function cursor() {
     el.addEventListener('mouseenter', () => {
       cur.classList.add('is-hover')
       if (el.dataset.project !== undefined || el.dataset.svc !== undefined) label.textContent = 'View'
+      else if (el.dataset.wa !== undefined || (el.href && el.href.includes('wa.me'))) label.textContent = 'Chat'
       else if (el.href && el.href.startsWith('mailto')) label.textContent = 'Email'
       else label.textContent = ''
     })
