@@ -212,15 +212,14 @@ const CONFIG = {
     status.className = "form__status " + (ok ? "is-ok" : "is-err");
   };
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+  if (form && submitBtn) {
+    const val = (k) => {
+      const el = form.querySelector(`[name="${k}"]`);
+      return el ? el.value.trim() : "";
+    };
 
-      const d = new FormData(form);
-      const val = (k) => (d.get(k) || "").toString().trim();
-
-      // Build the reservation message that lands in the venue's WhatsApp
+    // Compose the WhatsApp booking message from whatever is currently filled in
+    const buildUrl = () => {
       const lines = [
         "New table reservation — 21 Ridges",
         "",
@@ -232,16 +231,27 @@ const CONFIG = {
         `Guests: ${val("Guests")}`,
         val("Notes") ? `Notes: ${val("Notes")}` : "",
       ].filter(Boolean);
-      const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+      return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+    };
+
+    // Keep the link's href live as the guest fills the form — so the tap itself
+    // (a genuine user gesture) hands off to WhatsApp reliably, even in in-app browsers.
+    const refresh = () => { submitBtn.href = buildUrl(); };
+    form.addEventListener("input", refresh);
+    form.addEventListener("change", refresh);
+    refresh();
+
+    submitBtn.addEventListener("click", (e) => {
+      const missing = ["Name", "Phone", "Date", "Time", "Guests"].filter((k) => !val(k));
+      if (missing.length) {
+        e.preventDefault();
+        showStatus("Please add your " + missing.join(", ").toLowerCase() + " so we can confirm your table.", false);
+        return;
+      }
+      submitBtn.href = buildUrl(); // ensure latest values
 
       // Analytics: record the booking as a conversion (lead)
-      track("generate_lead", {
-        currency: "ZAR",
-        value: 1,
-        method: "whatsapp_reservation",
-        guests: val("Guests"),
-        date: val("Date"),
-      });
+      track("generate_lead", { currency: "ZAR", value: 1, method: "whatsapp_reservation", guests: val("Guests"), date: val("Date") });
       track("reservation_request", { channel: "whatsapp" });
 
       // Optional automatic email copy (only if a Web3Forms key is configured)
@@ -250,18 +260,16 @@ const CONFIG = {
           fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify(Object.fromEntries(d)),
+            body: JSON.stringify(Object.fromEntries(new FormData(form))),
           });
         } catch (err) { /* email copy is best-effort; WhatsApp is the primary channel */ }
       }
 
-      showStatus("Opening WhatsApp to send your booking to 21 Ridges — tap Send to confirm. We'll reply shortly.", true);
-      // Open WhatsApp with the booking pre-filled; fall back to same-tab navigation
-      // if a popup is blocked (e.g. in-app browsers), so the booking is never lost.
-      const win = window.open(waUrl, "_blank");
-      if (!win || win.closed || typeof win.closed === "undefined") { window.location.href = waUrl; }
-      form.reset();
-      if (dateField) dateField.min = new Date().toISOString().split("T")[0];
+      showStatus("Opening WhatsApp — tap Send there to confirm your booking. We'll reply shortly.", true);
+      // The link now navigates naturally to WhatsApp (no preventDefault).
     });
+
+    // Prevent the plain Enter-key form submit from reloading the page
+    form.addEventListener("submit", (e) => { e.preventDefault(); submitBtn.click(); });
   }
 })();
