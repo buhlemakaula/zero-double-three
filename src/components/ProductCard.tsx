@@ -3,6 +3,7 @@ import { Plus, Check } from 'lucide-react'
 import { useState } from 'react'
 import { ZAR, type Product } from '../data/catalog'
 import { useStore } from '../store'
+import { ProductImage } from './ProductImage'
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const add = useStore((s) => s.add)
@@ -23,10 +24,8 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
       whileHover={{ y: -4 }}
       className="group relative flex flex-col rounded-luxe border border-line bg-white/70 p-4 transition-shadow hover:shadow-luxe"
     >
-      <div className="relative mb-4 grid h-32 place-items-center overflow-hidden rounded-2xl bg-ivory-deep">
-        <span className="text-5xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
-          {product.emoji}
-        </span>
+      <div className="relative mb-4 h-32 overflow-hidden rounded-2xl">
+        <ProductImage product={product} className="h-full w-full rounded-2xl" />
         {product.tags?.[0] && (
           <span className="absolute left-2.5 top-2.5 rounded-full bg-ink/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-ivory">
             {product.tags[0]}

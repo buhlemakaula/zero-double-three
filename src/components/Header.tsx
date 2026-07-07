@@ -8,6 +8,7 @@ import { storeStatus, durbanClock } from '../lib/hours'
 export function Header() {
   const count = useStore((s) => s.count())
   const setCartOpen = useStore((s) => s.setCartOpen)
+  const setView = useStore((s) => s.setView)
   const [status, setStatus] = useState(storeStatus())
   const [clock, setClock] = useState(durbanClock())
   const [scrolled, setScrolled] = useState(false)
@@ -48,6 +49,12 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4">
+          <button
+            onClick={() => setView('merchant')}
+            className="hidden text-sm font-semibold text-ink-soft transition-colors hover:text-ink md:inline"
+          >
+            Traders
+          </button>
           <div className="hidden sm:flex items-center gap-2 rounded-full bg-white/60 border border-line px-3 py-1.5">
             <span className="relative flex h-2 w-2">
               {status.open && (

@@ -25,11 +25,14 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
   { id: 'cash', name: 'Cash on Handover', detail: 'Pay the driver curbside', emoji: '💵' },
 ]
 
+export type View = 'shop' | 'merchant'
+
 interface State {
   lines: CartLine[]
   cartOpen: boolean
   checkoutOpen: boolean
   activeCategory: string
+  view: View
   add: (p: Product) => void
   remove: (id: string) => void
   setQty: (id: string, qty: number) => void
@@ -37,6 +40,7 @@ interface State {
   setCartOpen: (v: boolean) => void
   setCheckoutOpen: (v: boolean) => void
   setActiveCategory: (c: string) => void
+  setView: (v: View) => void
   count: () => number
   subtotal: () => number
 }
@@ -46,6 +50,7 @@ export const useStore = create<State>((set, get) => ({
   cartOpen: false,
   checkoutOpen: false,
   activeCategory: 'restaurants',
+  view: 'shop',
 
   add: (p) =>
     set((s) => {
@@ -75,6 +80,7 @@ export const useStore = create<State>((set, get) => ({
   setCartOpen: (v) => set({ cartOpen: v }),
   setCheckoutOpen: (v) => set({ checkoutOpen: v }),
   setActiveCategory: (c) => set({ activeCategory: c }),
+  setView: (v) => set({ view: v }),
 
   count: () => get().lines.reduce((n, l) => n + l.qty, 0),
   subtotal: () => get().lines.reduce((n, l) => n + l.product.price * l.qty, 0),

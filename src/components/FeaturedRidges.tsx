@@ -17,6 +17,18 @@ export function FeaturedRidges() {
         className="relative overflow-hidden rounded-luxe p-8 sm:p-12 text-ivory"
         style={{ background: 'linear-gradient(135deg,#1B2C22 0%,#223B2E 55%,#2C4A38 100%)' }}
       >
+        {/* Real dining photography, tinted into the brand green */}
+        <img
+          src="/img/dining.jpg"
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-luminosity"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(115deg,#1B2C22 8%,rgba(34,59,46,0.72) 55%,rgba(44,74,56,0.35) 100%)' }}
+        />
         <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-champagne/20 blur-3xl" />
         <div className="relative flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>

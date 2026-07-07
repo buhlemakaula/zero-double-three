@@ -16,6 +16,7 @@ export interface Product {
   rx?: boolean // requires prescription upload
   age?: boolean // age-restricted (18+)
   emoji: string
+  image?: string // real product photography (served from /public); emoji tile is the fallback
 }
 
 export interface Vendor {
@@ -112,6 +113,7 @@ const ridges = (
   price: number,
   emoji: string,
   tags: string[] = [],
+  image?: string,
 ): Product => ({
   id,
   name,
@@ -121,14 +123,15 @@ const ridges = (
   vendorId: '21-ridges',
   emoji,
   tags,
+  image,
 })
 
 export const PRODUCTS: Product[] = [
   // 21 RIDGES — signature menu
-  ridges('r-lobster', 'Butter-Poached Lobster', 'Truffle tagliatelle, bisque emulsion, micro herbs', 389, '🦞', ['Signature', 'Chef’s pick']),
+  ridges('r-lobster', 'Butter-Poached Lobster', 'Truffle tagliatelle, bisque emulsion, micro herbs', 389, '🦞', ['Signature', 'Chef’s pick'], '/img/dining.jpg'),
   ridges('r-tuna', 'Seared Tuna Tataki', 'Avocado rose, ponzu pearls, sesame crisp', 245, '🥑', ['Fresh']),
-  ridges('r-sushi', 'Bora Bora Roll', 'Salmon, tobiko, avocado, micro shiso', 198, '🍣', ['Signature']),
-  ridges('r-sashimi', 'Tasting Platter', 'Salmon, tuna, prawn nigiri · chef’s selection of ten', 320, '🍱', ['To share']),
+  ridges('r-sushi', 'Bora Bora Roll', 'Salmon, tobiko, avocado, micro shiso', 198, '🍣', ['Signature'], '/img/sushi-roll.jpg'),
+  ridges('r-sashimi', 'Tasting Platter', 'Salmon, tuna, prawn nigiri · chef’s selection of ten', 320, '🍱', ['To share'], '/img/sushi-platter.jpg'),
   ridges('r-wagyu', 'Wagyu Short Rib', '48-hour braise, burnt honey glaze, pommes purée', 365, '🥩', ['Chef’s pick']),
   ridges('r-burrata', 'Heirloom & Burrata', 'Basil oil, aged balsamic, sourdough shard', 165, '🍅', ['Vegetarian']),
   ridges('r-prawn', 'Chilli Garlic Prawns', 'Flame-grilled tiger prawns, lemon butter, herb crumb', 285, '🦐', ['Fresh']),
@@ -146,8 +149,8 @@ export const PRODUCTS: Product[] = [
   { id: 'g-olive', name: 'Estate Olive Oil', blurb: 'Extra virgin, cold-pressed · 500ml', price: 189.0, unit: '500ml', category: 'groceries', vendorId: 'harbour-grocer', emoji: '🫒' },
 
   // ALCOHOL — The Ridge Cellar (18+)
-  { id: 'a-donjulio', name: 'Don Julio Reposado', blurb: '100% agave · aged 8 months · 750ml', price: 899.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🍾', age: true, tags: ['Premium', '18+'] },
-  { id: 'a-hennessy', name: 'Hennessy V.S', blurb: 'Very Special cognac · 750ml', price: 549.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🥃', age: true, tags: ['18+'] },
+  { id: 'a-donjulio', name: 'Don Julio Reposado', blurb: '100% agave · aged 8 months · 750ml', price: 899.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🍾', age: true, tags: ['Premium', '18+'], image: '/img/donjulio.jpg' },
+  { id: 'a-hennessy', name: 'Hennessy V.S', blurb: 'Very Special cognac · 750ml', price: 549.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🥃', age: true, tags: ['18+'], image: '/img/hennessy.jpg' },
   { id: 'a-mcc', name: 'Graham Beck Brut MCC', blurb: 'Méthode Cap Classique · 750ml', price: 219.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🍾', age: true, tags: ['Local', '18+'] },
   { id: 'a-pinot', name: 'Hamilton Russell Pinot', blurb: 'Hemel-en-Aarde · 2022 · 750ml', price: 645.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🍷', age: true, tags: ['Cellar', '18+'] },
   { id: 'a-gin', name: 'Inverroche Amber Gin', blurb: 'Fynbos-infused · 750ml', price: 389.0, unit: '750ml', category: 'alcohol', vendorId: 'the-cellar', emoji: '🍸', age: true, tags: ['Local', '18+'] },

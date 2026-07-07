@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { TrendingUp, Wallet, Megaphone, ArrowUpRight } from 'lucide-react'
+import { useStore } from '../store'
 
 const perks = [
   { icon: <Wallet size={16} />, t: 'Keep more', d: 'Flat, transparent commission — materially below the incumbents. No listing fees to start.' },
@@ -8,6 +9,7 @@ const perks = [
 ]
 
 export function Traders() {
+  const setView = useStore((s) => s.setView)
   return (
     <section className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24">
       <motion.div
@@ -32,8 +34,11 @@ export function Traders() {
               Grocers, cellars, kitchens and pharmacies keep more of every rand, own their customer
               relationship, and reach the curbside crowd the giants overlook.
             </p>
-            <button className="group mt-8 inline-flex items-center gap-2 rounded-full bg-champagne px-6 py-3.5 text-sm font-semibold text-ink transition-all active:scale-95 hover:shadow-float">
-              Become a Connect trader
+            <button
+              onClick={() => setView('merchant')}
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-champagne px-6 py-3.5 text-sm font-semibold text-ink transition-all active:scale-95 hover:shadow-float"
+            >
+              Open the trader dashboard
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </div>
