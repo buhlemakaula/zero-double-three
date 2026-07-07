@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0a09" />
+  <title>Buhle Makaula — Brand Builder & Digital Artist</title>
+  <meta name="description" content="Buhle Makaula is a freelance digital artist and brand builder crafting identities, packaging and visual worlds that people trust. Design that speaks. Brands that last." />
+  <meta property="og:title" content="Buhle Makaula — Brand Builder & Digital Artist" />
+  <meta property="og:description" content="I build brands worth remembering. Identity · Packaging · Social · Art Direction." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400;1,9..144,500&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Grain + noise overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+  <!-- Preloader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__count"><span id="loaderNum">0</span><em>%</em></div>
+      <div class="loader__word">
+        <span data-word>BUHLE</span>
+        <span data-word>MAKAULA</span>
+      </div>
+    </div>
+    <div class="loader__bar"><i id="loaderBar"></i></div>
+  </div>
+
+  <!-- Progress scrub -->
+  <div class="scrollbar" aria-hidden="true"><i id="scrollProg"></i></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" data-link>
+      <span class="nav__mark">BM</span>
+      <span class="nav__name">Buhle&nbsp;Makaula</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#work" data-link>Work</a>
+      <a href="#services" data-link>Studio</a>
+      <a href="#about" data-link>About</a>
+      <a class="nav__cta" href="#contact" data-magnetic data-link>Start a project</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <a href="#work" data-link><em>01</em> Work</a>
+    <a href="#services" data-link><em>02</em> Studio</a>
+    <a href="#about" data-link><em>03</em> About</a>
+    <a href="#contact" data-link><em>04</em> Contact</a>
+  </div>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__bgtype" aria-hidden="true"><span>BRANDS</span></div>
+
+      <div class="hero__grid">
+        <div class="hero__head">
+          <p class="hero__eyebrow reveal-line"><span>Freelance Digital Artist · Brand Builder · South Africa</span></p>
+          <h1 class="hero__title">
+            <span class="line"><span class="w">BUILDING</span></span>
+            <span class="line"><span class="w">BRANDS</span></span>
+            <span class="line hero__title--alt"><span class="w"><i>people</i> trust</span></span>
+          </h1>
+        </div>
+
+        <figure class="hero__portrait" data-parallax data-speed="-0.12">
+          <div class="hero__portrait-mask">
+            <img src="./img/buhle-placeholder.svg" alt="Buhle Makaula" id="heroImg" />
+          </div>
+          <figcaption>Buhle Makaula<em>©2025</em></figcaption>
+        </figure>
+
+        <div class="hero__foot">
+          <p class="hero__lede reveal-line">
+            <span>I turn ideas into identities — logos, packaging and visual</span>
+            <span>worlds that make small brands impossible to ignore.</span>
+          </p>
+          <a href="#work" class="scrollcue" data-magnetic data-link>
+            <span>Scroll to explore</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 4v16M6 14l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- marquee of services -->
+      <div class="marquee" data-marquee>
+        <div class="marquee__track">
+          <span>Brand Identity ✳</span><span>Packaging Design ✳</span><span>Social Media ✳</span><span>Art Direction ✳</span><span>Logo Systems ✳</span><span>Visual Storytelling ✳</span>
+          <span>Brand Identity ✳</span><span>Packaging Design ✳</span><span>Social Media ✳</span><span>Art Direction ✳</span><span>Logo Systems ✳</span><span>Visual Storytelling ✳</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto" id="intro">
+      <p class="manifesto__text">
+        <span class="ph">A brand is a promise people can <em>see</em>.</span>
+        <span class="ph">I design the details that make yours feel</span>
+        <span class="ph">premium, deliberate, and worth <em>remembering</em>.</span>
+      </p>
+      <div class="manifesto__meta">
+        <span class="reveal-line"><span>(Est. 2019 — South Africa & remote)</span></span>
+        <span class="reveal-line"><span>Available for select projects</span></span>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat"><div class="stat__num" data-count="40" data-suffix="+">0</div><p>Brands & products shaped</p></div>
+      <div class="stat"><div class="stat__num" data-count="6" data-suffix="yrs">0</div><p>Years crafting identities</p></div>
+      <div class="stat"><div class="stat__num" data-count="30" data-suffix="+">0</div><p>Clients who came back</p></div>
+      <div class="stat"><div class="stat__num" data-count="100" data-suffix="%">0</div><p>Made to be trusted</p></div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work" id="work">
+      <div class="section-head">
+        <span class="section-head__index">02 — Selected Work</span>
+        <h2 class="section-head__title reveal-line"><span>The proof is<br/>in the brands.</span></h2>
+      </div>
+
+      <div class="projects">
+
+        <article class="project" data-project>
+          <div class="project__media" data-parallax data-speed="-0.08">
+            <img src="./work/lorenzo-serum.jpg" alt="Lorenzo Skin Care serum packaging" loading="lazy" />
+          </div>
+          <div class="project__info">
+            <span class="project__no">01</span>
+            <h3 class="project__name">Lorenzo <i>Skin Care</i></h3>
+            <p class="project__desc">A quiet-luxury skincare identity — serif logotype, warm neutral palette and serum packaging that earns a place on the shelf.</p>
+            <ul class="project__tags"><li>Brand Identity</li><li>Packaging</li><li>Logo System</li></ul>
+          </div>
+          <div class="project__extra">
+            <img src="./work/lorenzo-logo.jpg" alt="Lorenzo Skin Care logo" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="project project--flip" data-project>
+          <div class="project__media" data-parallax data-speed="-0.08">
+            <img src="./work/smokeboys-tent.jpg" alt="Smoke Boys event tent branding" loading="lazy" />
+          </div>
+          <div class="project__info">
+            <span class="project__no">02</span>
+            <h3 class="project__name">Smoke <i>Boys</i></h3>
+            <p class="project__desc">Bold, fire-forward branding for a street-food name — a rare taste you can't find anywhere. Built to shout across a market from fifty metres away.</p>
+            <ul class="project__tags"><li>Logo Design</li><li>Event Branding</li><li>Packaging</li></ul>
+          </div>
+          <div class="project__extra">
+            <img src="./work/smokeboys-bag.jpg" alt="Smoke Boys paper bag" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="project" data-project>
+          <div class="project__media" data-parallax data-speed="-0.08">
+            <img src="./work/flexers-products.jpg" alt="Flexers Fitness supplement packaging" loading="lazy" />
+          </div>
+          <div class="project__info">
+            <span class="project__no">03</span>
+            <h3 class="project__name">Flexers <i>Fitness</i></h3>
+            <p class="project__desc">A full supplement range and social presence — sharp violet-on-black system stretched across whey, tea, powder and a feed that converts.</p>
+            <ul class="project__tags"><li>Brand Identity</li><li>Packaging</li><li>Social Media</li></ul>
+          </div>
+          <div class="project__extra">
+            <img src="./work/flexers-ig.jpg" alt="Flexers Fitness Instagram" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="project project--flip" data-project>
+          <div class="project__media" data-parallax data-speed="-0.08">
+            <img src="./work/kwen-diffuser.jpg" alt="Kwen Essence reed diffuser" loading="lazy" />
+          </div>
+          <div class="project__info">
+            <span class="project__no">04</span>
+            <h3 class="project__name">Kwen <i>Essence</i></h3>
+            <p class="project__desc">Pulse of life — a wellness line where restraint is the flex. Minimal black labels, amber glass, and a mark that whispers instead of shouts.</p>
+            <ul class="project__tags"><li>Brand Identity</li><li>Packaging</li><li>Art Direction</li></ul>
+          </div>
+          <div class="project__extra">
+            <img src="./work/kwen-spray.jpg" alt="Kwen Essence magnesium oil spray" loading="lazy" />
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="section-head">
+        <span class="section-head__index">03 — The Studio</span>
+        <h2 class="section-head__title reveal-line"><span>What I do,<br/>end to end.</span></h2>
+      </div>
+      <ul class="svc-list">
+        <li class="svc" data-svc>
+          <span class="svc__no">01</span>
+          <h3 class="svc__title">Brand Identity</h3>
+          <p class="svc__desc">Logotypes, marks, colour and type systems — the full toolkit that makes a brand recognisable everywhere.</p>
+          <span class="svc__arrow">↗</span>
+        </li>
+        <li class="svc" data-svc>
+          <span class="svc__no">02</span>
+          <h3 class="svc__title">Packaging Design</h3>
+          <p class="svc__desc">Labels, boxes and product ranges designed to be picked up — from skincare serums to supplement tubs.</p>
+          <span class="svc__arrow">↗</span>
+        </li>
+        <li class="svc" data-svc>
+          <span class="svc__no">03</span>
+          <h3 class="svc__title">Social Media Design</h3>
+          <p class="svc__desc">Feed systems, launch campaigns and content templates that keep a brand looking expensive at scale.</p>
+          <span class="svc__arrow">↗</span>
+        </li>
+        <li class="svc" data-svc>
+          <span class="svc__no">04</span>
+          <h3 class="svc__title">Art Direction</h3>
+          <p class="svc__desc">Mockups, visual storytelling and the overall mood — the direction that ties every touchpoint together.</p>
+          <span class="svc__arrow">↗</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about__grid">
+        <div class="about__label reveal-line"><span>04 — About</span></div>
+        <div class="about__body">
+          <p class="about__lead">
+            I'm <strong>Buhle Makaula</strong>, a digital artist who builds brands.
+            Between creativity and strategy lies the space where I design —
+            <em>from first sketch to the shelf.</em>
+          </p>
+          <p class="about__p">
+            I work with founders and small teams who want to look like the brand they're
+            about to become. Every logo, label and layout is made with intention —
+            clarity, precision and a bit of personality — so people don't just notice your
+            brand, they trust it.
+          </p>
+          <div class="about__row">
+            <div><h4>Based in</h4><p>South Africa — working worldwide, remotely.</p></div>
+            <div><h4>Toolkit</h4><p>Illustrator · Photoshop · InDesign · Figma</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-marquee" data-marquee data-dir="1">
+        <div class="marquee__track">
+          <span>Illustrator</span><span>·</span><span>Photoshop</span><span>·</span><span>InDesign</span><span>·</span><span>Figma</span><span>·</span><span>Brand Strategy</span><span>·</span><span>Typography</span><span>·</span>
+          <span>Illustrator</span><span>·</span><span>Photoshop</span><span>·</span><span>InDesign</span><span>·</span><span>Figma</span><span>·</span><span>Brand Strategy</span><span>·</span><span>Typography</span><span>·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <p class="contact__pre reveal-line"><span>Have a brand worth building?</span></p>
+      <a class="contact__big" href="mailto:buhlemakaula@gmail.com" data-magnetic data-link>
+        <span class="line"><span class="w">LET'S</span></span>
+        <span class="line"><span class="w">MAKE&nbsp;IT</span></span>
+        <span class="line"><span class="w"><i>trusted.</i></span></span>
+      </a>
+      <div class="contact__row">
+        <a href="mailto:buhlemakaula@gmail.com" data-magnetic data-link>buhlemakaula@gmail.com</a>
+        <span class="contact__avail"><i></i> Available for select projects · 2025</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Buhle Makaula<em>®</em></span>
+      <nav class="footer__nav">
+        <a href="#" data-link data-social>Instagram</a>
+        <a href="#" data-link data-social>Behance</a>
+        <a href="#" data-link data-social>WhatsApp</a>
+        <a href="#top" data-link>Back to top ↑</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Buhle Makaula. Design that speaks — brands that last.</span>
+      <span>Built with intention.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
