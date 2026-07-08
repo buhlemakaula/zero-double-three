@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ikigai → Profitable Software</title>
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --paper:#eceef0;
+    --paper-2:#e3e6e9;
+    --card:#f6f7f8;
+    --ink:#16181f;
+    --ink-soft:#3f4550;
+    --ink-faint:#6b7280;
+    --line:#d3d7dd;
+    --line-soft:#dfe2e7;
+
+    --love:#e5644e;      /* persimmon */
+    --skill:#3d56b0;     /* indigo / ai */
+    --need:#2f9e8f;      /* jade */
+    --paid:#c9962b;      /* ochre gold */
+    --ikigai:#8a5cd0;    /* the blend at the center */
+
+    --accent:#3d56b0;
+    --accent-ink:#2c3f88;
+
+    --blend:multiply;
+    --glow:0 0 0 rgba(0,0,0,0);
+    --shadow:0 1px 2px rgba(20,24,34,.06), 0 10px 30px rgba(20,24,34,.06);
+
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#131519;
+      --paper-2:#0e1013;
+      --card:#1b1e25;
+      --ink:#eceadf;
+      --ink-soft:#c2c6cf;
+      --ink-faint:#8b929e;
+      --line:#2b2f38;
+      --line-soft:#242830;
+      --love:#f07d68;
+      --skill:#6d84e0;
+      --need:#46bcab;
+      --paid:#e0b552;
+      --ikigai:#a684e6;
+      --accent:#6d84e0;
+      --accent-ink:#8ea0ee;
+      --blend:screen;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 14px 34px rgba(0,0,0,.34);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#eceef0;--paper-2:#e3e6e9;--card:#f6f7f8;--ink:#16181f;--ink-soft:#3f4550;
+    --ink-faint:#6b7280;--line:#d3d7dd;--line-soft:#dfe2e7;
+    --love:#e5644e;--skill:#3d56b0;--need:#2f9e8f;--paid:#c9962b;--ikigai:#8a5cd0;
+    --accent:#3d56b0;--accent-ink:#2c3f88;--blend:multiply;
+    --shadow:0 1px 2px rgba(20,24,34,.06), 0 10px 30px rgba(20,24,34,.06);
+  }
+  :root[data-theme="dark"]{
+    --paper:#131519;--paper-2:#0e1013;--card:#1b1e25;--ink:#eceadf;--ink-soft:#c2c6cf;
+    --ink-faint:#8b929e;--line:#2b2f38;--line-soft:#242830;
+    --love:#f07d68;--skill:#6d84e0;--need:#46bcab;--paid:#e0b552;--ikigai:#a684e6;
+    --accent:#6d84e0;--accent-ink:#8ea0ee;--blend:screen;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 14px 34px rgba(0,0,0,.34);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);line-height:1.55;
+    font-size:17px;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--accent-ink)}
+
+  /* ---------- Type ---------- */
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(38px,7vw,68px);line-height:1.02;letter-spacing:-.01em;
+    margin:0;text-wrap:balance;
+  }
+  h1 em{font-style:italic;color:var(--ikigai)}
+  h2{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(26px,3.6vw,38px);line-height:1.1;letter-spacing:-.01em;
+    margin:0 0 10px;text-wrap:balance;
+  }
+  h3{font-family:var(--sans);font-weight:650;font-size:18px;margin:0 0 6px;letter-spacing:-.01em}
+  .lede{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);max-width:60ch;margin:18px 0 0}
+  p{margin:0 0 12px}
+  .muted{color:var(--ink-faint)}
+
+  /* ---------- Header ---------- */
+  header.top{
+    position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 86%, transparent);
+    backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line-soft);
+  }
+  .topbar{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.01em}
+  .brand .dot{width:14px;height:14px;border-radius:50%;
+    background:conic-gradient(from 0deg,var(--love),var(--paid),var(--need),var(--skill),var(--love))}
+  .brand small{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .theme-btn{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    background:transparent;color:var(--ink-soft);border:1px solid var(--line);
+    padding:8px 12px;border-radius:999px;cursor:pointer}
+  .theme-btn:hover{border-color:var(--ink-faint)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:56px 0 20px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:24px}}
+
+  /* ---------- Venn ---------- */
+  .venn-stage{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .venn{
+    position:relative;width:min(440px,86vw);height:min(440px,86vw);margin:8px auto;
+  }
+  .circle{
+    position:absolute;width:62%;height:62%;border-radius:50%;
+    mix-blend-mode:var(--blend);opacity:.32;transition:opacity .5s ease, transform .5s ease, box-shadow .5s ease;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .circle .lbl{
+    position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:#fff;mix-blend-mode:normal;font-weight:600;
+    text-align:center;line-height:1.3;white-space:nowrap;
+    text-shadow:0 1px 2px rgba(0,0,0,.35);
+  }
+  .c-love{background:var(--love);left:19%;top:0}
+  .c-skill{background:var(--skill);left:0;top:19%}
+  .c-need{background:var(--need);left:38%;top:19%}
+  .c-paid{background:var(--paid);left:19%;top:38%}
+  .c-love .lbl{top:16%}
+  .c-skill .lbl{left:14%;top:50%}
+  .c-need .lbl{right:14%;top:50%}
+  .c-paid .lbl{bottom:16%}
+  .circle.on{opacity:.82}
+  .circle.on{box-shadow:0 0 40px 4px currentColor}
+  .c-love.on{color:var(--love)}.c-skill.on{color:var(--skill)}
+  .c-need.on{color:var(--need)}.c-paid.on{color:var(--paid)}
+
+  .venn-center{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.8);
+    width:26%;height:26%;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    text-align:center;opacity:0;transition:opacity .6s ease, transform .6s ease;
+    pointer-events:none;z-index:5;
+  }
+  .venn-center.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .venn-center span{
+    font-family:var(--serif);font-style:italic;font-size:clamp(14px,3.4vw,20px);
+    color:#fff;mix-blend-mode:normal;text-shadow:0 1px 6px rgba(0,0,0,.5);letter-spacing:.02em;
+  }
+  @keyframes breathe{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ikigai) 60%,transparent)}
+    50%{box-shadow:0 0 0 14px color-mix(in srgb,var(--ikigai) 0%,transparent)}}
+  .venn-center.on::before{
+    content:"";position:absolute;inset:-6%;border-radius:50%;
+    background:radial-gradient(circle,color-mix(in srgb,var(--ikigai) 85%,#fff) 0%, var(--ikigai) 70%);
+    z-index:-1;animation:breathe 3.4s ease-in-out infinite;
+  }
+  @media(prefers-reduced-motion:reduce){.venn-center.on::before{animation:none}}
+
+  .venn-legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;width:min(440px,86vw);
+    font-size:13px;color:var(--ink-soft)}
+  .venn-legend b{color:var(--ink);font-weight:650}
+  .venn-legend .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---------- Selector ---------- */
+  .builder{padding:26px 0 12px}
+  .panel{background:var(--card);border:1px solid var(--line-soft);border-radius:16px;
+    box-shadow:var(--shadow)}
+  .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:760px){.builder-grid{grid-template-columns:1fr}}
+  .qblock{padding:22px 24px;border-bottom:1px solid var(--line-soft)}
+  .builder-grid .qblock:nth-child(odd){border-right:1px solid var(--line-soft)}
+  @media(max-width:760px){.builder-grid .qblock:nth-child(odd){border-right:none}}
+  .qhead{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .qhead .q{font-weight:650;font-size:15px}
+  .qhead .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    padding:3px 8px;border-radius:999px;color:#fff}
+  .tag.love{background:var(--love)}.tag.skill{background:var(--skill)}
+  .tag.need{background:var(--need)}.tag.paid{background:var(--paid)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:14px;padding:8px 13px;border-radius:999px;cursor:pointer;user-select:none;
+    background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
+    transition:all .16s ease;line-height:1.25;
+  }
+  .chip:hover{border-color:var(--ink-faint);color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- Result ---------- */
+  .result{padding:34px 0 10px;scroll-margin-top:70px}
+  .statement{
+    font-family:var(--serif);font-size:clamp(20px,2.8vw,29px);line-height:1.35;
+    letter-spacing:-.01em;margin:0 0 6px;text-wrap:balance;
+  }
+  .statement .h{font-style:italic}
+  .statement .love{color:var(--love)}.statement .skill{color:var(--accent-ink)}
+  .statement .need{color:var(--need)}.statement .paid{color:var(--paid)}
+  .result-empty{color:var(--ink-faint);font-family:var(--serif);font-style:italic;font-size:20px}
+
+  .ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:860px){.ideas{grid-template-columns:1fr}}
+  .idea{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:20px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+  .idea::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+  .idea .rank{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  .idea .match{font-family:var(--mono);font-size:11px;color:var(--need);font-weight:600}
+  .idea h3{font-size:19px}
+  .idea .row{display:flex;flex-direction:column;gap:3px}
+  .idea .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .idea .v{font-size:14.5px;color:var(--ink-soft)}
+  .idea .v b{color:var(--ink);font-weight:600}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .badge{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 7px;border-radius:6px;border:1px solid var(--line);color:var(--ink-faint)}
+  .badge.hot{color:var(--love);border-color:color-mix(in srgb,var(--love) 40%,var(--line))}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:54px 0;border-top:1px solid var(--line-soft)}
+  .sec-head{max-width:64ch;margin-bottom:26px}
+  .four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.four{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.four{grid-template-columns:1fr}}
+  .quad{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .quad .dotk{width:26px;height:26px;border-radius:50%;margin-bottom:12px;display:block}
+  .quad.love .dotk{background:var(--love)}.quad.skill .dotk{background:var(--skill)}
+  .quad.need .dotk{background:var(--need)}.quad.paid .dotk{background:var(--paid)}
+  .quad h3{font-size:16px}
+  .quad p{font-size:14px;color:var(--ink-soft);margin:0}
+
+  /* library */
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center}
+  .filterbar .fl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-right:4px}
+  .lib{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.lib{grid-template-columns:1fr}}
+  .libcard{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;padding:18px;
+    box-shadow:var(--shadow);transition:opacity .2s ease}
+  .libcard.hide{display:none}
+  .libcard h3{font-size:17px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .libcard .pays{font-size:14px;color:var(--ink-soft);margin:8px 0 0}
+  .libcard .pays b{color:var(--ink)}
+  .score-pill{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;
+    border:1px solid var(--line);color:var(--ink-faint);white-space:nowrap}
+
+  /* playbook */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line-soft);
+    border-radius:14px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{padding:20px;border-right:1px solid var(--line-soft)}
+  .step:last-child{border-right:none}
+  .step .n{font-family:var(--serif);font-size:30px;color:var(--ikigai);line-height:1;margin-bottom:8px}
+  .step h3{font-size:15px}
+  .step p{font-size:13.5px;color:var(--ink-soft);margin:0}
+  .step .wk{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+
+  .callout{background:linear-gradient(180deg,color-mix(in srgb,var(--ikigai) 8%,var(--card)),var(--card));
+    border:1px solid var(--line-soft);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .callout h3{font-family:var(--serif);font-weight:400;font-size:22px}
+  .callout ul{margin:8px 0 0;padding-left:18px}
+  .callout li{margin:6px 0;color:var(--ink-soft)}
+  .callout li b{color:var(--ink);font-weight:600}
+
+  footer{padding:44px 0 60px;border-top:1px solid var(--line-soft);color:var(--ink-faint);font-size:14px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14px;
+    background:var(--ink);color:var(--paper);border:none;padding:11px 18px;border-radius:999px;cursor:pointer;text-decoration:none}
+  .btn:hover{opacity:.9}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="brand"><span class="dot" aria-hidden="true"></span> Ikigai&nbsp;Engine <small>· profitable software</small></div>
+    <button class="theme-btn" id="themeBtn" type="button">Theme</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">生き甲斐 · a reason to build</p>
+        <h1>Find your <em>ikigai</em>.<br>Then ship software the market pays for.</h1>
+        <p class="lede">Ikigai is the overlap of what you love, what you're good at, what the world needs, and what you can be paid for. Click your way through the four circles below — the engine resolves your center and matches it to concrete, buildable, revenue-first software concepts.</p>
+        <div class="cta-row">
+          <a class="btn" href="#build">Build my ikigai</a>
+          <a class="btn ghost" href="#library">See 2026 opportunities</a>
+        </div>
+      </div>
+      <div class="venn-stage">
+        <div class="venn" id="venn" aria-hidden="true">
+          <div class="circle c-love"  data-dim="love"><span class="lbl">What you<br>love</span></div>
+          <div class="circle c-skill" data-dim="skill"><span class="lbl">What you're<br>good at</span></div>
+          <div class="circle c-need"  data-dim="need"><span class="lbl">What the<br>world needs</span></div>
+          <div class="circle c-paid"  data-dim="paid"><span class="lbl">What pays<br>you</span></div>
+          <div class="venn-center" id="vcenter"><span>ikigai</span></div>
+        </div>
+        <div class="venn-legend">
+          <div><span class="k">love ∩ skill</span><br><b>Passion</b></div>
+          <div><span class="k">love ∩ need</span><br><b>Mission</b></div>
+          <div><span class="k">skill ∩ paid</span><br><b>Profession</b></div>
+          <div><span class="k">need ∩ paid</span><br><b>Vocation</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDER -->
+  <section class="builder" id="build">
+    <div class="wrap">
+      <div class="panel">
+        <div class="builder-grid" id="builder"><!-- injected --></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="result" id="result">
+    <div class="wrap">
+      <p class="eyebrow">Your center</p>
+      <p class="statement" id="statement">
+        <span class="result-empty">Select at least one option above and your ikigai statement appears here.</span>
+      </p>
+      <div class="ideas" id="ideas"><!-- injected --></div>
+    </div>
+  </section>
+
+  <!-- THE FOUR -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The framework</p>
+        <h2>Four questions, one intersection</h2>
+        <p class="muted">Profitable software rarely comes from one circle. A thing you love that nobody needs is a hobby. A thing that pays but you hate is a grind. Ikigai is the small region where all four agree — and that's exactly where durable, profitable products live.</p>
+      </div>
+      <div class="four">
+        <div class="quad love"><span class="dotk"></span><h3>What you love</h3><p>The problems you'd still poke at on a Sunday. Sustains you through the 18 unglamorous months before traction.</p></div>
+        <div class="quad skill"><span class="dotk"></span><h3>What you're good at</h3><p>Your unfair advantage — a craft, a domain, an audience. It's your moat and your speed.</p></div>
+        <div class="quad need"><span class="dotk"></span><h3>What the world needs</h3><p>A real, felt, recurring pain. If people already hack around it in spreadsheets, that's demand.</p></div>
+        <div class="quad paid"><span class="dotk"></span><h3>What pays you</h3><p>Someone with a budget and urgency. Businesses beat consumers here; urgency beats "nice to have."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section class="block" id="library">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Opportunity library · 2026</p>
+        <h2>Software people are paying for right now</h2>
+        <p class="muted">A curated set of concept templates, sorted live against your selections above. In 2026 the winning shape is narrow: a vertical tool for a specific customer, where AI collapses a cost that used to require headcount.</p>
+      </div>
+      <div class="filterbar" id="filterbar">
+        <span class="fl">Sorted by fit ↓</span>
+      </div>
+      <div class="lib" id="lib"><!-- injected --></div>
+    </div>
+  </section>
+
+  <!-- PLAYBOOK -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The profitable part</p>
+        <h2>An idea isn't a business until money moves</h2>
+        <p class="muted">Ikigai points the direction; this is how you make it pay. The order matters — most first-time builders spend months coding before they've confirmed anyone will pay. Invert it.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="wk">Week 1</div><div class="n">1</div><h3>Find 20 people with the pain</h3><p>Pick one narrow customer from your matches. Talk to 20 of them. You're listening for the same frustration said three different ways.</p></div>
+        <div class="step"><div class="wk">Week 2</div><div class="n">2</div><h3>Pre-sell before you build</h3><p>Offer to solve it manually or with a landing page + price. A card entered, a deposit, a signed LOI — that's validation. A "cool idea!" is not.</p></div>
+        <div class="step"><div class="wk">Weeks 3–6</div><div class="n">3</div><h3>Ship the thinnest slice</h3><p>Build only the one workflow they'll pay for. Charge from day one — free users teach you nothing about willingness to pay.</p></div>
+        <div class="step"><div class="wk">Ongoing</div><div class="n">4</div><h3>Price for value, then raise it</h3><p>Recurring &gt; one-off. B2B tolerates 5–20× consumer prices. When nobody blinks at your price, it's too low.</p></div>
+      </div>
+
+      <div class="callout">
+        <h3>What makes software actually profitable in 2026</h3>
+        <ul>
+          <li><b>Recurring revenue.</b> A $50/mo B2B subscription with low churn beats a $500 one-time sale within a year — and compounds.</li>
+          <li><b>Narrow beats broad.</b> "Scheduling for tattoo studios" out-earns "scheduling for everyone." A specific customer will pay a premium to feel understood.</li>
+          <li><b>Sell to budgets, not wallets.</b> Businesses buy tools that save staff hours or make money; consumers resist paying for almost anything.</li>
+          <li><b>AI as margin, not the product.</b> Use AI to remove a labor cost inside a real workflow — don't sell "AI." Customers pay for the outcome, not the model.</li>
+          <li><b>Distribution is half the product.</b> Pick a customer you can already reach — your job, your community, an audience you can build. Great software nobody finds earns $0.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Ikigai Engine — a tool to point you, not to decide for you. The market is the final judge; go talk to it.</span>
+    <span class="muted" style="font-family:var(--mono);font-size:11px;letter-spacing:.1em">生き甲斐</span>
+  </div>
+</footer>
+
+<script>
+/* ---------------- Data ---------------- */
+const CATS = [
+  { id:"skill", dim:"skill", tag:"skill", q:"What are you good at?", note:"what you're good at",
+    opts:[
+      {id:"build", label:"Building software"},
+      {id:"design", label:"Design & UX"},
+      {id:"industry", label:"An industry / domain"},
+      {id:"audience", label:"Marketing & audience"},
+      {id:"data", label:"Data & AI"},
+    ]},
+  { id:"love", dim:"love", tag:"love", q:"What could you do for years?", note:"what you love",
+    opts:[
+      {id:"money", label:"Money & productivity"},
+      {id:"health", label:"Health & wellbeing"},
+      {id:"education", label:"Learning & creators"},
+      {id:"community", label:"Community & local impact"},
+      {id:"devtools", label:"Automation & dev tools"},
+    ]},
+  { id:"paid", dim:"paid", tag:"paid", q:"Who do you want to serve?", note:"who pays you",
+    opts:[
+      {id:"b2b", label:"Businesses (SaaS)"},
+      {id:"profession", label:"A specific profession"},
+      {id:"local", label:"Local small businesses"},
+      {id:"b2c", label:"Everyday consumers"},
+    ]},
+  { id:"runway", dim:"need", tag:"need", q:"What's your runway?", note:"how you'll build",
+    opts:[
+      {id:"side", label:"Side project, low cash"},
+      {id:"bootstrap", label:"Bootstrapped, serious"},
+      {id:"full", label:"Full commitment"},
+      {id:"explore", label:"Just exploring"},
+    ]},
+];
+
+const OPPS = [
+  { id:"vertical-copilot", title:"Vertical AI admin copilot",
+    blurb:"An assistant that handles intake, notes, scheduling and follow-ups for one specific profession.",
+    pays:"The practice/firm pays <b>$80–400/mo per seat</b> to reclaim staff hours.",
+    why:"AI collapsed the cost of admin labor; owners feel the pain daily and have budget.",
+    first:"Shadow one practitioner for a day; automate their single most-hated recurring task.",
+    tags:{skill:["build","data","industry"],love:["money","devtools","health","education"],paid:["profession","b2b"]},
+    effort:2, speed:"med", hot:true },
+
+  { id:"spreadsheet-killer", title:"Spreadsheet-to-SaaS micro-tool",
+    blurb:"Find a gnarly spreadsheet a team runs their business on and turn it into a clean, shared app.",
+    pays:"Teams pay <b>$30–150/mo</b> to stop breaking the sheet and fighting over versions.",
+    why:"Ready-made demand — the workaround already exists, you just productize it.",
+    first:"Ask 5 small businesses to screen-share the spreadsheet they can't live without.",
+    tags:{skill:["build","industry","data"],love:["money","devtools","community"],paid:["b2b","local","profession"]},
+    effort:1, speed:"fast", hot:true },
+
+  { id:"local-savings", title:"Savings & money app for an underserved market",
+    blurb:"Budgeting, group savings (stokvel/chama), or bill-splitting built for a community banks ignore.",
+    pays:"Freemium + <b>partner/interchange revenue</b>; premium tiers for power users.",
+    why:"Financial tools rarely fit informal economies — deep local context is your moat.",
+    first:"Map one money ritual in your community and build the annoying-part-first.",
+    tags:{skill:["build","industry","audience"],love:["money","community"],paid:["b2c","local"]},
+    effort:2, speed:"med", hot:false },
+
+  { id:"creator-tool", title:"One-job tool for creators",
+    blurb:"Repurpose long video into clips, turn posts into newsletters, or schedule across platforms — one job, done well.",
+    pays:"Prosumers pay <b>$15–40/mo</b>; creators spend to save time and grow.",
+    why:"The creator economy keeps expanding and creators pay for anything that adds hours back.",
+    first:"Pick one creator workflow you do yourself; automate it and sell to 10 peers.",
+    tags:{skill:["build","design","audience","data"],love:["education","devtools","money"],paid:["b2c","profession"]},
+    effort:1, speed:"fast", hot:true },
+
+  { id:"ai-tutor", title:"AI tutor / upskilling for a niche",
+    blurb:"An AI coach for one skill or exam — practice, feedback, and a path, not a generic chatbot.",
+    pays:"Learners pay <b>$10–30/mo</b>; sell cohorts or license to schools/employers.",
+    why:"Personalized learning at software prices is newly possible; credential anxiety funds it.",
+    first:"Teach the topic manually to 5 learners; encode what you repeat into the product.",
+    tags:{skill:["build","industry","data"],love:["education","health","community"],paid:["b2c","b2b","profession"]},
+    effort:2, speed:"med", hot:false },
+
+  { id:"booking-ops", title:"Booking & ops for local service pros",
+    blurb:"Scheduling, reminders, deposits and reviews for salons, trades, tutors, or clinics in your area.",
+    pays:"Owners pay <b>$40–120/mo</b>; no-show reduction pays for itself.",
+    why:"Local service businesses are underserved by clunky generic tools and buy in-person.",
+    first:"Sell to 3 shops on your street before writing a line of code.",
+    tags:{skill:["build","design","industry"],love:["community","money","health"],paid:["local","profession","b2b"]},
+    effort:2, speed:"med", hot:false },
+
+  { id:"compliance-docs", title:"Document & compliance automation",
+    blurb:"Generate, check, and file the repetitive paperwork a regulated profession dreads.",
+    pays:"Firms pay <b>$150–600/mo</b> — high willingness where mistakes are costly.",
+    why:"Regulated work is repetitive, high-stakes, and perfect for AI-with-a-human-check.",
+    first:"Find the one form a professional fills out 50×/month and template it end to end.",
+    tags:{skill:["build","industry","data"],love:["money","devtools"],paid:["profession","b2b"]},
+    effort:3, speed:"slow", hot:true },
+
+  { id:"health-coach", title:"Habit / health companion",
+    blurb:"A focused coach for one outcome — sleep, training, recovery, or a chronic condition's daily grind.",
+    pays:"Subscribers pay <b>$8–25/mo</b>; B2B2C via clinics or employers scales it.",
+    why:"Health is a forever market; a narrow, opinionated app beats bloated all-in-ones.",
+    first:"Solve your own health friction first, then find the 100 people exactly like you.",
+    tags:{skill:["build","design","data"],love:["health","community"],paid:["b2c","b2b"]},
+    effort:2, speed:"med", hot:false },
+
+  { id:"niche-analytics", title:"Reporting/analytics for a vertical",
+    blurb:"Pull a niche's scattered data into the one dashboard its operators actually check each morning.",
+    pays:"Businesses pay <b>$100–500/mo</b> for clarity that drives decisions.",
+    why:"Every vertical has data trapped across tools; being the source of truth is sticky.",
+    first:"Rebuild the weekly report someone assembles by hand and sell them the automation.",
+    tags:{skill:["data","build","industry"],love:["money","devtools"],paid:["b2b","profession"]},
+    effort:2, speed:"med", hot:false },
+
+  { id:"productized-service", title:"Productized service → SaaS",
+    blurb:"Sell the outcome as a done-for-you service first; turn the parts you repeat into software.",
+    pays:"Clients pay <b>$500–3,000</b> per engagement; margin rises as you automate.",
+    why:"Fastest path to revenue with little cash — customers fund the product's R&D.",
+    first:"Sell the manual version this week; only build tooling for what you do twice.",
+    tags:{skill:["design","audience","industry","build"],love:["money","education","devtools","community"],paid:["b2b","local","profession"]},
+    effort:1, speed:"fast", hot:true },
+
+  { id:"internal-agent", title:"AI agent for a repetitive back-office job",
+    blurb:"Automate one messy internal process — invoice matching, lead triage, support drafting.",
+    pays:"Companies pay <b>$200–1,000/mo</b> — priced against the salary it offsets.",
+    why:"Back-office toil is everywhere and finally automatable; ROI is easy to prove.",
+    first:"Find a team doing a boring task by hand for hours weekly; automate that exact task.",
+    tags:{skill:["build","data","industry"],love:["devtools","money"],paid:["b2b","profession"]},
+    effort:3, speed:"slow", hot:true },
+
+  { id:"community-marketplace", title:"Marketplace for an under-served niche",
+    blurb:"Connect two sides of a specific local or interest community that currently find each other by luck.",
+    pays:"Take a <b>5–15% cut</b> or charge the supply side a subscription.",
+    why:"Trust and local knowledge are hard for incumbents to copy; network effects compound.",
+    first:"Manually match 10 pairs yourself before automating anything.",
+    tags:{skill:["audience","build","industry"],love:["community","money","education"],paid:["local","b2c","b2b"]},
+    effort:3, speed:"slow", hot:false },
+];
+
+/* ---------------- State ---------------- */
+const state = { skill:new Set(), love:new Set(), paid:new Set(), runway:new Set() };
+
+/* ---------------- Build selector ---------------- */
+const builder = document.getElementById("builder");
+CATS.forEach(cat=>{
+  const block = document.createElement("div");
+  block.className = "qblock";
+  block.innerHTML = `
+    <div class="qhead">
+      <span class="q">${cat.q}</span>
+      <span class="tag ${cat.tag}">${cat.note}</span>
+    </div>
+    <div class="chips" data-cat="${cat.id}"></div>`;
+  const chips = block.querySelector(".chips");
+  cat.opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.className="chip"; b.type="button"; b.textContent=o.label;
+    b.setAttribute("aria-pressed","false");
+    b.addEventListener("click",()=>{
+      const set = state[cat.id];
+      if(set.has(o.id)){set.delete(o.id);b.setAttribute("aria-pressed","false");}
+      else{set.add(o.id);b.setAttribute("aria-pressed","true");}
+      render();
+    });
+    chips.appendChild(b);
+  });
+  builder.appendChild(block);
+});
+
+/* ---------------- Scoring ---------------- */
+function scoreOpp(o){
+  let s=0;
+  o.tags.skill.forEach(t=>{ if(state.skill.has(t)) s+=2; });
+  o.tags.love.forEach(t=>{ if(state.love.has(t)) s+=2; });
+  o.tags.paid.forEach(t=>{ if(state.paid.has(t)) s+=3; });
+  // runway shaping
+  const r = [...state.runway][0];
+  if(r==="side" && o.speed==="fast") s+=2;
+  if(r==="side" && o.effort===3) s-=2;
+  if(r==="bootstrap" && o.speed==="med") s+=1;
+  if(r==="full" && o.effort>=2) s+=1;
+  if(r==="explore" && o.hot) s+=1;
+  return s;
+}
+
+const LABELS={};
+CATS.forEach(c=>c.opts.forEach(o=>LABELS[o.id]=o.label.toLowerCase()));
+
+function joinNice(arr){
+  if(arr.length===0) return "";
+  if(arr.length===1) return arr[0];
+  if(arr.length===2) return arr[0]+" and "+arr[1];
+  return arr.slice(0,-1).join(", ")+", and "+arr[arr.length-1];
+}
+
+/* ---------------- Render ---------------- */
+function render(){
+  // venn circles
+  const on = { love:state.love.size>0, skill:state.skill.size>0, paid:state.paid.size>0 };
+  // "need" lights when there is real market fit (a matched opportunity scoring > 0)
+  const anyMatch = OPPS.some(o=>scoreOpp(o)>0) && (state.love.size||state.skill.size||state.paid.size);
+  on.need = !!anyMatch;
+  document.querySelectorAll(".circle").forEach(c=>{
+    c.classList.toggle("on", !!on[c.dataset.dim]);
+  });
+  const all = on.love&&on.skill&&on.paid&&on.need;
+  document.getElementById("vcenter").classList.toggle("on", all);
+
+  // statement
+  const st = document.getElementById("statement");
+  const loveL = [...state.love].map(x=>LABELS[x]);
+  const skillL = [...state.skill].map(x=>LABELS[x]);
+  const paidL = [...state.paid].map(x=>({b2b:"businesses",profession:"a profession",local:"local businesses",b2c:"consumers"})[x]);
+  if(!loveL.length && !skillL.length && !paidL.length){
+    st.innerHTML = `<span class="result-empty">Select at least one option above and your ikigai statement appears here.</span>`;
+  } else {
+    const parts=[];
+    parts.push(`You're at your best <span class="h skill">building with ${skillL.length?joinNice(skillL):"your craft"}</span>`);
+    parts.push(`for problems in <span class="h love">${loveL.length?joinNice(loveL):"a field you love"}</span>`);
+    parts.push(`that <span class="h paid">${paidL.length?joinNice(paidL):"someone with a budget"} will pay to solve</span><span class="need">.</span>`);
+    st.innerHTML = parts.join(", ");
+  }
+
+  // ideas (top 3)
+  renderIdeas();
+  // library (all, sorted)
+  renderLib();
+}
+
+function metaBadges(o){
+  const spd = {fast:"fast to revenue",med:"medium build",slow:"deeper build"}[o.speed];
+  const eff = "★".repeat(o.effort)+"☆".repeat(3-o.effort);
+  return `<div class="badges">
+    <span class="badge">${spd}</span>
+    <span class="badge">effort ${eff}</span>
+    ${o.hot?'<span class="badge hot">2026 tailwind</span>':''}
+  </div>`;
+}
+
+function renderIdeas(){
+  const wrap = document.getElementById("ideas");
+  const any = state.love.size||state.skill.size||state.paid.size;
+  if(!any){ wrap.innerHTML=""; return; }
+  const ranked = OPPS.map(o=>({o,s:scoreOpp(o)})).filter(x=>x.s>0)
+                     .sort((a,b)=>b.s-a.s).slice(0,3);
+  if(!ranked.length){ wrap.innerHTML=""; return; }
+  const maxS = ranked[0].s || 1;
+  wrap.innerHTML = ranked.map((x,i)=>{
+    const o=x.o; const pct=Math.round(100*x.s/(maxS));
+    return `<article class="idea">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="rank">Match ${i+1}</span>
+        <span class="match">${pct}% fit</span>
+      </div>
+      <h3>${o.title}</h3>
+      <p class="v" style="margin:0">${o.blurb}</p>
+      <div class="row"><span class="k">Who pays</span><span class="v">${o.pays}</span></div>
+      <div class="row"><span class="k">Why it's profitable</span><span class="v">${o.why}</span></div>
+      <div class="row"><span class="k">Your first move</span><span class="v"><b>${o.first}</b></span></div>
+      ${metaBadges(o)}
+    </article>`;
+  }).join("");
+}
+
+function renderLib(){
+  const lib = document.getElementById("lib");
+  const any = state.love.size||state.skill.size||state.paid.size;
+  const ranked = OPPS.map(o=>({o,s:scoreOpp(o)}))
+    .sort((a,b)=> b.s-a.s || (a.o.effort-b.o.effort));
+  lib.innerHTML = ranked.map(x=>{
+    const o=x.o;
+    const pill = any ? (x.s>0?`${x.s} pts fit`:"low fit") : "select to rank";
+    return `<article class="libcard">
+      <h3>${o.title} <span class="score-pill">${pill}</span></h3>
+      <p class="v" style="color:var(--ink-soft);font-size:14px;margin:8px 0 0">${o.blurb}</p>
+      <p class="pays">${o.pays}</p>
+      ${metaBadges(o)}
+    </article>`;
+  }).join("");
+}
+
+/* ---------------- Theme toggle ---------------- */
+const themeBtn = document.getElementById("themeBtn");
+themeBtn.addEventListener("click",()=>{
+  const root=document.documentElement;
+  const cur = root.getAttribute("data-theme")
+    || (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+  root.setAttribute("data-theme", cur==="dark"?"light":"dark");
+});
+
+render();
+</script>
+</body>
+</html>
