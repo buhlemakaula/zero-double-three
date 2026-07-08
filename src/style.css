@@ -157,7 +157,7 @@ main > section { max-width: var(--maxw); margin: 0 auto; }
    STUDIO / CARDS
    ============================================================ */
 .studio { margin-top: clamp(5rem,11vw,9rem); }
-.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.8rem,1.4vw,1.1rem); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.8rem,1.4vw,1.1rem); }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-sm);
   padding: clamp(1.4rem,2.2vw,1.9rem); display: flex; flex-direction: column; gap: .8rem;
   transition: transform .4s var(--ease), border-color .4s, background .4s; }
