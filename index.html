@@ -8,6 +8,7 @@
   <meta property="og:title" content="The Block Pass — one block, three doors, every chore handled">
   <meta property="og:description" content="Laundry, coffee and sneaker care on one membership. Musgrave, Berea, Durban.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-craft.jpg">
   <link rel="icon" href="assets/logo-blockpass.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span id="topbar-hours">Open 7 days · 08:00 – 18:00</span>
+    <span class="tb-contacts">
+      <a id="topbar-phone" href="#">+27 68 178 5025</a>
+      <a id="topbar-email" href="#">washme@takkiewashsa.co.za</a>
+    </span>
+  </div>
+</div>
 
 <header class="site-header">
   <div class="wrap">
@@ -24,9 +35,9 @@
     </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
-      <a href="#block-pass">Block Pass</a>
-      <a href="#linen-mocha">Linen &amp; Mocha</a>
       <a href="#takkie-wash">Takkie Wash</a>
+      <a href="#linen-mocha">Linen &amp; Mocha</a>
+      <a href="#block-pass">Block Pass</a>
       <a href="#pickup">Pickup &amp; delivery</a>
       <a class="btn btn-primary" href="book.html">Book now</a>
     </nav>
@@ -36,184 +47,82 @@
 <main id="top">
 
   <!-- ============ HERO ============ -->
-  <section class="hero on-dark">
+  <section class="hero" data-photo="assets/images/hero-craft.jpg">
     <div class="wrap">
       <p class="hero-meta">Musgrave · Berea · Durban</p>
       <h1>One block. Three doors. <span class="accent">Every chore handled.</span></h1>
       <p class="lede">Drop your laundry, hand in your sneakers, and have a proper coffee while the block takes care of the rest.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="book.html">Get an instant price</a>
+        <a class="btn btn-white" href="book.html">Get an instant price</a>
         <a class="btn btn-ghost" href="#block-pass">Join the Block Pass</a>
       </div>
     </div>
-
-    <!-- Signature: the block itself. Each storefront scrolls to its section. -->
-    <div class="hero-street" aria-label="The three storefronts: Linen, Mocha, and Takkie Wash">
-      <svg viewBox="0 0 880 292" role="img" aria-hidden="true">
-        <defs>
-          <pattern id="awn-blue" width="24" height="20" patternUnits="userSpaceOnUse">
-            <rect width="24" height="20" fill="#2b3fc4"/><rect width="12" height="20" fill="#4d60d6"/>
-          </pattern>
-          <pattern id="awn-crema" width="24" height="20" patternUnits="userSpaceOnUse">
-            <rect width="24" height="20" fill="#b97f42"/><rect width="12" height="20" fill="#d09a5d"/>
-          </pattern>
-          <pattern id="awn-dark" width="24" height="20" patternUnits="userSpaceOnUse">
-            <rect width="24" height="20" fill="#40302a"/><rect width="12" height="20" fill="#57443c"/>
-          </pattern>
-        </defs>
-
-        <!-- parapet -->
-        <rect x="20" y="26" width="840" height="14" rx="6" fill="#57443c"/>
-
-        <!-- ===== Door 1: LINEN ===== -->
-        <a href="#linen-mocha" aria-label="Linen — the laundry">
-          <g>
-            <rect x="30" y="40" width="260" height="230" fill="#f7f5f0"/>
-            <rect x="30" y="40" width="260" height="26" fill="#40302a"/>
-            <text x="160" y="58" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="13" letter-spacing="4" fill="#f7f5f0">LINEN</text>
-            <path class="awning" d="M30 66h260l14 34H16z" fill="url(#awn-blue)"/>
-            <path d="M16 100h288v8H16z" fill="#20309c"/>
-            <!-- washer window -->
-            <rect x="52" y="126" width="92" height="112" rx="8" fill="#e4e0d5"/>
-            <circle cx="98" cy="176" r="32" fill="#2b3fc4"/>
-            <circle cx="98" cy="176" r="22" fill="#8fa0f5"/>
-            <path d="M84 176c6-8 22-8 28 0" stroke="#f7f5f0" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <!-- door -->
-            <rect x="176" y="126" width="80" height="144" rx="6" fill="#2b3fc4"/>
-            <circle cx="242" cy="200" r="4" fill="#f7f5f0"/>
-          </g>
-        </a>
-
-        <!-- ===== Door 2: MOCHA ===== -->
-        <a href="#linen-mocha" aria-label="Mocha — the coffee bar">
-          <g>
-            <rect x="300" y="40" width="260" height="230" fill="#f0ebe2"/>
-            <rect x="300" y="40" width="260" height="26" fill="#241712"/>
-            <text x="430" y="58" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="13" letter-spacing="4" fill="#f7f5f0">MOCHA</text>
-            <path class="awning" d="M300 66h260l14 34h-288z" fill="url(#awn-crema)"/>
-            <path d="M286 100h288v8h-288z" fill="#8a5c2c"/>
-            <!-- café window with cup -->
-            <rect x="322" y="126" width="132" height="112" rx="8" fill="#3a2a20"/>
-            <path d="M362 190h44a2 2 0 0 1 2 2c0 14-9 24-24 24s-24-10-24-24a2 2 0 0 1 2-2z" fill="#f7f5f0"/>
-            <path d="M408 194h7a9 9 0 0 1 0 18h-5a26 26 0 0 0-2-18z" fill="#f7f5f0" opacity="0.8"/>
-            <!-- steam -->
-            <g stroke="#c9d1fb" stroke-width="4" stroke-linecap="round" fill="none">
-              <path class="steam-wisp" d="M374 178c0-7 6-7 6-14"/>
-              <path class="steam-wisp s2" d="M386 180c0-8 6-8 6-16"/>
-              <path class="steam-wisp s3" d="M398 178c0-7 6-7 6-14"/>
-            </g>
-            <!-- door -->
-            <rect x="470" y="126" width="72" height="144" rx="6" fill="#241712"/>
-            <circle cx="530" cy="200" r="4" fill="#f7f5f0"/>
-          </g>
-        </a>
-
-        <!-- ===== Door 3: TAKKIE WASH ===== -->
-        <a href="#takkie-wash" aria-label="Takkie Wash — the sneaker studio">
-          <g>
-            <rect x="570" y="40" width="280" height="230" fill="#f7f5f0"/>
-            <rect x="570" y="40" width="280" height="26" fill="#20309c"/>
-            <text x="710" y="58" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="13" letter-spacing="4" fill="#f7f5f0">TAKKIE WASH</text>
-            <path class="awning" d="M570 66h280l14 34h-308z" fill="url(#awn-dark)"/>
-            <path d="M556 100h308v8h-308z" fill="#241712"/>
-            <!-- sneaker on display shelf -->
-            <rect x="592" y="126" width="150" height="112" rx="8" fill="#e4e0d5"/>
-            <rect x="604" y="206" width="126" height="8" rx="4" fill="#b8b2a3"/>
-            <g>
-              <path d="M614 196c0-4 3-8 8-10l14-9c3-2 6 0 7 3 2 4 8 8 15 8h26a11 11 0 0 1 11 11v0h-81z" fill="#241712"/>
-              <path d="M612 199h84a4 4 0 0 1-4 6h-76a4 4 0 0 1-4-6z" fill="#2b3fc4"/>
-              <path d="M634 182l4 5m4-11l4 5" stroke="#f7f5f0" stroke-width="2.4" stroke-linecap="round"/>
-            </g>
-            <path d="M700 142l2.4 5.6 5.8 1.8-5.8 2-2.4 5.6-2.4-5.6-5.8-2 5.8-1.8z" fill="#b97f42"/>
-            <!-- door -->
-            <rect x="762" y="126" width="72" height="144" rx="6" fill="#20309c"/>
-            <circle cx="822" cy="200" r="4" fill="#f7f5f0"/>
-          </g>
-        </a>
-
-        <!-- pavement -->
-        <rect x="0" y="270" width="880" height="22" fill="#57443c"/>
-        <rect x="0" y="270" width="880" height="5" fill="#6b564c"/>
-      </svg>
-    </div>
   </section>
 
-  <!-- ============ HOW THE BLOCK WORKS ============ -->
+  <!-- Floating feature cards -->
+  <div class="wrap">
+    <div class="feature-row">
+      <div class="feature-card">
+        <svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="8" width="32" height="28" rx="5" fill="#e8ebfa"/><path d="M14 18h16M14 25h10" stroke="#2b3fc4" stroke-width="3.4" stroke-linecap="round"/><circle cx="32" cy="30" r="7" fill="#2b3fc4"/><path d="M29 30l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <h3>Price in 3 taps</h3>
+        <p>No contact forms — an exact price on screen before you book.</p>
+      </div>
+      <div class="feature-card">
+        <svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><path d="M5 27V15a3 3 0 0 1 3-3h16v15z" fill="#e8ebfa"/><path d="M24 17h8l6 6v4h-14z" fill="#2b3fc4"/><circle cx="13" cy="30" r="4.4" fill="#241712"/><circle cx="31" cy="30" r="4.4" fill="#241712"/></svg>
+        <h3>Pickup &amp; delivery</h3>
+        <p>Two-hour windows across the Berea. Free over R350.</p>
+      </div>
+      <div class="feature-card">
+        <svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><rect x="10" y="5" width="24" height="34" rx="5" fill="#e8ebfa"/><rect x="15" y="11" width="14" height="14" rx="3" fill="#2b3fc4"/><path d="M18 32h8" stroke="#241712" stroke-width="3" stroke-linecap="round"/></svg>
+        <h3>SMS when ready</h3>
+        <p>No phoning to check — we message the moment it's done.</p>
+      </div>
+      <div class="feature-card">
+        <svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 5l14 6v9c0 9-6 16.5-14 18-8-1.5-14-9-14-18v-9z" fill="#e8ebfa"/><path d="M22 10l9 4v6c0 6-3.8 11-9 12.4C16.8 31 13 26 13 20v-6z" fill="#2b3fc4"/><path d="M18.5 21.5l2.7 2.7 5-5.4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <h3>Secure checkout</h3>
+        <p>Cards handled by Paystack — never stored on this site.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PROCESS ============ -->
   <section class="section" id="how">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">How the block works</p>
-        <h2>Three doors, one visit</h2>
-        <p class="lede">The businesses are literally next door to each other — so one stop covers the lot.</p>
+      <div class="section-head center-head reveal">
+        <p class="eyebrow">The block, made simple</p>
+        <h2>Drop. Sip. Collect.</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto">Three doors, next to each other, run as one — so a single stop covers the lot.</p>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <svg class="step-icon" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="14" width="32" height="24" rx="5" fill="#2b3fc4"/><path d="M14 14v-3a8 8 0 0 1 16 0v3" stroke="#2b3fc4" stroke-width="4" fill="none"/><circle cx="22" cy="26" r="6" fill="#c9d1fb"/></svg>
-          <h3>Drop</h3>
-          <p>Hand in your laundry at Linen and your takkies next door — or book a pickup and we come to you.</p>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <div class="photo photo-placeholder-mocha" data-photo="assets/images/studio-interior.jpg"></div>
+          <span class="pnum">01</span>
+          <h3>Drop off — or we collect</h3>
+          <p>Laundry at Linen, takkies next door at the drop-off counter, or book a pickup window and stay home.</p>
         </div>
-        <div class="step reveal">
-          <svg class="step-icon" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M8 18h22a2 2 0 0 1 2 2c0 10-6 17-13 17S6 30 6 20a2 2 0 0 1 2-2z" fill="#b97f42"/><path d="M32 21h4a6 6 0 0 1 0 12h-3" stroke="#b97f42" stroke-width="3.4" fill="none"/><path d="M15 13c0-3 3-3 3-6m6 6c0-3 3-3 3-6" stroke="#b97f42" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
-          <h3>Sip</h3>
-          <p>Your wash takes about 45 minutes. Mocha has proper coffee, food and fast WiFi — settle in.</p>
+        <div class="process-card reveal">
+          <div class="photo photo-placeholder-blue" data-photo="assets/images/process-clean.jpg"></div>
+          <span class="pnum">02</span>
+          <h3>Expert hands take over</h3>
+          <p>Hand-washed, deep-cleaned and finished with proper products — every pair, every load.</p>
         </div>
-        <div class="step reveal">
-          <svg class="step-icon" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M8 24l10 10L38 12" stroke="#128c50" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Collect</h3>
-          <p>Laundry folded same-day, sneakers back in 48–72 hours with an SMS the moment they're ready.</p>
+        <div class="process-card reveal">
+          <div class="photo photo-placeholder-mocha" data-photo="assets/images/espresso.jpg"></div>
+          <span class="pnum">03</span>
+          <h3>Sip while it happens</h3>
+          <p>Mocha pours the good stuff while you wait — laundry's ready same-day, sneakers SMS you in 48–72 hours.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ BLOCK PASS ============ -->
-  <section class="section on-blue on-dark" id="block-pass">
+  <!-- ============ STATS ============ -->
+  <section class="stats-band" aria-label="The block at a glance">
     <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">The Block Pass</p>
-        <h2>One membership for the whole block</h2>
-        <p class="lede">One account, one card, all three doors. Coffee, laundry and sneaker care bundled at less than they cost apart.</p>
-      </div>
-      <div class="tiers" id="tiers"><!-- rendered from js/config.js --></div>
-      <p class="pass-note">Cancel anytime · Billed monthly by Paystack · Unused perks don't stack month to month</p>
-    </div>
-  </section>
-
-  <!-- ============ LINEN & MOCHA ============ -->
-  <section class="section on-crema" id="linen-mocha">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Doors 1 &amp; 2 · Laundry &amp; coffee bar</p>
-        <img src="assets/logo-linenmocha.svg" alt="Linen &amp; Mocha" width="260" style="margin-bottom:14px">
-        <h2>Wash-day, upgraded</h2>
-        <p class="lede">Wash, dry, iron and alterations on one side — single-origin coffee, food and fast WiFi on the other. Musgrave &amp; The Woods, Waterfall.</p>
-      </div>
-      <div class="door-grid">
-        <div class="reveal">
-          <!-- Replace by adding assets/images/cafe-interior.jpg (see README) -->
-          <div class="photo tall photo-placeholder-mocha" style="--photo:url('assets/images/cafe-interior.jpg')">
-            <span class="photo-label">cafe-interior.jpg</span>
-          </div>
-          <div class="menu-strip" id="menu-strip"><!-- rendered from js/config.js --></div>
-          <p style="margin-top:16px;color:var(--ink-soft);font-size:0.95rem" id="alterations-note"></p>
-        </div>
-        <div class="reveal">
-          <div class="quote-card" id="laundry-quote">
-            <h3>Laundry price, instantly</h3>
-            <p class="quote-sub">Pick a load, add extras — the slip updates as you go.</p>
-            <div class="field">
-              <span class="field-label" id="laundry-load-label">Load size</span>
-              <div class="chip-row" role="group" aria-labelledby="laundry-load-label" id="laundry-loads"></div>
-            </div>
-            <div class="field">
-              <span class="field-label" id="laundry-extras-label">Extras</span>
-              <div class="chip-row" role="group" aria-labelledby="laundry-extras-label" id="laundry-extras"></div>
-            </div>
-            <div class="slip" aria-live="polite" id="laundry-slip"></div>
-            <a class="btn btn-primary btn-block" href="book.html" id="laundry-book-btn">Book this wash</a>
-          </div>
-        </div>
-      </div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">doors on one block</div></div>
+      <div class="stat"><div class="stat-n">45 min</div><div class="stat-l">a wash — and a flat white</div></div>
+      <div class="stat"><div class="stat-n">48–72 h</div><div class="stat-l">sneakers back, SMS'd</div></div>
+      <div class="stat"><div class="stat-n">R249</div><div class="stat-l">Block Pass from, per month</div></div>
     </div>
   </section>
 
@@ -221,20 +130,19 @@
   <section class="section" id="takkie-wash">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Door 3 · The sneaker studio</p>
+        <p class="eyebrow eyebrow-takkie">The sneaker studio</p>
         <img src="assets/logo-takkiewash.svg" alt="Takkie Wash SA" width="260" style="margin-bottom:14px">
         <h2>See the difference before you book</h2>
-        <p class="lede">Deep cleanses, refurbs, repairs and repaints for sneakers, suede, leather and heels. Drag the slider — this is what 48 hours with us does.</p>
+        <p class="lede">Deep cleanses, refurbs, repairs and repaints for sneakers, suede, leather and heels. Drag the slider — same pair, 48 hours apart.</p>
       </div>
       <div class="door-grid">
         <div class="reveal">
-          <!-- Before/after: replace by adding assets/images/before-shoe.jpg and after-shoe.jpg -->
           <div class="ba-slider" id="ba-slider">
             <div class="ba-pane ba-before">
-              <div class="photo photo-placeholder-mocha" style="--photo:url('assets/images/before-shoe.jpg')"></div>
+              <div class="photo photo-placeholder-mocha" data-photo="assets/images/before-shoe.jpg"></div>
             </div>
             <div class="ba-pane ba-after">
-              <div class="photo photo-placeholder-blue" style="--photo:url('assets/images/after-shoe.jpg')"></div>
+              <div class="photo photo-placeholder-blue" data-photo="assets/images/after-shoe.jpg"></div>
             </div>
             <div class="ba-handle" aria-hidden="true"></div>
             <span class="ba-tag before">Before</span>
@@ -267,8 +175,56 @@
     </div>
   </section>
 
+  <!-- ============ LINEN & MOCHA ============ -->
+  <section class="section on-crema" id="linen-mocha">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The laundry &amp; coffee bar</p>
+        <img src="assets/logo-linenmocha.svg" alt="Linen &amp; Mocha" width="260" style="margin-bottom:14px">
+        <h2>Wash-day, upgraded</h2>
+        <p class="lede">Wash, dry, iron and alterations on one side — single-origin coffee, food and fast WiFi on the other. Musgrave &amp; The Woods, Waterfall.</p>
+      </div>
+      <div class="door-grid">
+        <div class="reveal">
+          <div class="photo tall photo-placeholder-mocha" data-photo="assets/images/espresso.jpg"></div>
+          <div class="menu-strip" id="menu-strip"><!-- rendered from js/config.js --></div>
+          <p style="margin-top:16px;color:var(--ink-soft);font-size:0.95rem" id="alterations-note"></p>
+        </div>
+        <div class="reveal">
+          <div class="quote-card" id="laundry-quote">
+            <h3>Laundry price, instantly</h3>
+            <p class="quote-sub">Pick a load, add extras — the slip updates as you go.</p>
+            <div class="field">
+              <span class="field-label" id="laundry-load-label">Load size</span>
+              <div class="chip-row" role="group" aria-labelledby="laundry-load-label" id="laundry-loads"></div>
+            </div>
+            <div class="field">
+              <span class="field-label" id="laundry-extras-label">Extras</span>
+              <div class="chip-row" role="group" aria-labelledby="laundry-extras-label" id="laundry-extras"></div>
+            </div>
+            <div class="slip" aria-live="polite" id="laundry-slip"></div>
+            <a class="btn btn-primary btn-block" href="book.html" id="laundry-book-btn">Book this wash</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOCK PASS ============ -->
+  <section class="section on-blue on-dark" id="block-pass">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The Block Pass</p>
+        <h2>One membership for the whole block</h2>
+        <p class="lede">One account, one card, all three doors. Coffee, laundry and sneaker care bundled at less than they cost apart.</p>
+      </div>
+      <div class="tiers" id="tiers"><!-- rendered from js/config.js --></div>
+      <p class="pass-note">Cancel anytime · Billed monthly by Paystack · Unused perks don't stack month to month</p>
+    </div>
+  </section>
+
   <!-- ============ PICKUP & DELIVERY ============ -->
-  <section class="section" id="pickup" style="padding-top:0">
+  <section class="section" id="pickup">
     <div class="wrap">
       <div class="pickup-banner reveal">
         <div>

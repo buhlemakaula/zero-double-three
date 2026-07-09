@@ -2,6 +2,7 @@
    from js/config.js so prices only ever live in one place. */
 
 document.addEventListener("DOMContentLoaded", function () {
+  initPhotos();
   initNav();
   initReveals();
   renderTiers();
@@ -12,6 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
   initSneakerQuote();
   initBeforeAfter();
 });
+
+/* Photos: resolve data-photo to an absolute URL and feed the CSS layer.
+   (A relative url() inside a custom property resolves against the
+   stylesheet in some browsers, so we resolve it here instead.) */
+function initPhotos() {
+  document.querySelectorAll("[data-photo]").forEach(function (el) {
+    const abs = new URL(el.dataset.photo, document.baseURI).href;
+    el.style.setProperty("--photo", 'url("' + abs + '")');
+  });
+}
 
 /* ---------------- Nav ---------------- */
 function initNav() {
@@ -117,6 +128,9 @@ function fillContactDetails() {
   set("footer-hours", c.hours);
   set("footer-phone", c.phoneDisplay, "tel:" + c.phoneDisplay.replace(/\s/g, ""));
   set("footer-email", c.email, "mailto:" + c.email);
+  set("topbar-hours", c.hours);
+  set("topbar-phone", c.phoneDisplay, "tel:" + c.phoneDisplay.replace(/\s/g, ""));
+  set("topbar-email", c.email, "mailto:" + c.email);
   set("ig-linen", null, c.instagramLinen);
   set("ig-takkie", null, c.instagramTakkie);
   set(

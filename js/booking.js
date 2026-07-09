@@ -12,6 +12,10 @@ let passMode = false;
 let passTier = null;
 
 document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-photo]").forEach(function (el) {
+    const abs = new URL(el.dataset.photo, document.baseURI).href;
+    el.style.setProperty("--photo", 'url("' + abs + '")');
+  });
   initNavToggle();
   const params = new URLSearchParams(location.search);
   const passParam = params.get("pass");

@@ -21,15 +21,18 @@ membership spanning all three doors.
 
 ## Launch checklist
 
-### 1. Add your photos (5 minutes)
+### 1. Swap or add photos (5 minutes)
 
-Drop photos into `assets/images/` with these exact names — the site picks
-them up automatically (until then, styled placeholders show instead):
+Real photos already live in `assets/images/` — replace any of them by
+saving a new photo over the same filename:
 
-- `cafe-interior.jpg` — Linen & Mocha interior (portrait works best)
-- `before-shoe.jpg` / `after-shoe.jpg` — the same pair of sneakers, before and
-  after cleaning, shot from the same angle. This powers the draggable slider —
-  it's your best ad, choose a dramatic pair.
+- `hero-craft.jpg` — homepage hero (the cobbler at work)
+- `before-shoe.jpg` / `after-shoe.jpg` — powers the draggable slider (same
+  pair, same angle, dirty vs clean)
+- `studio-interior.jpg` — drop-off counter (process step 01 + booking page)
+- `process-clean.jpg` — hand-cleaning close-up (process step 02)
+- `espresso.jpg` — coffee shot (process step 03 + Linen & Mocha section)
+- `process-drop.jpg` / `before-after-full.jpg` — spares for socials or extra sections
 
 ### 2. Check the prices
 

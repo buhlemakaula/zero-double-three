@@ -1,9 +1,13 @@
-# Drop your photos here
+# Site photos
 
-Use these exact filenames — the site finds them automatically:
+Replace any photo by saving a new one over the same filename:
 
-- `cafe-interior.jpg` — Linen & Mocha interior or counter (portrait, ~1200×1600)
-- `before-shoe.jpg` — a dirty pair, before cleaning (landscape, ~1600×1200)
-- `after-shoe.jpg` — the SAME pair after cleaning, same angle and framing
+- `hero-craft.jpg` — homepage hero
+- `before-shoe.jpg` / `after-shoe.jpg` — the draggable before/after slider (same pair, same angle)
+- `studio-interior.jpg` — process step 01 + booking page header
+- `process-clean.jpg` — process step 02
+- `espresso.jpg` — process step 03 + Linen & Mocha section
+- `process-drop.jpg`, `before-after-full.jpg` — spares
 
-Until a file exists, a styled placeholder shows in its spot — nothing looks broken.
+Keep them under ~300 KB each for fast loading (any photo editor's
+"export for web" at quality 80 is perfect).
