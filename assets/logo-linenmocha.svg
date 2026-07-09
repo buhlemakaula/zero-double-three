@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="Linen and Mocha — laundry and coffee bar">
+  <!-- folded linen stack -->
+  <g>
+    <rect x="4" y="26" width="34" height="7" rx="3.5" fill="#2b3fc4"/>
+    <rect x="7" y="17" width="28" height="7" rx="3.5" fill="#8fa0f5"/>
+    <rect x="10" y="8" width="22" height="7" rx="3.5" fill="#c9d1fb"/>
+  </g>
+  <!-- coffee cup -->
+  <g>
+    <path d="M44 18h16a1 1 0 0 1 1 1c0 8-3.6 14-9 14s-9-6-9-14a1 1 0 0 1 1-1z" fill="#b97f42"/>
+    <path d="M61 20h3a4 4 0 0 1 0 8h-2.2a17 17 0 0 0 .9-8z" fill="#b97f42" opacity="0.55"/>
+    <path d="M49 14c0-2 2-2 2-4m4 4c0-2 2-2 2-4" stroke="#b97f42" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="76" y="31" font-family="Bricolage Grotesque, Arial, sans-serif" font-weight="800" font-size="20" fill="#241712" letter-spacing="-0.4">Linen &amp; Mocha</text>
+  <text x="77" y="43" font-family="Spline Sans Mono, monospace" font-size="8" letter-spacing="2.6" fill="#8a7466">LAUNDRY · COFFEE BAR</text>
+</svg>

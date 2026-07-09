@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book the block — instant price, pickup &amp; secure checkout</title>
+  <meta name="description" content="Build your laundry and sneaker order, pick a two-hour pickup window in the Berea, and pay securely with Paystack.">
+  <link rel="icon" href="assets/logo-blockpass.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hanken+Grotesk:wght@400;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="The Block Pass — home">
+      <svg viewBox="0 0 64 48" aria-hidden="true"><rect x="2" y="4" width="60" height="6" rx="3" fill="currentColor"/><path d="M6 46V22a8 8 0 0 1 16 0v24z" fill="#2b3fc4"/><path d="M24 46V22a8 8 0 0 1 16 0v24z" fill="#b97f42"/><path d="M42 46V22a8 8 0 0 1 16 0v24z" fill="currentColor"/></svg>
+      The Block Pass
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html#block-pass">Block Pass</a>
+      <a href="index.html#linen-mocha">Linen &amp; Mocha</a>
+      <a href="index.html#takkie-wash">Takkie Wash</a>
+      <a href="index.html#pickup">Pickup &amp; delivery</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow" id="book-eyebrow">Book the block</p>
+    <h1 id="book-title">Your price updates as you build</h1>
+    <p class="lede" id="book-sub">Pick what needs doing — the slip on the right totals it instantly. No forms, no callbacks.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="booking-layout">
+    <div class="booking-steps">
+
+      <!-- Step P: Block Pass tier (only shown when joining via ?pass=...) -->
+      <section class="bstep" id="pass-step" hidden>
+        <h2><span class="n">1</span>Choose your Block Pass</h2>
+        <p class="hint">One membership, all three doors. Cancel anytime.</p>
+        <div class="chip-row" id="pass-tier-chips" role="group" aria-label="Block Pass tier"></div>
+        <div id="pass-perks" style="margin-top:16px"></div>
+      </section>
+
+      <!-- Step 1: services -->
+      <section class="bstep" id="services-step">
+        <h2><span class="n">1</span>What are we handling?</h2>
+        <p class="hint">Tap + to add. Everything is priced per item, per pair or per load.</p>
+
+        <h3 style="font-size:1rem;margin:14px 0 2px">Laundry — Linen &amp; Mocha</h3>
+        <div id="rows-laundry"></div>
+
+        <h3 style="font-size:1rem;margin:22px 0 2px">Sneakers — Takkie Wash SA</h3>
+        <div id="rows-sneakers"></div>
+
+        <h3 style="font-size:1rem;margin:22px 0 2px">Sneaker add-ons</h3>
+        <div id="rows-addons"></div>
+      </section>
+
+      <!-- Step 2: drop-off or pickup -->
+      <section class="bstep" id="pickup-step">
+        <h2><span class="n">2</span>Bring it in, or we collect?</h2>
+        <p class="hint" id="pickup-hint"></p>
+        <div class="chip-row" role="group" aria-label="Drop off or pickup" id="fulfil-chips">
+          <button type="button" class="chip" data-id="dropoff" aria-pressed="true">I'll drop off at the block</button>
+          <button type="button" class="chip" data-id="pickup" aria-pressed="false">Pickup &amp; delivery</button>
+        </div>
+        <div id="pickup-fields" hidden style="margin-top:20px">
+          <div class="grid-2">
+            <div class="field">
+              <label for="suburb">Your suburb</label>
+              <select id="suburb"></select>
+            </div>
+            <div class="field">
+              <label for="pickup-day">Pickup day</label>
+              <select id="pickup-day"></select>
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label" id="window-label">Two-hour window</span>
+            <div class="window-grid" role="group" aria-labelledby="window-label" id="window-chips"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: the attach -->
+      <section class="bstep" id="attach-step">
+        <h2><span class="n">3</span>While you're here…</h2>
+        <div class="attach-card">
+          <svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><path d="M8 18h22a2 2 0 0 1 2 2c0 10-6 17-13 17S6 30 6 20a2 2 0 0 1 2-2z" fill="#b97f42"/><path d="M32 21h4a6 6 0 0 1 0 12h-3" stroke="#b97f42" stroke-width="3.4" fill="none"/><path d="M15 13c0-3 3-3 3-6m6 6c0-3 3-3 3-6" stroke="#b97f42" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+          <div class="attach-txt" id="attach-text"><strong></strong><span></span></div>
+          <button type="button" class="chip" id="attach-chip" aria-pressed="false">Add it</button>
+        </div>
+      </section>
+
+      <!-- Step 4: details -->
+      <section class="bstep" id="details-step">
+        <h2><span class="n">4</span>Who's it for?</h2>
+        <p class="hint">We confirm every booking on WhatsApp and SMS you when it's ready.</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="cust-name">Your name</label>
+            <input type="text" id="cust-name" autocomplete="name" placeholder="Nomvula M.">
+          </div>
+          <div class="field">
+            <label for="cust-phone">WhatsApp number</label>
+            <input type="tel" id="cust-phone" autocomplete="tel" placeholder="068 123 4567">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cust-email">Email <span style="font-weight:400;color:var(--ink-faint)">(for your receipt)</span></label>
+          <input type="email" id="cust-email" autocomplete="email" placeholder="you@example.com">
+        </div>
+      </section>
+    </div>
+
+    <!-- Sticky till slip -->
+    <aside class="booking-summary" aria-label="Order summary">
+      <div class="slip">
+        <p class="slip-head">The Block · Musgrave · order slip</p>
+        <div id="summary-lines"></div>
+        <button type="button" class="btn btn-primary btn-block" id="pay-btn">Pay securely</button>
+        <a class="btn btn-whatsapp btn-block" id="wa-btn" href="#" target="_blank" rel="noopener" style="margin-top:10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.8-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.2z"/></svg>
+          Book via WhatsApp
+        </a>
+        <p class="pay-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/></svg>
+          Card details go straight to Paystack — never stored here.
+        </p>
+        <div class="member-nudge" id="member-nudge" hidden></div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script src="js/config.js"></script>
+<script src="js/paystack.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>

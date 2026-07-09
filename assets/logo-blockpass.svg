@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" role="img" aria-label="The Block Pass mark: three doors under one roof">
+  <!-- roofline -->
+  <rect x="2" y="4" width="60" height="6" rx="3" fill="#241712"/>
+  <!-- three doors -->
+  <path d="M6 46V22a8 8 0 0 1 16 0v24z" fill="#2b3fc4"/>
+  <path d="M24 46V22a8 8 0 0 1 16 0v24z" fill="#b97f42"/>
+  <path d="M42 46V22a8 8 0 0 1 16 0v24z" fill="#241712"/>
+  <!-- door lights -->
+  <circle cx="14" cy="24" r="2.4" fill="#f7f5f0"/>
+  <circle cx="32" cy="24" r="2.4" fill="#f7f5f0"/>
+  <circle cx="50" cy="24" r="2.4" fill="#f7f5f0"/>
+</svg>
