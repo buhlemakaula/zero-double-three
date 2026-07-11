@@ -108,7 +108,7 @@
   <div class="site-top" id="siteTop">
   <!-- Announcement -->
   <div class="topbar">
-    Now open in the heart of Pietermaritzburg &nbsp;·&nbsp; <b>Thursdays — Sushi &amp; RnB Night</b>
+    Open daily 10:00–01:00 &nbsp;·&nbsp; <b>Thu — Sushi &amp; RnB &nbsp;·&nbsp; Sat — Sensational Saturdays &nbsp;·&nbsp; Sun — Brunch &amp; Beyond</b>
   </div>
 
   <!-- Header -->
@@ -124,7 +124,7 @@
           <li><a class="nav__link" href="#home">Home</a></li>
           <li><a class="nav__link" href="#about">About</a></li>
           <li><a class="nav__link" href="#menu">Menu</a></li>
-          <li><a class="nav__link" href="#event">Sushi &amp; RnB</a></li>
+          <li><a class="nav__link" href="#events">Events</a></li>
           <li><a class="nav__link" href="#gallery">Gallery</a></li>
           <li><a class="nav__link" href="#contact">Contact</a></li>
         </ul>
@@ -439,21 +439,57 @@
     </section>
 
     <!-- ============================ Event ============================ -->
-    <section class="section bg-ink" id="event">
+    <!-- WEEKLY MAINTENANCE: to update a weekend event, replace its flyer image in
+         assets/img/events/ (keep the same filename) and tweak the title/time text. -->
+    <section class="section bg-ink section--ruled" id="events">
       <div class="container">
-        <div class="event" data-reveal data-clip>
+        <div class="section-head section-head--center" data-reveal>
+          <p class="eyebrow eyebrow--center">What's on</p>
+          <h2 class="h-1">Events &amp; Specials</h2>
+          <p class="lead">There's always a reason to pull up a chair. Book ahead to secure your table.</p>
+        </div>
+
+        <!-- Thursday — Sushi & RnB (flagship) -->
+        <div class="event" data-reveal data-clip style="margin-top:clamp(2.5rem,6vw,4rem)">
           <div class="event__bg"><img src="assets/img/event.jpg" alt="Sushi & RnB Night at 21 Ridges" /></div>
           <div class="event__inner">
             <p class="event__day">Every Thursday</p>
-            <h2 class="h-1">Sushi &amp; RnB Night</h2>
+            <h2 class="h-2">Sushi &amp; RnB Night</h2>
             <div class="flourish flourish--start"><span>❧</span></div>
             <p class="lead">Fresh rolls, chilled vibes and live beats. Our signature midweek night out —
               gather your crew, book a table and settle in.</p>
             <div style="margin-top:1.6rem;display:flex;gap:1rem;flex-wrap:wrap">
-              <a href="#reserve" class="btn">Book Thursday</a>
+              <a href="#reserve" class="btn" data-book="Sushi &amp; RnB Night (Thursday)">Book Thursday</a>
               <a href="#menu" class="btn btn--ghost">See the Sushi</a>
             </div>
           </div>
+        </div>
+
+        <div class="wevents">
+          <!-- Saturday — Sensational Saturdays -->
+          <article class="wevent" data-reveal>
+            <span class="wevent__badge">Every Saturday</span>
+            <h3 class="wevent__title">Sensational Saturdays</h3>
+            <p class="wevent__meta">Deals daily from 12:00 – 18:00</p>
+            <div class="wevent__flyers">
+              <a class="wevent__flyer" href="assets/img/events/sat-poster.jpg" target="_blank" rel="noopener"><img src="assets/img/events/sat-poster.jpg" alt="Sensational Saturdays at 21 Ridges" loading="lazy" /></a>
+              <a class="wevent__flyer" href="assets/img/events/sat-deals.jpg" target="_blank" rel="noopener"><img src="assets/img/events/sat-deals.jpg" alt="Saturday deals: Wings & Chips R99, Moscato + wood-fired pizza + hubbly R400, Don Julio Blanco margarita R75" loading="lazy" /></a>
+            </div>
+            <a href="#reserve" class="btn" data-book="Sensational Saturdays">Reserve for Saturday</a>
+          </article>
+
+          <!-- Sunday — Brunch & Beyond -->
+          <article class="wevent wevent--wide" data-reveal>
+            <span class="wevent__badge">Every Sunday</span>
+            <h3 class="wevent__title">Brunch &amp; Beyond</h3>
+            <p class="wevent__meta">Brunch R290 pp · 14:00–18:00 · Drink specials 15:00–20:00</p>
+            <div class="wevent__flyers">
+              <a class="wevent__flyer" href="assets/img/events/sun-poster.jpg" target="_blank" rel="noopener"><img src="assets/img/events/sun-poster.jpg" alt="Sunday Brunch & Beyond at 21 Ridges" loading="lazy" /></a>
+              <a class="wevent__flyer" href="assets/img/events/sun-menu.jpg" target="_blank" rel="noopener"><img src="assets/img/events/sun-menu.jpg" alt="Sunday brunch menu — starters, mains and dessert" loading="lazy" /></a>
+              <a class="wevent__flyer" href="assets/img/events/sun-specials.jpg" target="_blank" rel="noopener"><img src="assets/img/events/sun-specials.jpg" alt="Sunday drink specials — Veuve Clicquot, Hennessy, Stella, Savanna" loading="lazy" /></a>
+            </div>
+            <a href="#reserve" class="btn" data-book="Sunday Brunch & Beyond">Reserve for Sunday</a>
+          </article>
         </div>
       </div>
     </section>
@@ -668,7 +704,7 @@
           <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#event">Sushi &amp; RnB Night</a></li>
+            <li><a href="#events">Events &amp; Specials</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#reserve">Reserve a Table</a></li>
           </ul>

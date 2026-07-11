@@ -77,6 +77,19 @@ for a newer/higher-res shot using the **same filename** and it drops straight in
 Hero focal points are set per slide in `index.html` via `background-position` (e.g. `center 74%`) —
 adjust if a new photo's subject sits higher or lower. Optimise images before uploading for speed.
 
+### 4a. Weekly events — `assets/img/events/` (the part you edit each week)
+The **Events & Specials** section shows this week's flyers. To update it each week, just
+**replace these image files** (keep the same filenames) with your new Canva exports:
+
+| File | Event |
+|------|-------|
+| `sat-poster.jpg`, `sat-deals.jpg` | Saturday — Sensational Saturdays |
+| `sun-poster.jpg`, `sun-menu.jpg`, `sun-specials.jpg` | Sunday — Brunch & Beyond |
+
+Flyers are 4:5 portrait (~1080×1350). If an event's name or times change, edit the matching
+`wevent__title` / `wevent__meta` text in `index.html` (search `wevents`). To add another day,
+copy a `<article class="wevent">…</article>` block and point it at new images.
+
 ### 4b. Logo — `assets/logo/`
 Your logo is built in from `2c3e0b4e` (white-on-black):
 `logo-white.png` / `logo-gold.png` (full lockup) and `mark-white.png` / `mark-gold.png` (the "21"

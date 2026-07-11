@@ -72,6 +72,17 @@ const CONFIG = {
   $$('[data-contact="phone-link"]').forEach((el) =>
     el.addEventListener("click", () => track("contact_call", { method: "phone" })));
 
+  /* ---- Event "Reserve" buttons pre-fill the booking notes ---- */
+  $$('[data-book]').forEach((el) =>
+    el.addEventListener("click", () => {
+      const notes = document.getElementById("rf-notes");
+      if (notes) {
+        notes.value = "Booking for: " + el.getAttribute("data-book");
+        notes.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      track("event_reserve_click", { event: el.getAttribute("data-book") });
+    }));
+
   /* ---- Year ---- */
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
