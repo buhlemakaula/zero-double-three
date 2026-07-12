@@ -9,7 +9,8 @@
       "Never publish a claim or a result we did not actually produce.",
       "Every carousel has one engagement mechanic in the middle (quiz, vote, screenshot checkpoint, comment trigger) and one ask at the end.",
       "The page has a running storyline: an AI agent runs this account and we show how. Posts reference the experiment and its real numbers.",
-      "Depth over breadth. One idea explained with mechanism and example beats five ideas named."
+      "Depth over breadth. One idea explained with mechanism and example beats five ideas named.",
+      "Use one diagram slide per carousel where the idea is structural. Available diagram slide types: flow (pipeline of steps, items with t and d, optional hot), bars (comparison, items with label, value, display, optional hot on the emphasised bar only), stat (one hero number with value, kicker, body), chips (text broken into visual chunks, items array), timeline (items with t and d). Orange marks only the emphasised element, neutrals carry the rest, values are labelled directly."
     ]
   },
   "posts": [
@@ -25,7 +26,13 @@
         { "type": "point", "n": 1, "heading": "The confession", "body": "Every post on this page is planned, written and designed by an AI agent I set up in one afternoon. I am a graphic designer, not a programmer. This is the system, opened up." },
         { "type": "point", "n": 2, "heading": "The brain is one file", "body": "My entire month of content lives in a single file the AI reads. Every topic, every caption, every posting time.", "example": "date: 2026-07-13, title: An AI runs this page, time: 11:00, status: ready" },
         { "type": "point", "n": 3, "heading": "My brand kit became code", "body": "A small script turns words into these exact slides. Same fonts, same orange, same grain, every single time. Consistency is automated so taste can be manual.", "example": "render-post 2026-07-13 . . . 9 slides, 4 seconds", "engage": "SCREENSHOT THIS SLIDE" },
-        { "type": "point", "n": 4, "heading": "The 05:30 routine", "body": "Every morning an AI agent wakes up, writes that day's post in my voice, designs the slides and sends them to my phone. Before I have brushed my teeth, today's content is done." },
+        { "type": "flow", "heading": "One morning, in one picture", "items": [
+          { "t": "05:30", "d": "The agent wakes up on schedule" },
+          { "t": "Write", "d": "Today's post, in my voice, from the plan" },
+          { "t": "Design", "d": "Slides rendered in my brand, automatically" },
+          { "t": "Deliver", "d": "Finished post on my phone before breakfast" },
+          { "t": "11:00", "d": "I approve, tweak and hit post", "hot": true }
+        ], "engage": "SCREENSHOT THE SYSTEM" },
         { "type": "quiz", "q": "Guess what this whole system cost me to run", "hint": "Setup took one afternoon. Comment your guess before you swipe." },
         { "type": "answer", "heading": "R0", "body": "Free Claude plan. Free hosting on GitHub Pages. No subscriptions, no agency, no template packs.", "why": "The barrier is not money. It is knowing this is possible. Now you know." },
         { "type": "point", "n": 5, "heading": "What the machine cannot do", "body": "Taste. I approve every post, kill the weak ones and reply to every comment myself. The agent does the labour. I do the judgement. That split is the whole future of work." },
@@ -70,6 +77,7 @@
         { "type": "answer", "heading": "The context window filled up", "body": "Everything in your chat lives in a short term memory with a hard size limit. When it fills, the oldest details fall out first, usually your original instructions.", "why": "One chat, one job. Start fresh for a new task and re paste what matters." },
         { "type": "quiz", "q": "You ask for a 1000 word article and it stops at around 700. What happened?", "hint": "Question 3 of 4. Hint: AI does not count words." },
         { "type": "answer", "heading": "It ran out of tokens, not ideas", "body": "AI reads and writes in tokens, chunks of roughly three quarters of a word, with limits per reply. It also cannot count words while writing, it estimates.", "why": "Ask for structure instead of word counts: five sections, three paragraphs each. Structure it can obey." },
+        { "type": "chips", "heading": "This is how AI sees a sentence", "items": ["AI", " reads", " in", " ch", "unks", " called", " tok", "ens", "."], "note": "Nine tokens, six words. The orange chunks are whole words, the grey ones are word pieces. Every limit you hit is counted in these." },
         { "type": "quiz", "q": "What is the difference between a chatbot and an agent?", "hint": "Last one. This word is about to be everywhere." },
         { "type": "answer", "heading": "A chatbot answers, an agent acts", "body": "An agent takes steps on its own: browsing, writing files, running tools, checking its work, finishing a job while you are away. The posts on this page are made by one every morning.", "why": "Agents are why AI skills compound now. You stop doing tasks and start directing them." },
         { "type": "cta", "heading": "SCORE OUT OF 4?", "body": "Drop your honest score in the comments. Tag someone who thinks AI fluency is just typing questions. Tomorrow: the ten minute test that picks your AI for you." }
@@ -106,6 +114,13 @@
       "title": "One day, R0, full brand: the receipts",
       "slides": [
         { "type": "cover", "title": "MY WHOLE BRAND: ONE DAY, R0. THE FULL RECEIPTS", "accent": "R0", "kicker": "Hour by hour, nothing hidden" },
+        { "type": "timeline", "heading": "The day, at a glance", "items": [
+          { "t": "09:00", "d": "One screenshot and a clear brief" },
+          { "t": "11:00", "d": "Portfolio site live on free hosting" },
+          { "t": "12:00", "d": "Logo in four versions" },
+          { "t": "14:00", "d": "Brand kit, company profile PDF, banner" },
+          { "t": "17:00", "d": "A brand that looks five years old" }
+        ] },
         { "type": "point", "n": 1, "heading": "09:00, the brief", "body": "I gave the AI one reference screenshot, my photo, and clear words. Not make me a website. This:", "example": "Create a beautiful animated portfolio. Visually it should look like this screenshot. Dark, bold type, orange accents. My picture is at your disposal." },
         { "type": "point", "n": 2, "heading": "11:00, the site is live", "body": "Full portfolio with animations, my client work, and WhatsApp booking buttons. Then it published to free hosting. A real link I still use today, hosted for R0 a month." },
         { "type": "point", "n": 3, "heading": "12:00, the logo", "body": "One instruction: 1080 by 1080, use the exact colors and font properties from my site. Four versions came back: dark, light, orange, and a monogram for avatars." },
