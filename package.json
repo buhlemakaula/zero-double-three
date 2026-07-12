@@ -1,0 +1,19 @@
+{
+  "name": "zero-double-three",
+  "version": "1.0.0",
+  "description": "Dark, editorial one-page portfolio: big Anton display type, Urbanist body text, orange accent pills, grain texture, animated cover and scroll reveals.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:41729/git/buhlemakaula/zero-double-three"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}
