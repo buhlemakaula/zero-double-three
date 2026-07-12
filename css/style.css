@@ -524,6 +524,9 @@ a.pill-outline:hover { border-color: var(--orange); color: var(--orange); transf
 
 .outro-copy { margin-top: 3rem; }
 
+.footer-link { text-decoration: underline; text-underline-offset: 3px; }
+.footer-link:hover { color: var(--orange); }
+
 /* ---------- reveal animations ---------- */
 .reveal {
   opacity: 0;

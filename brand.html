@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buhle | Brand Kit</title>
+  <meta name="description" content="Brand kit for Buhle, creative designer. Logo files, colors and typography." />
+  <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/urbanist-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F4622E'/><text x='50' y='72' font-size='62' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%230D0D0C'>B</text></svg>" />
+  <style>
+    .kit-cover { min-height: 46vh; }
+    .kit-cover .wordmark { font-size: clamp(3rem, 11vw, 8.5rem); }
+
+    .kit-section { padding-top: 1.5rem; }
+    .kit-section > h2 {
+      font-family: "Anton", sans-serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-transform: uppercase;
+      padding: 0 var(--pad) 1rem;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .logo-tile { display: grid; gap: 0.8rem; }
+
+    .logo-tile img {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      width: 100%;
+    }
+
+    .logo-tile .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    }
+
+    .swatch {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .swatch .chip { height: 130px; }
+
+    .swatch .meta {
+      padding: 0.8rem 1rem;
+      background: var(--panel);
+      line-height: 1.35;
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .type-card .face-name { color: var(--orange); font-weight: 700; }
+
+    .type-sample-display {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin: 0.6rem 0 0.4rem;
+    }
+
+    .type-sample-body { font-size: 1.15rem; margin: 0.9rem 0 0.4rem; }
+
+    .kit-rules { list-style: none; color: #cfccc5; }
+    .kit-rules li { padding-left: 1.2rem; position: relative; }
+    .kit-rules li::before { content: "\00b7"; position: absolute; left: 0; color: var(--orange); font-weight: 800; }
+    .kit-rules li + li { margin-top: 0.5rem; }
+
+    @media (max-width: 860px) {
+      .swatches { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .logo-grid, .type-grid { grid-template-columns: 1fr; }
+      .swatches { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="page">
+
+    <section class="cover card kit-cover">
+      <header class="cover-top reveal-load" style="--d:.15s">
+        <span class="eyebrow">Buhle Makaula</span>
+        <nav class="cover-nav">
+          <a href="index.html">Portfolio</a>
+          <a href="#book">Book me</a>
+        </nav>
+      </header>
+
+      <div class="cover-title">
+        <h1 class="wordmark">BRAND&nbsp;KIT</h1>
+      </div>
+
+      <footer class="cover-bottom reveal-load" style="--d:.55s">
+        <span>Logo, color and type</span>
+        <span>2026</span>
+      </footer>
+    </section>
+
+    <section class="kit-section reveal">
+      <h2>Logo</h2>
+      <div class="logo-grid">
+        <div class="logo-tile">
+          <img src="assets/brand/buhle-logo-dark-1080.png" alt="Buhle logo on dark background" loading="lazy" />
+          <div class="row"><span class="muted">Primary, on ink</span><a class="pill pill-outline" href="assets/brand/buhle-logo-dark-1080.png" download>Download PNG</a></div>
+        </div>
+        <div class="logo-tile">
+          <img src="assets/brand/buhle-logo-light-1080.png" alt="Buhle logo on light background" loading="lazy" />
+          <div class="row"><span class="muted">On bone</span><a class="pill pill-outline" href="assets/brand/buhle-logo-light-1080.png" download>Download PNG</a></div>
+        </div>
+        <div class="logo-tile">
+          <img src="assets/brand/buhle-logo-orange-1080.png" alt="Buhle logo on orange background" loading="lazy" />
+          <div class="row"><span class="muted">On orange</span><a class="pill pill-outline" href="assets/brand/buhle-logo-orange-1080.png" download>Download PNG</a></div>
+        </div>
+        <div class="logo-tile">
+          <img src="assets/brand/buhle-monogram-dark-1080.png" alt="B monogram on dark background" loading="lazy" />
+          <div class="row"><span class="muted">Monogram, for avatars</span><a class="pill pill-outline" href="assets/brand/buhle-monogram-dark-1080.png" download>Download PNG</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kit-section reveal">
+      <h2>Color</h2>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#0d0d0c"></div><div class="meta"><strong>Ink</strong><br /><span class="muted small">#0D0D0C</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#1b1b1a"></div><div class="meta"><strong>Panel</strong><br /><span class="muted small">#1B1B1A</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#e9e7e2"></div><div class="meta"><strong>Bone</strong><br /><span class="muted small">#E9E7E2</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#f4622e"></div><div class="meta"><strong>Orange</strong><br /><span class="muted small">#F4622E</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#98958d"></div><div class="meta"><strong>Stone</strong><br /><span class="muted small">#98958D</span></div></div>
+      </div>
+    </section>
+
+    <section class="kit-section reveal">
+      <h2>Typography</h2>
+      <div class="type-grid">
+        <article class="card panel type-card">
+          <span class="face-name">Anton</span> <span class="muted small">Display</span>
+          <p class="type-sample-display">Bold, tall<br />and loud</p>
+          <p class="muted small">Headlines and the wordmark only. Always uppercase, tight leading, never stretched.</p>
+        </article>
+        <article class="card panel type-card">
+          <span class="face-name">Urbanist</span> <span class="muted small">Body</span>
+          <p class="type-sample-body">Clean and friendly for everything else. <strong>Bold for emphasis</strong>, regular for reading.</p>
+          <p class="muted small">Paragraphs, labels, pills and captions. Sentence case, generous line height.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="kit-section reveal">
+      <h2>Using the brand</h2>
+      <article class="card panel">
+        <ul class="kit-rules">
+          <li>Ink is the home ground. Bone and orange backgrounds are for accents and social posts.</li>
+          <li>Orange is a spice, not a sauce. One orange moment per layout is enough.</li>
+          <li>The orange full stop always sits at the end of the wordmark. Never recolor it separately.</li>
+          <li>Keep clear space around the logo of at least the height of the letter B.</li>
+          <li>The grain texture is part of the look. Use it subtly on dark surfaces.</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="card outro" id="book">
+      <h2 class="outro-title"><span>BUHLE</span><span class="accent">.</span></h2>
+      <p class="muted">Questions about the brand or a project in mind?</p>
+      <div class="contact-pills center">
+        <a class="pill pill-solid big" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp &middot; 071&nbsp;182&nbsp;4885</a>
+        <a class="pill pill-outline big" href="mailto:buhlemakaula@gmail.com">buhlemakaula@gmail.com</a>
+      </div>
+      <p class="small muted outro-copy">Buhle Makaula &middot; Brand Kit &copy; 2026</p>
+    </footer>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
