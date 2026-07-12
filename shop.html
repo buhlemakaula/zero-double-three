@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue — Misitu Furniture Workshop</title>
+  <meta name="description" content="The full Misitu catalogue — handcrafted wooden chairs, tables, storage and bedroom furniture, priced in ZAR and delivered across South Africa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>">
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="wordmark" href="index.html" aria-label="Misitu home">misitu<span class="amp">.</span></a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="shop.html" aria-current="page">Catalogue</a>
+        <a href="index.html#about">About us</a>
+        <a href="index.html#craft">Workshop</a>
+        <a href="index.html#delivery">Payment &amp; delivery</a>
+      </nav>
+      <button class="cart-btn" data-cart-open aria-label="Open cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 7h12l-1.2 12.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8Z"/>
+          <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
+        </svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalog-hero">
+      <div class="wrap">
+        <span class="eyebrow" style="display:block;margin-bottom:12px">The full catalogue</span>
+        <h1 class="display">Every piece, <span class="soft">ready to order</span></h1>
+        <div class="filter-row" data-filter-row role="group" aria-label="Filter by category"></div>
+        <div class="product-grid" data-catalog-grid></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-mark">misitu<span class="amp">.</span></div>
+          <p>Crafting quality wooden furniture in South Africa. Misitu — Swahili for forests — is where every piece begins.</p>
+        </div>
+        <div>
+          <h5>Shop</h5>
+          <ul>
+            <li><a href="shop.html">Full catalogue</a></li>
+            <li><a href="index.html#collection">Fresh collection</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html#about">About us</a></li>
+            <li><a href="index.html#craft">The workshop</a></li>
+            <li><a href="index.html#delivery">Payment &amp; delivery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:orders@misitu.co.za">orders@misitu.co.za</a></li>
+            <li><a href="tel:+27210000000">+27 (0)21 000 0000</a></li>
+            <li><a href="https://misitu.co.za" rel="noopener">misitu.co.za</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-legal">
+        <span>© 2026 Misitu Furniture Workshop. All prices in South African Rand (ZAR).</span>
+        <span>Placeholder catalogue — products and pricing are illustrative.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" data-cart-overlay></div>
+  <aside class="cart-drawer" data-cart-drawer aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-head">
+      <h2>Your cart</h2>
+      <button class="cart-close" data-cart-close aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items" data-cart-items></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Total</span><span data-cart-total>R 0</span></div>
+      <p class="cart-note">Delivery calculated at checkout. Free in Cape Town &amp; Johannesburg.</p>
+      <button class="btn btn-dark cart-checkout" data-checkout>Checkout securely</button>
+    </div>
+  </aside>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
