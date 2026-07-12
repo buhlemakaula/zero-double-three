@@ -45,3 +45,31 @@
 
   targets.forEach(function (el) { observer.observe(el); });
 })();
+
+// Lightbox: clicking a gallery image opens it full size, uncropped.
+(function () {
+  var box = document.getElementById("lightbox");
+  if (!box) return;
+  var img = box.querySelector("img");
+
+  function close() {
+    box.hidden = true;
+    img.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll(".project-gallery figure").forEach(function (fig) {
+    fig.addEventListener("click", function () {
+      var source = fig.querySelector("img");
+      img.src = source.src;
+      img.alt = source.alt;
+      box.hidden = false;
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  box.addEventListener("click", close);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !box.hidden) close();
+  });
+})();
