@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buhle Makaula — Portfolio 2026 · Mockup Loop</title>
+<meta name="description" content="A looping cross-device mockup animation of the Buhle Makaula Portfolio 2026 website.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F4622E'/><text x='50' y='72' font-size='62' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%230D0D0C'>B</text></svg>">
+<style>
+/* ============================================================
+   Buhle Makaula — Portfolio 2026 · cross-device mockup loop
+   One 24s seamless loop. Palette + type lifted straight from
+   the live site: ink / card / bone / orange · Anton + Urbanist
+   ============================================================ */
+@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;
+  src:url("assets/fonts/anton-latin.woff2") format("woff2")}
+@font-face{font-family:"Urbanist";font-style:normal;font-weight:100 900;font-display:swap;
+  src:url("assets/fonts/urbanist-latin.woff2") format("woff2")}
+
+:root{
+  --T:24s;
+  --ink:#0d0d0c; --card:#151514; --panel:#1b1b1a; --line:#2b2b29;
+  --bone:#e9e7e2; --orange:#f4622e; --muted:#98958d;
+  --anton:"Anton","Arial Narrow",sans-serif;
+  --urb:"Urbanist",system-ui,sans-serif;
+  --s:1;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);font-family:var(--urb);color:var(--bone);overflow:hidden}
+img{display:block;max-width:100%}
+
+/* ---------- stage ---------- */
+.stage{position:fixed;inset:0;overflow:hidden;
+  background:
+    radial-gradient(90% 70% at 72% -12%, rgba(244,98,46,.10) 0%, rgba(244,98,46,0) 55%),
+    radial-gradient(120% 90% at 50% 0%, #171716 0%, var(--ink) 60%);
+}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:8;
+  background:radial-gradient(120% 105% at 50% 42%, rgba(0,0,0,0) 58%, rgba(5,5,4,.6) 100%)}
+.grain{position:absolute;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainShift .9s steps(4) infinite}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}25%{transform:translate(-2%,1.5%)}
+  50%{transform:translate(1.5%,-2%)}75%{transform:translate(-1%,-1%)}100%{transform:translate(0,0)}}
+
+/* ---------- slate / chrome ---------- */
+.slate{position:absolute;top:0;left:0;right:0;z-index:7;display:flex;justify-content:space-between;
+  padding:24px 32px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.slate b{font-weight:600;color:var(--bone)}
+.slate .loop-tag i{font-style:normal;color:var(--orange)}
+.url-chip{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:7;
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:10px 20px;background:rgba(13,13,12,.55);
+  animation:fadeUp 1.2s ease 1.9s both}
+.url-chip b{color:var(--bone);font-weight:600}
+.progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(233,231,226,.08);z-index:9}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,#b8481f,var(--orange));
+  transform-origin:left;animation:prog var(--T) linear infinite}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.playpause{position:absolute;left:28px;bottom:22px;z-index:10;cursor:pointer;background:none;
+  border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:var(--urb);
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;padding:10px 18px;
+  transition:color .25s ease,border-color .25s ease}
+.playpause:hover{color:var(--bone);border-color:var(--muted)}
+.playpause:focus-visible{outline:1px solid var(--orange);outline-offset:3px}
+.stage.paused .anim,.stage.paused .anim *,.stage.paused .anim *::before,.stage.paused .anim *::after,
+.stage.paused .progress i{animation-play-state:paused!important}
+
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+
+/* ---------- fixed-design canvas, scaled to fit ---------- */
+.canvas{position:absolute;top:50%;left:50%;width:1340px;height:760px;margin:-380px 0 0 -670px;
+  transform:scale(var(--s))}
+
+/* ---------- backdrop wordmark ---------- */
+.backdrop{position:absolute;top:110px;left:50%;transform:translateX(-50%);z-index:1;
+  font-family:var(--anton);font-size:295px;line-height:1;letter-spacing:.01em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1.5px rgba(233,231,226,.13);text-stroke:1.5px rgba(233,231,226,.13);
+  animation:riseIn 1.6s cubic-bezier(.16,1,.3,1) .1s both}
+.backdrop span{display:inline-block;animation:drift var(--T) ease-in-out infinite}
+@keyframes drift{0%{transform:translateX(26px)}50%{transform:translateX(-26px)}100%{transform:translateX(26px)}}
+
+/* ---------- marquee ribbon ---------- */
+.ribbon{position:absolute;left:-12%;right:-12%;bottom:118px;z-index:2;transform:rotate(-3.5deg);
+  background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;padding:13px 0;animation:riseIn 1.6s cubic-bezier(.16,1,.3,1) .35s both}
+.ribbon-track{display:flex;gap:2.2rem;width:max-content;font-family:var(--anton);font-size:20px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+  animation:ribbon 19s linear infinite}
+.ribbon-track i{font-style:normal;color:var(--orange)}
+@keyframes ribbon{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- devices ---------- */
+.rig-lap{position:absolute;left:310px;top:104px;z-index:3;
+  animation:riseIn 1.8s cubic-bezier(.16,1,.3,1) .55s both}
+.rig-phone{position:absolute;left:172px;top:238px;z-index:4;
+  animation:riseIn 1.8s cubic-bezier(.16,1,.3,1) .85s both}
+.tilt-lap{transform:perspective(1900px) rotateY(-13deg) rotateX(3.5deg);transform-style:preserve-3d}
+.tilt-phone{transform:perspective(1300px) rotateY(13deg) rotateZ(-1deg)}
+.float-a{animation:floatY 6.2s ease-in-out infinite alternate}
+.float-b{animation:floatY 5.1s ease-in-out 1.4s infinite alternate-reverse}
+@keyframes floatY{from{translate:0 0}to{translate:0 -12px}}
+
+.lid{width:880px;height:560px;position:relative;border-radius:20px;
+  background:linear-gradient(160deg,#262624,#121211);
+  border:1px solid rgba(233,231,226,.1);
+  box-shadow:0 60px 90px -30px rgba(0,0,0,.8),0 20px 40px rgba(0,0,0,.5)}
+.lid .cam{position:absolute;top:6px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;
+  background:#080807;box-shadow:0 0 0 1px rgba(233,231,226,.07)}
+.deck{width:1078px;height:22px;margin:-1px 0 0 -99px;position:relative;border-radius:3px 3px 16px 16px;
+  background:linear-gradient(180deg,#3b3b38,#161614 70%);
+  transform:perspective(700px) rotateX(56deg);transform-origin:top;
+  box-shadow:0 26px 34px rgba(0,0,0,.55)}
+.deck::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:150px;height:7px;background:#0b0b0a;border-radius:0 0 10px 10px}
+
+.slab{position:relative;border-radius:42px;padding:11px;
+  background:linear-gradient(150deg,#2b2b28,#141412 70%);
+  border:1px solid rgba(233,231,226,.09);
+  box-shadow:0 50px 80px -25px rgba(0,0,0,.78),inset 0 1px 0 rgba(233,231,226,.06)}
+
+.screen{position:absolute;inset:14px;border-radius:9px;overflow:hidden;background:var(--ink)}
+.slab .screen{position:relative;inset:auto;width:250px;height:520px;border-radius:32px}
+.slab .screen::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  width:74px;height:18px;background:#0a0a09;border-radius:10px;z-index:7}
+.glare{position:absolute;inset:0;pointer-events:none;z-index:6;
+  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.17) 46%,rgba(255,255,255,.04) 52%,transparent 62%);
+  animation:sweep var(--T) cubic-bezier(.4,0,.2,1) infinite}
+@keyframes sweep{0%{transform:translateX(-135%)}8%{transform:translateX(-135%)}
+  17%{transform:translateX(138%)}100%{transform:translateX(138%)}}
+.slab .glare{animation-name:sweepLate}
+@keyframes sweepLate{0%{transform:translateX(-135%)}46%{transform:translateX(-135%)}
+  56%{transform:translateX(138%)}100%{transform:translateX(138%)}}
+
+/* ---------- the portfolio, miniature ---------- */
+.site{position:absolute;inset:0;background:var(--ink);font-family:var(--urb);overflow:hidden}
+.m-page{position:relative;will-change:transform;padding:10px;display:flex;flex-direction:column;gap:10px}
+.m-card{background:radial-gradient(120% 90% at 50% 0%,#1d1d1c 0%,var(--card) 55%);
+  border:1px solid var(--line);border-radius:14px}
+.m-muted{color:var(--muted)}
+.pill{display:inline-block;border-radius:999px;font-weight:600;letter-spacing:.02em}
+.pill-solid{background:var(--orange);color:var(--ink)}
+.pill-outline{border:1px solid var(--line);color:var(--muted)}
+
+/* scroll choreography — laptop leads, phone answers */
+.site--d .m-page{animation:scrollD var(--T) cubic-bezier(.55,0,.12,1) infinite}
+@keyframes scrollD{
+  0%,6%{transform:translateY(0)}
+  14%,20%{transform:translateY(-520px)}
+  28%,33%{transform:translateY(-840px)}
+  41%,47%{transform:translateY(-1080px)}
+  55%,61%{transform:translateY(-1560px)}
+  70%,88%{transform:translateY(-1954px)}
+  96%,100%{transform:translateY(0)}}
+.site--m .m-page{animation:scrollM var(--T) cubic-bezier(.55,0,.12,1) infinite}
+@keyframes scrollM{
+  0%,10%{transform:translateY(0)}
+  18%,24%{transform:translateY(-450px)}
+  32%,38%{transform:translateY(-940px)}
+  48%,56%{transform:translateY(-1360px)}
+  64%,90%{transform:translateY(-1780px)}
+  97%,100%{transform:translateY(0)}}
+
+/* --- cover --- */
+.m-cover{display:flex;flex-direction:column;justify-content:space-between;padding:26px 30px}
+.site--d .m-cover{height:480px}
+.site--m .m-cover{height:410px;padding:26px 16px 20px}
+.m-cover-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.m-cover-row nav{display:flex;gap:14px}
+.site--m .m-cover-row{font-size:8px}
+.site--m .m-cover-row nav{gap:8px}
+.m-title{text-align:center;position:relative}
+.m-title h1{font-family:var(--anton);font-weight:400;color:var(--bone);line-height:.92;
+  letter-spacing:-.015em;white-space:nowrap}
+.site--d .m-title h1{font-size:136px}
+.site--m .m-title h1{font-size:46px}
+.m-year{position:absolute;right:6%;top:-14px;font-size:11px;padding:5px 12px;transform:rotate(6deg)}
+.site--m .m-year{font-size:8px;padding:3px 8px;top:-10px}
+
+/* --- marquee inside site --- */
+.m-marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0}
+.site--d .m-marquee{height:36px}
+.site--m .m-marquee{height:30px;padding:6px 0}
+.m-marquee div{display:flex;gap:1.4rem;width:max-content;font-family:var(--anton);
+  text-transform:uppercase;color:var(--muted);font-size:14px;letter-spacing:.06em;white-space:nowrap;
+  animation:ribbon 14s linear infinite}
+.site--m .m-marquee div{font-size:11px}
+.m-marquee i{font-style:normal;color:var(--orange)}
+
+/* --- hello --- */
+.m-hello{display:flex;gap:18px;padding:22px;align-items:center}
+.site--d .m-hello{height:300px}
+.site--m .m-hello{height:460px;flex-direction:column;align-items:flex-start;padding:16px;gap:12px}
+.m-photo{border-radius:10px;overflow:hidden;flex:0 0 auto;border:1px solid var(--line)}
+.site--d .m-photo{width:230px;height:250px}
+.site--m .m-photo{width:100%;height:210px}
+.m-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+.m-hello h2{font-family:var(--anton);font-weight:400;color:var(--bone);letter-spacing:.01em}
+.site--d .m-hello h2{font-size:52px}
+.site--m .m-hello h2{font-size:34px}
+.m-hello h2 em{font-style:normal;color:var(--orange)}
+.m-hello p{color:var(--muted);line-height:1.55}
+.site--d .m-hello p{font-size:13.5px;max-width:520px;margin:8px 0 14px}
+.site--m .m-hello p{font-size:11px;margin:6px 0 10px}
+.m-pills{display:flex;flex-wrap:wrap;gap:8px}
+.m-pills .pill{font-size:10.5px;padding:7px 14px}
+.site--m .m-pills .pill{font-size:9px;padding:6px 11px}
+
+/* --- detail grid (laptop only) --- */
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;height:220px}
+.m-grid article{padding:16px 18px}
+.m-grid h3{font-family:var(--anton);font-weight:400;font-size:19px;letter-spacing:.02em;
+  color:var(--bone);margin-bottom:8px}
+.m-grid p,.m-grid li{font-size:11px;color:var(--muted);line-height:1.5}
+.m-grid strong{color:var(--bone);font-weight:700}
+.m-grid ul{list-style:none}
+.m-grid li{padding-left:14px;position:relative}
+.m-grid li::before{content:"—";position:absolute;left:0;color:var(--orange)}
+
+/* --- work --- */
+.m-workhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:26px 8px 8px}
+.site--d .m-workhead{height:110px}
+.m-workhead h2{font-family:var(--anton);font-weight:400;font-size:44px;line-height:.95;color:var(--bone)}
+.m-workhead p{font-size:11.5px;color:var(--muted);max-width:300px;text-align:right}
+.m-proj{padding:20px;display:flex;flex-direction:column;gap:14px}
+.site--d .m-proj{height:370px}
+.site--m .m-proj{height:410px;padding:14px}
+.m-tags{display:flex;gap:6px;flex-wrap:wrap}
+.m-tags .pill{font-size:9px;padding:4px 10px;letter-spacing:.04em}
+.m-proj h3{font-family:var(--anton);font-weight:400;color:var(--bone);letter-spacing:.02em}
+.site--d .m-proj h3{font-size:30px}
+.site--m .m-proj h3{font-size:22px}
+.m-proj .m-desc{font-size:11px;color:var(--muted);line-height:1.5;max-width:560px;margin-top:-6px}
+.site--m .m-proj .m-desc{font-size:10px}
+.m-gal{display:grid;gap:10px;flex:1;min-height:0}
+.m-gal.g2{grid-template-columns:1fr 1fr}
+.m-gal.g3{grid-template-columns:1fr 1fr 1fr}
+.site--m .m-gal.g3,.site--m .m-gal.g2{grid-template-columns:1fr 1fr}
+.m-gal figure{border-radius:9px;overflow:hidden;border:1px solid var(--line);min-height:0}
+.m-gal img{width:100%;height:100%;object-fit:cover}
+
+/* --- outro --- */
+.m-outro{display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;gap:12px}
+.site--d .m-outro{height:510px}
+.site--m .m-outro{height:510px;gap:10px}
+.m-outro h2{font-family:var(--anton);font-weight:400;color:var(--bone);letter-spacing:.01em}
+.site--d .m-outro h2{font-size:88px}
+.site--m .m-outro h2{font-size:40px}
+.m-outro h2 em{font-style:normal;color:var(--orange)}
+.m-outro p{font-size:12px;color:var(--muted)}
+.site--m .m-outro p{font-size:10px}
+.m-cta{font-size:13px;padding:12px 22px}
+.site--m .m-cta{font-size:10px;padding:9px 16px}
+.site--d .m-cta{animation:ctaPress var(--T) linear infinite}
+@keyframes ctaPress{0%,77.6%{transform:scale(1)}
+  78.3%{transform:scale(.94)}79.2%{transform:scale(1.03)}80%{transform:scale(1)}100%{transform:scale(1)}}
+.m-copy{font-size:9.5px;color:var(--muted);margin-top:16px;letter-spacing:.1em}
+
+/* --- cursor + click ripple (laptop, once per loop) --- */
+.cursor{position:absolute;left:50%;top:58%;z-index:7;width:14px;height:14px;margin:-7px;
+  pointer-events:none;border-radius:50%;background:var(--bone);
+  box-shadow:0 0 0 2px rgba(13,13,12,.65),0 4px 12px rgba(0,0,0,.5);
+  animation:cursorGo var(--T) cubic-bezier(.3,0,.2,1) infinite}
+@keyframes cursorGo{
+  0%,70%{opacity:0;transform:translate(210px,150px) scale(1)}
+  73%{opacity:1}
+  77%{opacity:1;transform:translate(0,0) scale(1)}
+  78.3%{transform:translate(0,0) scale(.7)}
+  79.5%{opacity:1;transform:translate(0,0) scale(1)}
+  84%,100%{opacity:0;transform:translate(0,0) scale(1)}}
+.tapring{position:absolute;left:50%;top:58%;z-index:7;width:52px;height:52px;margin:-26px;
+  border-radius:50%;border:1.5px solid var(--orange);pointer-events:none;opacity:0;
+  animation:tapRing var(--T) ease-out infinite}
+@keyframes tapRing{0%,78%{opacity:0;transform:scale(.25)}
+  79%{opacity:.9}86%{opacity:0;transform:scale(1.7)}100%{opacity:0;transform:scale(1.7)}}
+
+/* ---------- floating fragments ---------- */
+.frag{position:absolute;z-index:5;animation:riseIn 1.8s cubic-bezier(.16,1,.3,1) both}
+.frag .bob{animation:floatY 7s ease-in-out infinite alternate}
+.frag-2026{left:1016px;top:78px;animation-delay:1.25s}
+.frag-2026 .bob{animation-duration:5.6s;font-family:var(--anton);font-size:26px;letter-spacing:.04em;
+  background:var(--orange);color:var(--ink);border-radius:999px;padding:10px 26px;
+  transform:rotate(7deg);box-shadow:0 24px 50px -12px rgba(244,98,46,.45)}
+.frag-pill-a{left:120px;top:130px;animation-delay:1.4s}
+.frag-pill-a .bob{animation-duration:7.4s;animation-delay:.8s}
+.frag-pill-b{left:1120px;top:420px;animation-delay:1.55s}
+.frag-pill-b .bob{animation-duration:6.4s;animation-delay:1.6s}
+.frag-chip{border:1px solid var(--line);background:rgba(21,21,20,.9);color:var(--muted);
+  border-radius:999px;padding:11px 22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  box-shadow:0 30px 50px -20px rgba(0,0,0,.7)}
+.frag-chip i{font-style:normal;color:var(--orange);margin-right:10px}
+.frag-card{width:172px;border-radius:16px;overflow:hidden;border:1px solid var(--line);
+  background:var(--card);box-shadow:0 40px 70px -22px rgba(0,0,0,.8)}
+.frag-card img{width:100%;height:128px;object-fit:cover}
+.frag-card figcaption{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);padding:10px 14px}
+.frag-card-a{left:26px;top:452px;animation-delay:1.7s}
+.frag-card-a .bob{animation-duration:8.2s;transform:rotate(-4deg)}
+.frag-card-b{left:1128px;top:184px;animation-delay:1.85s}
+.frag-card-b .bob{animation-duration:7.1s;animation-delay:2.2s;transform:rotate(4deg) scale(.92)}
+
+@media (max-width:640px){
+  .slate{font-size:8px;letter-spacing:.26em;padding:16px 18px}
+  .url-chip{bottom:74px;font-size:8px;padding:8px 14px;max-width:86vw}
+}
+
+/* ---------- reduced motion: settle on the hello frame ---------- */
+@media (prefers-reduced-motion:reduce){
+  .anim,.anim *,.anim *::before,.anim *::after{animation:none!important}
+  .site--d .m-page{transform:translateY(-520px)}
+  .site--m .m-page{transform:translateY(-450px)}
+  .cursor,.tapring{display:none}
+  .playpause{display:none}
+  .progress i{transform:scaleX(1)}
+  .url-chip{opacity:1;transform:translateX(-50%)}
+}
+</style>
+</head>
+<body>
+<div class="stage anim" id="stage">
+
+  <header class="slate">
+    <span><b>Buhle Makaula</b> · Portfolio 2026</span>
+    <span class="loop-tag">mockup loop · <i>&#8734;</i> 24s</span>
+  </header>
+
+  <div class="canvas">
+
+    <div class="backdrop" aria-hidden="true"><span>PORTFOLIO</span></div>
+
+    <div class="ribbon" aria-hidden="true">
+      <div class="ribbon-track">
+        <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+        <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+      </div>
+    </div>
+
+    <!-- laptop · the site, desktop cut -->
+    <div class="rig-lap" aria-hidden="true">
+      <div class="float-a">
+        <div class="tilt-lap">
+          <div class="lid"><i class="cam"></i>
+            <div class="screen">
+              <div class="site site--d">
+                <div class="m-page">
+
+                  <section class="m-card m-cover">
+                    <div class="m-cover-row"><span>Updated</span>
+                      <nav><span>About</span><span>Work</span><span>Book me</span></nav></div>
+                    <div class="m-title"><h1>PORTFOLIO</h1><span class="m-year pill pill-solid">2026</span></div>
+                    <div class="m-cover-row"><span>Creative Design</span><span>Buhle Makaula</span></div>
+                  </section>
+
+                  <div class="m-marquee"><div>
+                    <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+                    <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+                  </div></div>
+
+                  <section class="m-card m-hello">
+                    <div class="m-photo"><img src="assets/buhle.jpg" alt=""></div>
+                    <div>
+                      <h2>HELLO<em>!</em></h2>
+                      <p>My name is <strong style="color:var(--bone)">Buhle Makaula</strong>. I am a creative designer based in South Africa. I work with clients on branding, logo design, social media design, poster design and layout.</p>
+                      <div class="m-pills">
+                        <span class="pill pill-solid">buhlemakaula@gmail.com</span>
+                        <span class="pill pill-solid">WhatsApp · 071 182 4885</span>
+                        <span class="pill pill-outline">See my work &darr;</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="m-grid">
+                    <article class="m-card"><h3>Education</h3>
+                      <p><strong>Web &amp; Graphic Design</strong><br>Boston City Campus · 2019</p></article>
+                    <article class="m-card"><h3>Experience</h3>
+                      <p><strong>Freelance</strong> since 2021<br>Lorenzo · Flexers · Kwen<br>Flame Yard · own label ZDT</p></article>
+                    <article class="m-card"><h3>Skills</h3>
+                      <ul><li>Attention to detail</li><li>Love learning</li><li>Time management</li><li>Creative</li></ul></article>
+                  </section>
+
+                  <header class="m-workhead">
+                    <h2>SELECTED<br>WORK</h2>
+                    <p>Branding, packaging and apparel from recent client work, plus my own label.</p>
+                  </header>
+
+                  <article class="m-card m-proj">
+                    <div class="m-tags"><span class="pill pill-outline">Brand Identity</span><span class="pill pill-outline">Packaging</span></div>
+                    <h3>Lorenzo Skin Care</h3>
+                    <p class="m-desc">A calm, editorial identity for a skincare line, carried through onto the serum range.</p>
+                    <div class="m-gal g2">
+                      <figure><img src="assets/work/lorenzo-serum.jpg" alt=""></figure>
+                      <figure><img src="assets/work/lorenzo-logo.jpg" alt=""></figure>
+                    </div>
+                  </article>
+
+                  <article class="m-card m-proj">
+                    <div class="m-tags"><span class="pill pill-outline">Brand Identity</span><span class="pill pill-outline">Packaging</span><span class="pill pill-outline">Social Media</span></div>
+                    <h3>Flexers Fitness</h3>
+                    <p class="m-desc">A bold wing monogram carried through supplement packaging and a full Instagram presence.</p>
+                    <div class="m-gal g3">
+                      <figure><img src="assets/work/flexers-packaging.jpg" alt=""></figure>
+                      <figure><img src="assets/work/flexers-logo.jpg" alt=""></figure>
+                      <figure><img src="assets/work/flexers-instagram.jpg" alt=""></figure>
+                    </div>
+                  </article>
+
+                  <footer class="m-card m-outro">
+                    <h2>LET&rsquo;S <em>WORK!</em></h2>
+                    <p>Have a project in mind? Bookings are open.</p>
+                    <span class="pill pill-solid m-cta">Book on WhatsApp · 071 182 4885</span>
+                    <span class="m-copy">Buhle Makaula · Portfolio &copy; 2026</span>
+                  </footer>
+
+                </div>
+              </div>
+              <i class="cursor"></i>
+              <i class="tapring"></i>
+              <i class="glare"></i>
+            </div>
+          </div>
+          <div class="deck"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- phone · the site, mobile cut -->
+    <div class="rig-phone" aria-hidden="true">
+      <div class="float-b">
+        <div class="tilt-phone">
+          <div class="slab">
+            <div class="screen">
+              <div class="site site--m">
+                <div class="m-page">
+
+                  <section class="m-card m-cover">
+                    <div class="m-cover-row"><span>Updated</span>
+                      <nav><span>About</span><span>Work</span><span>Book me</span></nav></div>
+                    <div class="m-title"><h1>PORTFOLIO</h1><span class="m-year pill pill-solid">2026</span></div>
+                    <div class="m-cover-row"><span>Creative Design</span><span>Buhle Makaula</span></div>
+                  </section>
+
+                  <div class="m-marquee"><div>
+                    <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+                    <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
+                  </div></div>
+
+                  <section class="m-card m-hello">
+                    <div class="m-photo"><img src="assets/buhle.jpg" alt=""></div>
+                    <div>
+                      <h2>HELLO<em>!</em></h2>
+                      <p>Creative designer based in South Africa — branding, logos, social media, posters and layout.</p>
+                      <div class="m-pills">
+                        <span class="pill pill-solid">WhatsApp · 071 182 4885</span>
+                        <span class="pill pill-outline">See my work &darr;</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  <article class="m-card m-proj">
+                    <div class="m-tags"><span class="pill pill-outline">Brand Identity</span><span class="pill pill-outline">Packaging</span></div>
+                    <h3>Kwen Essence</h3>
+                    <p class="m-desc">Pulse of life. A botanical monogram and quiet label system, from reed diffusers to magnesium oil.</p>
+                    <div class="m-gal g2">
+                      <figure><img src="assets/work/kwen-diffusers.jpg" alt=""></figure>
+                      <figure><img src="assets/work/kwen-spray.jpg" alt=""></figure>
+                    </div>
+                  </article>
+
+                  <article class="m-card m-proj">
+                    <div class="m-tags"><span class="pill pill-solid">Own Brand</span><span class="pill pill-outline">Apparel</span></div>
+                    <h3>Zerodoublethree</h3>
+                    <p class="m-desc">My own streetwear label. A winged rose in barbed wire and flame, for tees and hoodies.</p>
+                    <div class="m-gal g2">
+                      <figure><img src="assets/work/zdt-tee.jpg" alt=""></figure>
+                      <figure><img src="assets/work/zdt-hoodie.jpg" alt=""></figure>
+                    </div>
+                  </article>
+
+                  <footer class="m-card m-outro">
+                    <h2>LET&rsquo;S <em>WORK!</em></h2>
+                    <p>Bookings are open.</p>
+                    <span class="pill pill-solid m-cta">Book on WhatsApp</span>
+                    <span class="m-copy">&copy; 2026</span>
+                  </footer>
+
+                </div>
+              </div>
+              <i class="glare"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- fragments pulled out of the page -->
+    <div class="frag frag-2026" aria-hidden="true"><div class="bob">2026</div></div>
+    <div class="frag frag-pill-a" aria-hidden="true"><div class="bob frag-chip"><i>&#10022;</i>Branding</div></div>
+    <div class="frag frag-pill-b" aria-hidden="true"><div class="bob frag-chip"><i>&#10022;</i>Poster Design</div></div>
+    <figure class="frag frag-card-a" aria-hidden="true"><div class="bob frag-card">
+      <img src="assets/work/kwen-logo.jpg" alt=""><figcaption>Kwen Essence</figcaption></div></figure>
+    <figure class="frag frag-card-b" aria-hidden="true"><div class="bob frag-card">
+      <img src="assets/work/flameyard-logo.jpg" alt=""><figcaption>The Flame Yard</figcaption></div></figure>
+
+  </div>
+
+  <p class="url-chip"><b>buhlemakaula.github.io/zero-double-three</b> &nbsp;·&nbsp; every screen, one portfolio</p>
+  <button class="playpause" id="playpause" type="button" aria-pressed="false">Pause</button>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var root=document.documentElement;
+
+  function fit(){
+    var s=Math.min(innerWidth/1360,(innerHeight-140)/760,1.12);
+    root.style.setProperty('--s',Math.max(s,.2).toFixed(3));
+  }
+  addEventListener('resize',fit);fit();
+
+  var btn=document.getElementById('playpause');
+  btn.addEventListener('click',function(){
+    var paused=stage.classList.toggle('paused');
+    btn.textContent=paused?'Play':'Pause';
+    btn.setAttribute('aria-pressed',String(paused));
+  });
+
+  // scrub hook: ?t=12 jumps the loop to 12s and freezes (used for stills)
+  var t=new URLSearchParams(location.search).get('t');
+  if(t!==null){addEventListener('load',function(){
+    document.getAnimations().forEach(function(a){a.currentTime=parseFloat(t)*1000;a.pause();});
+  });}
+})();
+</script>
+</body>
+</html>
