@@ -1,11 +1,11 @@
-Everyone asks me which AI I use for my design business. This is the answer.
+Confession: an AI agent plans, writes and designs every post on this page. I set it up in one afternoon and it cost me R0.
 
-Claude, by Anthropic. It reads documents, writes with you, builds real things and tells you when it is not sure.
+I am a designer, not a programmer. If I can build this, you can.
 
-This month I am teaching everything I know about AI, in plain language, one post a day.
+This account is now a live experiment: can an AI run a page to 10K followers? I will publish the real numbers, including the flops.
 
-Save this one. Follow so you do not miss day two.
+Comment SYSTEM and I will send you the exact breakdown. Guess what it cost before you swipe to slide 6.
 
-#ai #claudeai #aiforbeginners #learnai #aitools #digitalskills #techsouthafrica #artificialintelligence #promptengineering #aitips
+#ai #aiagent #claudeai #buildinpublic #automation #contentcreator #aiforbeginners #digitalskills #techsouthafrica #learnai
 
 [Post at 11:00 SAST]

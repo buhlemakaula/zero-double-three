@@ -34,13 +34,70 @@ function accentify(title, accent) {
 
 function slideHTML(s, i, total) {
   const num = String(i + 1).padStart(2, "0") + "/" + String(total).padStart(2, "0");
-  const footer = `
+  const engage = s.engage ? `<div class="engage">${esc(s.engage)}</div>` : "";
+  const footer = `${engage}
     <footer class="foot">
       <span class="brand">BUHLE<em>.</em></span>
       <span class="page">${num}</span>
       <span class="handle">${esc(handle)}</span>
     </footer>`;
 
+  if (s.type === "quiz") {
+    return `<div class="slide quiz">
+      <div class="eyebrow-row"><span class="pill">Guess before you swipe</span></div>
+      <div class="mid">
+        <h2 class="q">${esc(s.q)}</h2>
+        ${s.hint ? `<p class="qsub">${esc(s.hint)}</p>` : ""}
+        <p class="swipe">Answer next <span class="arr">&rarr;</span></p>
+      </div>${footer}</div>`;
+  }
+  if (s.type === "answer") {
+    return `<div class="slide answer">
+      <div class="eyebrow-row"><span class="numchip">A</span><span class="series">The answer</span></div>
+      <div class="mid">
+        <h2>${esc(s.heading)}</h2>
+        <p class="body">${esc(s.body)}</p>
+        ${s.why ? `<div class="example"><span class="exlabel">Why you care</span><p>${esc(s.why)}</p></div>` : ""}
+      </div>${footer}</div>`;
+  }
+  if (s.type === "receipt") {
+    return `<div class="slide receipt">
+      <div class="eyebrow-row"><span class="pill">${esc(s.label || "Receipt")}</span></div>
+      <div class="mid">
+        <div class="example prompt-box"><span class="exlabel">The prompt</span><p>${esc(s.prompt)}</p></div>
+        <div class="example output-box"><span class="exlabel out">What came back</span><p>${esc(s.output)}</p></div>
+        ${s.note ? `<p class="note">${esc(s.note)}</p>` : ""}
+      </div>${footer}</div>`;
+  }
+  if (s.type === "ab") {
+    return `<div class="slide ab">
+      <div class="eyebrow-row"><span class="pill">Vote in the comments</span></div>
+      <div class="mid">
+        <h2>${esc(s.heading)}</h2>
+        <div class="ab-row">
+          <div class="ab-box"><span class="ab-tag">A</span><p>${esc(s.a)}</p></div>
+          <div class="ab-box"><span class="ab-tag">B</span><p>${esc(s.b)}</p></div>
+        </div>
+        <p class="body ask">${esc(s.ask)}</p>
+      </div>${footer}</div>`;
+  }
+  if (s.type === "checklist") {
+    return `<div class="slide check">
+      <div class="eyebrow-row"><span class="series">${esc(series)}</span></div>
+      <div class="mid">
+        <h2>${esc(s.heading)}</h2>
+        <ul class="checklist">${(s.items || []).map((it) => `<li>${esc(it)}</li>`).join("")}</ul>
+      </div>${footer}</div>`;
+  }
+  if (s.type === "challenge") {
+    return `<div class="slide challenge">
+      <div class="eyebrow-row"><span class="pill">Try it tonight</span></div>
+      <div class="mid">
+        <h2>${esc(s.heading)}</h2>
+        <p class="body">${esc(s.body)}</p>
+        <div class="example"><span class="exlabel">Your move</span><p>${esc(s.action)}</p></div>
+      </div>${footer}</div>`;
+  }
   if (s.type === "cover") {
     return `<div class="slide cover">
       <div class="eyebrow-row"><span class="pill">${esc(series)}</span></div>
@@ -138,11 +195,54 @@ const page_html = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
   }
   .example p { font-size: 36px; line-height: 1.5; color: #e9e7e2; }
 
-  .quotecard .q {
+  .quotecard .q, .quiz .q {
     font-family: "Anton", sans-serif; font-weight: 400;
     font-size: 112px; line-height: 1.05; text-transform: uppercase;
   }
+  .quiz .q { font-size: 96px; }
   .qsub { margin-top: 44px; color: #98958d; font-size: 38px; font-weight: 600; }
+
+  .answer h2, .ab h2, .check h2, .challenge h2 {
+    font-family: "Anton", sans-serif; font-weight: 400;
+    font-size: 88px; line-height: 1.0; text-transform: uppercase; margin-bottom: 40px;
+  }
+  .answer h2 { color: #f4622e; }
+
+  .receipt .prompt-box { margin-top: 0; }
+  .receipt .output-box { margin-top: 34px; border-left-color: #98958d; }
+  .receipt .output-box .exlabel.out { color: #98958d; }
+  .receipt .note { margin-top: 40px; font-size: 38px; line-height: 1.45; color: #e9e7e2; font-weight: 600; }
+
+  .ab-row { display: flex; gap: 30px; }
+  .ab-box {
+    flex: 1; background: #1b1b1a; border: 2px solid #2b2b29;
+    border-radius: 26px; padding: 40px;
+  }
+  .ab-box p { font-size: 36px; line-height: 1.45; color: #cfccc5; }
+  .ab-tag {
+    display: inline-block; font-family: "Anton", sans-serif; font-size: 44px;
+    color: #0d0d0c; background: #f4622e; border-radius: 16px;
+    padding: 6px 26px; margin-bottom: 24px;
+  }
+  .ab .ask { margin-top: 44px; font-weight: 700; color: #e9e7e2; }
+
+  .checklist { list-style: none; }
+  .checklist li {
+    font-size: 42px; line-height: 1.4; color: #cfccc5;
+    padding-left: 64px; position: relative; margin-bottom: 34px;
+  }
+  .checklist li::before {
+    content: ""; position: absolute; left: 0; top: 14px;
+    width: 34px; height: 34px; border-radius: 9px;
+    border: 4px solid #f4622e;
+  }
+
+  .engage {
+    position: relative; z-index: 2; align-self: flex-start;
+    border: 3px solid #f4622e; color: #f4622e;
+    font-weight: 800; font-size: 28px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 14px 34px; border-radius: 999px; margin-bottom: 44px;
+  }
 
   .cta { text-align: left; }
   .cta .mono { font-family: "Anton", sans-serif; font-size: 170px; line-height: 1; margin-bottom: 40px; }
