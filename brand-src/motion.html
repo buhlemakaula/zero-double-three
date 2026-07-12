@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Anton"; src: url("../assets/fonts/anton-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Urbanist"; font-weight: 100 900; src: url("../assets/fonts/urbanist-latin.woff2") format("woff2"); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; }
+
+  #stage {
+    width: 1080px; height: 1920px; position: relative; overflow: hidden;
+    background: #0d0d0c;
+  }
+  .layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+
+  .grain {
+    position: absolute; inset: -60%; width: 220%; height: 220%; z-index: 50; pointer-events: none; opacity: .55;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .dot { width: 120px; height: 120px; border-radius: 50%; background: #f4622e; }
+
+  #orangebg { position: absolute; inset: 0; background: #f4622e; transform: scale(0); }
+  #inkwipe { position: absolute; inset: 0; background: #0d0d0c; transform: translateY(100%); }
+
+  .kicker {
+    font-family: "Urbanist", sans-serif; font-weight: 800; font-size: 52px;
+    letter-spacing: 0.42em; text-indent: 0.42em; text-transform: uppercase;
+  }
+  .slam {
+    font-family: "Anton", sans-serif; font-size: 265px; line-height: 0.95;
+    text-transform: uppercase; letter-spacing: 0.005em;
+  }
+  #s2 .kicker { color: rgba(13,13,12,.75); }
+  #s2 .slam { color: #0d0d0c; }
+  #s3 .kicker { color: #98958d; }
+  #s3 .slam { color: #e9e7e2; }
+  #s3 .slam em { font-style: normal; color: #f4622e; }
+
+  .mrow {
+    font-family: "Anton", sans-serif; font-size: 110px; white-space: nowrap;
+    color: #45453f; text-transform: uppercase; line-height: 1.35;
+  }
+  .mrow.hotrow { color: #e9e7e2; }
+  .mrow i { color: #f4622e; font-style: normal; padding: 0 30px; }
+
+  #logo .wl { display: inline-block; overflow: hidden; vertical-align: bottom; }
+  #logo .ltr { display: inline-block; font-family: "Anton", sans-serif; font-size: 300px; line-height: 1; color: #e9e7e2; }
+  #logo .ltr.dotltr { color: #f4622e; }
+  #logo .sub {
+    font-family: "Urbanist", sans-serif; font-weight: 700; font-size: 54px;
+    letter-spacing: 0.42em; text-indent: 0.42em; color: #98958d; text-transform: uppercase; margin-top: 40px;
+  }
+  #logo .pill {
+    display: inline-block; margin-top: 70px; background: #f4622e; color: #0d0d0c;
+    font-family: "Urbanist", sans-serif; font-weight: 800; font-size: 44px;
+    padding: 22px 60px; border-radius: 999px;
+  }
+  #fade { position: absolute; inset: 0; background: #0d0d0c; opacity: 0; z-index: 60; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="s1"><div class="dot" id="dot"></div></div>
+  <div id="orangebg"></div>
+  <div class="layer" id="s2">
+    <div class="kicker" id="s2k">Make it</div>
+    <div class="slam" id="s2s">LOUD.</div>
+  </div>
+  <div id="inkwipe"></div>
+  <div class="layer" id="s3">
+    <div class="kicker" id="s3k">Keep it</div>
+    <div class="slam" id="s3s">CLEAN<em>.</em></div>
+  </div>
+  <div class="layer" id="s4">
+    <div class="mrow" id="m1">BRANDING<i>&#10022;</i>LOGO DESIGN<i>&#10022;</i>BRANDING<i>&#10022;</i>LOGO DESIGN<i>&#10022;</i></div>
+    <div class="mrow hotrow" id="m2">SOCIAL MEDIA<i>&#10022;</i>POSTERS<i>&#10022;</i>SOCIAL MEDIA<i>&#10022;</i>POSTERS<i>&#10022;</i></div>
+    <div class="mrow" id="m3">LAYOUT<i>&#10022;</i>APPAREL<i>&#10022;</i>PACKAGING<i>&#10022;</i>LAYOUT<i>&#10022;</i></div>
+  </div>
+  <div class="layer" id="logo">
+    <div>
+      <span class="wl"><span class="ltr" id="L0">B</span></span><span class="wl"><span class="ltr" id="L1">U</span></span><span class="wl"><span class="ltr" id="L2">H</span></span><span class="wl"><span class="ltr" id="L3">L</span></span><span class="wl"><span class="ltr" id="L4">E</span></span><span class="wl"><span class="ltr dotltr" id="L5">.</span></span>
+    </div>
+    <div class="sub" id="logosub">Creative Design</div>
+    <div><span class="pill" id="logopill">@buhlemakaula &middot; bookings open</span></div>
+  </div>
+  <div class="grain" id="grain"></div>
+  <div id="fade"></div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const seg = (t, a, b) => clamp01((t - a) / (b - a));
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const outQuint = (x) => 1 - Math.pow(1 - x, 5);
+  const inOutQuint = (x) => x < 0.5 ? 16 * x ** 5 : 1 - Math.pow(-2 * x + 2, 5) / 2;
+  const outBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+
+  window.setTime = function (t) {
+    // grain jitter, 4 steps per second
+    const g = Math.floor(t * 4) % 4;
+    $("grain").style.transform = `translate(${[0,-2,1.5,-1][g]}%, ${[0,1.5,-2,-1][g]}%)`;
+
+    // S1: dot pops (0-0.5), pulses, floods screen (0.9-1.4)
+    const pop = outBack(seg(t, 0.05, 0.5));
+    const pulse = 1 + 0.08 * Math.sin(seg(t, 0.5, 0.9) * Math.PI * 2);
+    const flood = seg(t, 0.9, 1.4);
+    $("dot").style.transform = `scale(${pop * pulse})`;
+    $("s1").style.opacity = t < 1.4 ? 1 : 0;
+    $("orangebg").style.transform = `scale(${flood > 0 ? 0.111 + outCubic(flood) * 30 : 0})`;
+    $("orangebg").style.borderRadius = "50%";
+    $("orangebg").style.left = "37.7%"; $("orangebg").style.top = "46.9%";
+    $("orangebg").style.width = "264px"; $("orangebg").style.height = "264px";
+    $("orangebg").style.position = "absolute"; $("orangebg").style.inset = "auto";
+
+    // S2 on orange: MAKE IT (1.5-1.9), LOUD. slam (1.9-2.35), hold to 3.2
+    const s2in = t >= 1.45 && t < 3.75;
+    $("s2").style.opacity = s2in ? 1 : 0;
+    const kIn = outCubic(seg(t, 1.5, 1.9));
+    $("s2k").style.opacity = kIn;
+    $("s2k").style.transform = `translateY(${(1 - kIn) * 60}px)`;
+    const sIn = seg(t, 1.9, 2.35);
+    const slamScale = 3 - outQuint(sIn) * 2;
+    const shake = sIn >= 1 ? Math.exp(-(t - 2.35) * 9) * Math.sin((t - 2.35) * 55) * 14 : 0;
+    $("s2s").style.opacity = sIn > 0 ? 1 : 0;
+    $("s2s").style.transform = `scale(${slamScale}) translateY(${shake}px)`;
+
+    // ink wipe up 3.3-3.75
+    const wipe = inOutQuint(seg(t, 3.3, 3.75));
+    $("inkwipe").style.transform = `translateY(${(1 - wipe) * 100}%)`;
+
+    // S3 on ink: KEEP IT (3.85-4.25), CLEAN. slam (4.25-4.7), hold to 5.6
+    const s3in = t >= 3.8 && t < 5.9;
+    $("s3").style.opacity = s3in ? 1 : 0;
+    const k3 = outCubic(seg(t, 3.85, 4.25));
+    $("s3k").style.opacity = k3;
+    $("s3k").style.transform = `translateY(${(1 - k3) * 60}px)`;
+    const s3n = seg(t, 4.25, 4.7);
+    const shake3 = s3n >= 1 ? Math.exp(-(t - 4.7) * 9) * Math.sin((t - 4.7) * 55) * 14 : 0;
+    $("s3s").style.opacity = s3n > 0 ? 1 : 0;
+    $("s3s").style.transform = `scale(${3 - outQuint(s3n) * 2}) translateY(${shake3}px)`;
+    // s3 exit: scale down + fade 5.55-5.95
+    const s3out = seg(t, 5.55, 5.95);
+    if (s3out > 0 && s3in) {
+      $("s3").style.opacity = 1 - s3out;
+      $("s3").style.transform = `scale(${1 - 0.12 * s3out})`;
+    } else { $("s3").style.transform = "none"; }
+
+    // S4 marquee 5.85-7.6: rows slide opposite ways
+    const s4vis = t >= 5.85 && t < 7.75;
+    $("s4").style.opacity = s4vis ? 1 : 0;
+    const mIn = outCubic(seg(t, 5.85, 6.35));
+    const mOut = inOutQuint(seg(t, 7.25, 7.75));
+    const drift = (t - 5.85) * 140;
+    $("m1").style.transform = `translateX(${-1400 * (1 - mIn) - drift + 1800 * mOut}px)`;
+    $("m2").style.transform = `translateX(${1400 * (1 - mIn) + drift * 0.8 - 1800 * mOut - 500}px)`;
+    $("m3").style.transform = `translateX(${-1400 * (1 - mIn) - drift * 1.2 + 1800 * mOut - 200}px)`;
+
+    // Logo: letters rise 7.7-8.6 staggered, sub 8.5-8.9, pill 8.8-9.2, slow zoom
+    const logoVis = t >= 7.6;
+    $("logo").style.opacity = logoVis ? 1 : 0;
+    for (let i = 0; i < 6; i++) {
+      const li = outQuint(seg(t, 7.7 + i * 0.07, 8.35 + i * 0.07));
+      $("L" + i).style.transform = `translateY(${(1 - li) * 110}%) rotate(${(1 - li) * 4}deg)`;
+    }
+    const subIn = outCubic(seg(t, 8.5, 8.95));
+    $("logosub").style.opacity = subIn;
+    $("logosub").style.letterSpacing = `${0.42 + (1 - subIn) * 0.3}em`;
+    const pillIn = outBack(seg(t, 8.85, 9.3));
+    $("logopill").style.opacity = seg(t, 8.85, 9.05);
+    $("logopill").style.transform = `scale(${Math.max(pillIn, 0.01)})`;
+    $("logo").style.transform = `scale(${1 + seg(t, 7.7, 10) * 0.035})`;
+
+    // fade out for loop 9.55-10
+    $("fade").style.opacity = seg(t, 9.55, 10);
+  };
+  window.setTime(0);
+</script>
+</body>
+</html>
