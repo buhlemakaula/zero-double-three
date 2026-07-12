@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Anton"; src: url("../assets/fonts/anton-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Urbanist"; font-weight: 100 900; src: url("../assets/fonts/urbanist-latin.woff2") format("woff2"); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0d0d0c; --panel: #1b1b1a; --line: #2b2b29;
+    --bone: #e9e7e2; --orange: #f4622e; --muted: #98958d;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  body { font-family: "Urbanist", sans-serif; color: var(--bone); }
+
+  .sheet {
+    width: 210mm;
+    height: 296mm;
+    background: var(--ink);
+    padding: 16mm;
+    display: flex;
+    flex-direction: column;
+    gap: 8mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sheet:last-child { page-break-after: auto; }
+
+  .grain-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--line); padding-bottom: 5mm;
+  }
+
+  .brand { font-family: "Anton", sans-serif; font-size: 22pt; letter-spacing: -0.01em; }
+  .brand em { font-style: normal; color: var(--orange); }
+  .doc-label { color: var(--muted); font-size: 10pt; font-weight: 600; }
+
+  h1 {
+    font-family: "Anton", sans-serif; font-weight: 400;
+    font-size: 42pt; line-height: 0.95; text-transform: uppercase;
+  }
+  h1 em { font-style: normal; color: var(--orange); }
+
+  h2 {
+    font-family: "Anton", sans-serif; font-weight: 400;
+    font-size: 15pt; text-transform: uppercase; letter-spacing: 0.02em;
+    margin-bottom: 3mm;
+  }
+
+  p { font-size: 10.5pt; line-height: 1.55; color: #cfccc5; }
+  .muted { color: var(--muted); }
+  .small { font-size: 9pt; }
+
+  .intro { max-width: 150mm; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 5mm; padding: 6mm;
+  }
+
+  .panel strong { display: block; font-size: 11pt; margin-bottom: 1.5mm; }
+  .panel p { font-size: 9.5pt; }
+
+  .pill {
+    display: inline-block; background: var(--orange); color: var(--ink);
+    font-weight: 700; font-size: 9.5pt; padding: 1.6mm 5mm; border-radius: 99mm;
+  }
+
+  .foot {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line); padding-top: 4mm;
+    color: var(--muted); font-size: 9pt;
+  }
+
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+
+  .work-item {
+    border-radius: 5mm; overflow: hidden; border: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .work-item img { width: 100%; height: 52mm; object-fit: cover; display: block; }
+
+  .work-item .cap { padding: 4mm 5mm; }
+  .work-item .cap strong { font-size: 10.5pt; }
+  .work-item .cap span { display: block; font-size: 8.5pt; color: var(--muted); margin-top: 0.5mm; }
+
+  .contact-row { display: flex; gap: 4mm; flex-wrap: wrap; margin-top: 3mm; }
+  .pill-line {
+    border: 1px solid var(--line); border-radius: 99mm;
+    padding: 1.6mm 5mm; font-size: 9.5pt; font-weight: 600; color: var(--bone);
+  }
+</style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <section class="sheet">
+    <div class="grain-bg"></div>
+    <header class="top">
+      <span class="brand">BUHLE<em>.</em></span>
+      <span class="doc-label">Company Profile &middot; 2026</span>
+    </header>
+
+    <h1>Creative design<br />that speaks<em>.</em></h1>
+
+    <div class="intro">
+      <p>I am Buhle Makaula, a creative designer based in South Africa. I work with
+      businesses and personal brands on identities that look sharp, feel human and
+      hold up everywhere they live, from a WhatsApp status to a shop front. I studied
+      Web and Graphic Design at Boston City Campus and have been designing for clients
+      since 2021.</p>
+    </div>
+
+    <div>
+      <h2>Services</h2>
+      <div class="grid-3">
+        <div class="panel"><strong>Branding &amp; Logos</strong><p>Identity systems, wordmarks and monograms built to scale.</p></div>
+        <div class="panel"><strong>Social Media Design</strong><p>Feeds, templates and campaign posts that stay on brand.</p></div>
+        <div class="panel"><strong>Packaging</strong><p>Labels and packaging from skincare bottles to supplements.</p></div>
+        <div class="panel"><strong>Poster &amp; Layout</strong><p>Posters, menus, profiles and print that read at a glance.</p></div>
+        <div class="panel"><strong>Apparel Graphics</strong><p>Artwork for tees, hoodies and merch, drawn to print well.</p></div>
+        <div class="panel"><strong>Web &amp; WordPress</strong><p>Portfolio and small business sites, designed and built.</p></div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel"><strong>Software</strong><p>Adobe Creative Suite, SketchUp, WordPress, Canva</p></div>
+      <div class="panel"><strong>Education</strong><p>Web and Graphic Design, Boston City Campus, 2019</p></div>
+      <div class="panel"><strong>Languages</strong><p>isiXhosa (native), English (fluent)</p></div>
+    </div>
+
+    <footer class="foot">
+      <span>buhlemakaula@gmail.com &middot; WhatsApp 071 182 4885</span>
+      <span>Page 1 of 2</span>
+    </footer>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="sheet">
+    <div class="grain-bg"></div>
+    <header class="top">
+      <span class="brand">BUHLE<em>.</em></span>
+      <span class="doc-label">Selected Work</span>
+    </header>
+
+    <div class="work-grid">
+      <div class="work-item">
+        <img src="../assets/work/lorenzo-serum.jpg" alt="" />
+        <div class="cap"><strong>Lorenzo Skin Care</strong><span>Brand identity and packaging</span></div>
+      </div>
+      <div class="work-item">
+        <img src="../assets/work/flexers-packaging.jpg" alt="" />
+        <div class="cap"><strong>Flexers Fitness</strong><span>Identity, packaging and social media</span></div>
+      </div>
+      <div class="work-item">
+        <img src="../assets/work/kwen-diffusers.jpg" alt="" />
+        <div class="cap"><strong>Kwen Essence</strong><span>Brand identity and packaging</span></div>
+      </div>
+      <div class="work-item">
+        <img src="../assets/work/flameyard-gazebo.jpg" alt="" />
+        <div class="cap"><strong>The Flame Yard</strong><span>Logo and event branding</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <strong>Zerodoublethree</strong>
+      <p>My own streetwear label. A winged rose in barbed wire and flame, drawn for
+      heavyweight tees and washed hoodies. Proof that I design for myself with the
+      same care I give clients.</p>
+    </div>
+
+    <div>
+      <h2>Let&rsquo;s work</h2>
+      <p>Bookings are open for freelance and client projects.</p>
+      <div class="contact-row">
+        <span class="pill">WhatsApp 071 182 4885</span>
+        <span class="pill-line">buhlemakaula@gmail.com</span>
+        <span class="pill-line">buhlemakaula.github.io/zero-double-three</span>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>Buhle Makaula &middot; Company Profile &copy; 2026</span>
+      <span>Page 2 of 2</span>
+    </footer>
+  </section>
+
+</body>
+</html>
