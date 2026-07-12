@@ -323,7 +323,7 @@ a.pill-outline:hover { border-color: var(--orange); color: var(--orange); transf
 .panel p + p { margin-top: 0.5rem; }
 
 .dash-list { list-style: none; color: #cfccc5; }
-.dash-list li::before { content: "\2013\00a0\00a0"; color: var(--orange); }
+.dash-list li::before { content: "\00b7\00a0\00a0"; color: var(--orange); font-weight: 800; }
 .dash-list li + li { margin-top: 0.3rem; }
 
 .timeline { list-style: none; }
