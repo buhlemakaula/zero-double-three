@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zero Double Three — Website Packages</title>
+<style>
+/* ============================================================
+   Zero Double Three — Website Design Price List 2026
+   Brand: Buhle Makaula portfolio · ink #0D0D0C · orange #F4622E
+   Type:  Anton (display) · Urbanist (body)
+   ============================================================ */
+@font-face { font-family:'Anton'; font-style:normal; font-weight:400; src:url(fonts/Anton-400.woff2) format('woff2'); }
+@font-face { font-family:'Urbanist'; font-style:normal; font-weight:100 900; src:url(fonts/Urbanist-var.woff2) format('woff2'); }
+
+:root{
+  --ink:#0d0d0c;
+  --card:#151514;
+  --card-hi:#1b1b1a;
+  --line:#2b2b29;
+  --bone:#e9e7e2;
+  --body:#cfccc5;
+  --muted:#98958d;
+  --orange:#f4622e;
+  --orange-soft:#ff8a5c;
+  --orange-wash:#251310;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ background:var(--ink); }
+body{ font-family:'Urbanist',system-ui,sans-serif; color:var(--body); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+@page{ size:A4 landscape; margin:0; }
+.page{
+  width:297mm; height:210mm; background:var(--ink);
+  overflow:hidden; position:relative;
+  padding:9mm 13mm 8mm;
+  display:flex; flex-direction:column;
+}
+
+.display{ font-family:'Anton',sans-serif; color:var(--bone); text-transform:uppercase; }
+
+/* ---------- Header ---------- */
+.head{ display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1.5px solid var(--line); padding-bottom:3mm; }
+.brand{ display:flex; align-items:center; gap:3.5mm; }
+.logo{ width:11mm; height:11mm; background:var(--orange); border-radius:2.4mm; display:flex; align-items:center; justify-content:center; }
+.logo span{ font-family:'Anton',sans-serif; font-size:16pt; color:var(--ink); line-height:1; }
+.brand .name{ font-family:'Anton',sans-serif; font-size:14pt; color:var(--bone); text-transform:uppercase; letter-spacing:.02em; line-height:1; }
+.brand .tag{ font-size:8.5pt; color:var(--muted); letter-spacing:.02em; margin-top:1mm; }
+.head .meta{ text-align:right; font-family:'Anton',sans-serif; font-size:8pt; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); line-height:1.9; }
+
+/* ---------- Title row ---------- */
+.titlerow{ display:flex; justify-content:space-between; align-items:center; gap:8mm; margin:3.5mm 0 3mm; }
+.titlerow h1{ font-family:'Anton',sans-serif; font-size:27pt; color:var(--bone); text-transform:uppercase; letter-spacing:.01em; line-height:.98; }
+.titlerow h1 .accent{ color:var(--orange); }
+.titlerow .subtitle{ font-size:9.5pt; color:var(--muted); margin-top:1.5mm; }
+.promo{
+  flex-shrink:0; background:var(--orange); color:var(--ink); border-radius:3mm;
+  padding:3.5mm 6mm; text-align:center; position:relative; transform:rotate(-1.4deg);
+  box-shadow:0 2mm 7mm rgba(244,98,46,.24);
+}
+.promo .kicker{ font-family:'Anton',sans-serif; font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; line-height:1.2; }
+.promo .big{ font-family:'Anton',sans-serif; font-size:15pt; text-transform:uppercase; line-height:1.05; margin:.4mm 0; }
+.promo .until{ font-size:7.5pt; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+
+/* ---------- Cards ---------- */
+.cards{ flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:6mm; align-items:stretch; }
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:5mm;
+  padding:5mm 6mm; display:flex; flex-direction:column; position:relative;
+}
+.card.popular{ background:var(--card-hi); border:1.6px solid var(--orange); }
+.ribbon{
+  position:absolute; top:-3.6mm; left:50%; transform:translateX(-50%);
+  background:var(--orange); color:var(--ink); font-family:'Anton',sans-serif;
+  font-size:7.5pt; letter-spacing:.14em; text-transform:uppercase;
+  padding:1.4mm 4mm; border-radius:2mm; white-space:nowrap;
+}
+.tier{ font-family:'Anton',sans-serif; font-size:10.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); text-align:center; }
+.priceblock{ text-align:center; margin:1.5mm 0 .5mm; }
+.was{ font-family:'Anton',sans-serif; font-size:11pt; color:var(--muted); position:relative; display:inline-block; line-height:1; }
+.was::after{ content:''; position:absolute; left:-6%; right:-6%; top:52%; height:1mm; background:var(--orange); transform:rotate(-8deg); }
+.now{ font-family:'Anton',sans-serif; font-size:30pt; color:var(--bone); line-height:1; margin-top:.5mm; letter-spacing:.005em; }
+.tagline{ font-size:9pt; color:var(--muted); text-align:center; margin-bottom:2.5mm; }
+.divider{ height:1px; background:var(--line); margin:.5mm 0 2.8mm; }
+
+.feat{ list-style:none; display:flex; flex-direction:column; gap:1.7mm; flex:1; }
+.feat li{ display:flex; align-items:flex-start; gap:3mm; font-size:9.3pt; color:var(--body); line-height:1.3; }
+.feat li b{ color:var(--bone); font-weight:700; }
+.chk{
+  flex-shrink:0; width:4.4mm; height:4.4mm; border-radius:50%; background:var(--orange);
+  display:flex; align-items:center; justify-content:center; margin-top:.2mm;
+}
+.chk::before{ content:'✓'; font-size:7pt; font-weight:800; color:var(--ink); line-height:1; }
+
+.cta{
+  margin-top:3.5mm; background:var(--orange); color:var(--ink); border-radius:3mm;
+  text-align:center; padding:3mm; font-family:'Anton',sans-serif; font-size:11pt;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.card:not(.popular) .cta{ background:transparent; color:var(--orange); border:1.4px solid var(--orange); }
+
+/* ---------- Footer ---------- */
+.foot{ display:flex; justify-content:space-between; align-items:center; border-top:1.5px solid var(--line); padding-top:3mm; margin-top:4mm; }
+.foot .contact{ font-size:8.6pt; color:var(--muted); }
+.foot .contact b{ color:var(--bone); font-weight:700; }
+.foot .note{ font-family:'Anton',sans-serif; font-size:7.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-align:right; line-height:1.7; }
+</style>
+</head>
+<body>
+<section class="page">
+
+  <div class="head">
+    <div class="brand">
+      <div class="logo"><span>Z</span></div>
+      <div>
+        <div class="name">Zero Double Three</div>
+        <div class="tag">Better your brand.</div>
+      </div>
+    </div>
+    <div class="meta">Website Design &amp; Development<br>Price List · 2026</div>
+  </div>
+
+  <div class="titlerow">
+    <div>
+      <h1>Website <span class="accent">Packages</span></h1>
+      <div class="subtitle">Bespoke, mobile-optimised websites that reflect your company — built, launched and supported.</div>
+    </div>
+    <div class="promo">
+      <div class="kicker">Limited-time promo</div>
+      <div class="big">Save up to R3 500</div>
+      <div class="until">On all packages · till 30 June</div>
+    </div>
+  </div>
+
+  <div class="cards">
+
+    <!-- BEGINNER -->
+    <div class="card">
+      <div class="tier">Beginner</div>
+      <div class="priceblock">
+        <span class="was">R4500</span>
+        <div class="now">R2000</div>
+      </div>
+      <div class="tagline">Ideal for start-ups</div>
+      <div class="divider"></div>
+      <ul class="feat">
+        <li><span class="chk"></span> Mobile optimised (responsive)</li>
+        <li><span class="chk"></span> HTML | CSS | PHP programming</li>
+        <li><span class="chk"></span> Search engine optimisation</li>
+        <li><span class="chk"></span> Menus &amp; hyperlinks</li>
+        <li><span class="chk"></span> Google Maps integration</li>
+        <li><span class="chk"></span> Photo editing</li>
+        <li><span class="chk"></span> Bespoke customised layout</li>
+        <li><span class="chk"></span> <b>5-page website</b></li>
+        <li><span class="chk"></span> 30 days (telephonic) support</li>
+      </ul>
+      <div class="cta">Contact us now</div>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="card popular">
+      <div class="ribbon">Most popular</div>
+      <div class="tier">Standard</div>
+      <div class="priceblock">
+        <span class="was">R7000</span>
+        <div class="now">R3000</div>
+      </div>
+      <div class="tagline">Our most popular package</div>
+      <div class="divider"></div>
+      <ul class="feat">
+        <li><span class="chk"></span> Mobile optimised (responsive)</li>
+        <li><span class="chk"></span> HTML | CSS | PHP programming</li>
+        <li><span class="chk"></span> Search engine optimisation</li>
+        <li><span class="chk"></span> Menus &amp; hyperlinks</li>
+        <li><span class="chk"></span> Google Maps integration</li>
+        <li><span class="chk"></span> Photo editing</li>
+        <li><span class="chk"></span> Bespoke customised layout</li>
+        <li><span class="chk"></span> <b>10-page website</b></li>
+        <li><span class="chk"></span> Social media integration</li>
+        <li><span class="chk"></span> Photo gallery</li>
+        <li><span class="chk"></span> 60-day (telephonic/online) support</li>
+      </ul>
+      <div class="cta">Contact us now</div>
+    </div>
+
+    <!-- PRO -->
+    <div class="card">
+      <div class="tier">Pro</div>
+      <div class="priceblock">
+        <span class="was">R11000</span>
+        <div class="now">R7500</div>
+      </div>
+      <div class="tagline">Ideal for larger businesses</div>
+      <div class="divider"></div>
+      <ul class="feat">
+        <li><span class="chk"></span> Mobile optimised (responsive)</li>
+        <li><span class="chk"></span> HTML | CSS | PHP programming</li>
+        <li><span class="chk"></span> Search engine optimisation</li>
+        <li><span class="chk"></span> Menus &amp; hyperlinks</li>
+        <li><span class="chk"></span> Google Maps integration</li>
+        <li><span class="chk"></span> Photo editing</li>
+        <li><span class="chk"></span> Bespoke customised layout</li>
+        <li><span class="chk"></span> <b>20-page website</b></li>
+        <li><span class="chk"></span> Content management system</li>
+        <li><span class="chk"></span> CMS training and maintenance</li>
+        <li><span class="chk"></span> Social media integration</li>
+        <li><span class="chk"></span> e-Commerce integration</li>
+        <li><span class="chk"></span> 90 days FULL support</li>
+      </ul>
+      <div class="cta">Contact us now</div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div class="contact">Book via WhatsApp · <b>buhlemakaula.github.io/zero-double-three</b> · All prices in ZAR, once-off unless stated.</div>
+    <div class="note">Promo valid till 30 June · thereafter standard rates apply</div>
+  </div>
+
+</section>
+</body>
+</html>
