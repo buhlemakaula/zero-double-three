@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The AI Leverage Masterclass — Buhle Makaula</title>
+<style>
+/* ============================================================
+   The AI Leverage Masterclass — free edition
+   Brand: Buhle Makaula portfolio 2026
+   Palette: ink #0D0D0C · card #151514 · panel #1B1B1A
+            bone #E9E7E2 · orange #F4622E · muted #98958D
+   Type:    Anton (display) · Urbanist (body) · IBM Plex Mono (prompts)
+   ============================================================ */
+@font-face { font-family:'Anton'; font-style:normal; font-weight:400; src:url(fonts/Anton-400.woff2) format('woff2'); }
+@font-face { font-family:'Urbanist'; font-style:normal; font-weight:100 900; src:url(fonts/Urbanist-var.woff2) format('woff2'); }
+@font-face { font-family:'IBM Plex Mono'; font-style:normal; font-weight:400; src:url(fonts/IBMPlexMono-400.woff2) format('woff2'); }
+@font-face { font-family:'IBM Plex Mono'; font-style:normal; font-weight:500; src:url(fonts/IBMPlexMono-500.woff2) format('woff2'); }
+@font-face { font-family:'IBM Plex Mono'; font-style:normal; font-weight:600; src:url(fonts/IBMPlexMono-600.woff2) format('woff2'); }
+
+/* ---------- Tokens ---------- */
+:root{
+  --ink:#0d0d0c;         /* page background */
+  --card:#151514;        /* raised surfaces */
+  --panel:#1b1b1a;       /* softer surfaces */
+  --line:#2b2b29;        /* rules */
+  --line-soft:#1d1d1c;   /* faint rules */
+  --hair:#3a3a37;        /* dashed borders */
+  --bone:#e9e7e2;        /* headings, key text */
+  --body:#cfccc5;        /* body text */
+  --muted:#98958d;       /* secondary text */
+  --orange:#f4622e;      /* the accent */
+  --orange-soft:#ff8a5c; /* accent for fine text on dark */
+  --orange-wash:#251310; /* orange-tinted panel */
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ background:var(--ink); }
+body{ font-family:'Urbanist',system-ui,sans-serif; color:var(--body); font-size:10pt; line-height:1.55; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+@page{ size:A4; margin:0; }
+.page{
+  width:210mm; height:297mm; background:var(--ink);
+  page-break-after:always; overflow:hidden; position:relative;
+  padding:15mm 17mm 16mm;
+  display:flex; flex-direction:column;
+}
+.page:last-child{ page-break-after:auto; }
+
+.display{ font-family:'Anton',sans-serif; color:var(--bone); }
+h1,h2{ font-family:'Anton',sans-serif; font-weight:400; color:var(--bone); text-transform:uppercase; }
+h3{ font-family:'Anton',sans-serif; font-weight:400; color:var(--bone); text-transform:uppercase; letter-spacing:.04em; font-size:10pt; margin:5mm 0 2mm; }
+.mono{ font-family:'IBM Plex Mono',monospace; }
+p{ margin-bottom:2.8mm; }
+p b, li b{ color:var(--bone); font-weight:700; }
+em,i{ font-style:italic; }
+
+/* ---------- Running header / footer ---------- */
+.runhead{
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'Anton',sans-serif; font-size:7pt; letter-spacing:.16em;
+  color:var(--muted); text-transform:uppercase;
+  border-bottom:1.5px solid var(--line); padding-bottom:3.2mm; margin-bottom:8mm;
+}
+.runhead .val{ color:var(--ink); background:var(--orange); padding:1mm 2.8mm; border-radius:2mm; letter-spacing:.12em; }
+.runfoot{
+  margin-top:auto; padding-top:4mm; border-top:1px solid var(--line-soft);
+  display:flex; justify-content:space-between;
+  font-family:'Anton',sans-serif; font-size:7pt; letter-spacing:.14em; color:var(--muted); text-transform:uppercase;
+}
+
+/* ---------- Price tag component (signature) ---------- */
+.tag{
+  display:inline-flex; align-items:center; gap:2mm;
+  font-family:'Anton',sans-serif; font-size:6.8pt; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--orange); color:var(--ink);
+  padding:1.2mm 3mm 1.2mm 2.2mm; border-radius:1.8mm;
+  position:relative; white-space:nowrap;
+}
+.tag::before{ content:''; width:1.6mm; height:1.6mm; border-radius:50%; background:var(--ink); }
+.tag .was{ text-decoration:line-through; opacity:.55; }
+
+/* ---------- Module header ---------- */
+.mod{
+  display:flex; align-items:baseline; gap:5mm; margin-bottom:2.5mm;
+}
+.mod .num{
+  font-family:'Anton',sans-serif; font-size:26pt; color:var(--orange); line-height:1;
+}
+.mod h2{ font-size:18pt; line-height:1.08; letter-spacing:.015em; }
+.mod .tag{ margin-left:auto; transform:translateY(-1mm); }
+.lede{ font-size:10.5pt; color:var(--muted); max-width:150mm; margin-bottom:6mm; }
+.lede strong{ color:var(--bone); font-weight:600; }
+
+/* ---------- Cover ---------- */
+.cover{ background:var(--ink); color:var(--body); padding:16mm 17mm; }
+.cover .topline{ display:flex; justify-content:space-between; font-family:'Anton',sans-serif; font-size:7.5pt; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); padding-bottom:4mm; }
+.cover-main{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+.cover .free-line{
+  font-family:'Anton',sans-serif; font-size:9pt; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--orange); margin-bottom:9mm;
+}
+.cover h1{
+  font-size:53pt; line-height:.96; letter-spacing:.005em; color:var(--bone); max-width:170mm;
+}
+.cover h1 .accent{ color:var(--orange); }
+.cover .sub{ font-size:12.5pt; line-height:1.55; color:var(--muted); max-width:128mm; margin-top:8mm; }
+.cover .sub b{ color:var(--bone); font-weight:700; }
+
+.bigtag{
+  margin-top:13mm; align-self:flex-start;
+  background:var(--orange); color:var(--ink); border-radius:4mm;
+  padding:6mm 9mm 6mm 7mm; display:flex; align-items:center; gap:6mm;
+  position:relative; transform:rotate(-1.6deg);
+  box-shadow:0 3mm 9mm rgba(244,98,46,.22);
+}
+.bigtag::before{ content:''; width:4.5mm; height:4.5mm; border-radius:50%; background:var(--ink); }
+.bigtag .was{
+  font-family:'Anton',sans-serif; font-size:26pt; line-height:1;
+  position:relative; opacity:.5;
+}
+.bigtag .was::after{ content:''; position:absolute; left:-4%; right:-4%; top:52%; height:1.6mm; background:var(--ink); transform:rotate(-7deg); border-radius:1mm; }
+.bigtag .now{ font-family:'Anton',sans-serif; font-size:40pt; line-height:1; letter-spacing:.01em; }
+.bigtag .why{ font-family:'Anton',sans-serif; font-size:7pt; letter-spacing:.1em; text-transform:uppercase; max-width:36mm; line-height:1.6; }
+.cover .bottomline{ display:flex; justify-content:space-between; align-items:flex-end; font-family:'Anton',sans-serif; font-size:7.5pt; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); border-top:1px solid var(--line); padding-top:4mm; }
+
+/* ---------- Letter page ---------- */
+.letter{ max-width:158mm; }
+.letter p{ font-size:10.8pt; line-height:1.68; margin-bottom:4mm; }
+.letter .big{ font-size:15pt; line-height:1.4; font-weight:800; color:var(--bone); margin-bottom:6mm; }
+.sig{ font-family:'Anton',sans-serif; font-size:12pt; color:var(--orange); text-transform:uppercase; letter-spacing:.06em; margin-top:7mm; }
+.howto{ margin-top:9mm; background:var(--panel); border-radius:5mm; padding:6mm 7mm; }
+.howto h3{ margin-top:0; color:var(--orange-soft); }
+.howto ol{ margin:2mm 0 0 5mm; }
+.howto li{ margin-bottom:1.6mm; }
+
+/* ---------- TOC / value breakdown ---------- */
+.toc{ border-top:2px solid var(--orange); }
+.toc-row{
+  display:grid; grid-template-columns:14mm 1fr auto; gap:5mm; align-items:center;
+  padding:4.6mm 0; border-bottom:1px solid var(--line);
+}
+.toc-row .n{ font-family:'Anton',sans-serif; font-size:15pt; color:var(--orange); }
+.toc-row .t{ font-family:'Anton',sans-serif; color:var(--bone); font-size:11.5pt; text-transform:uppercase; letter-spacing:.03em; }
+.toc-row .d{ color:var(--muted); font-size:9pt; margin-top:.6mm; }
+.toc-row .price{ font-family:'Anton',sans-serif; font-size:11pt; color:var(--bone); }
+.toc-total{
+  display:flex; justify-content:flex-end; align-items:center; gap:6mm; padding:5.5mm 0 0;
+}
+.toc-total .label{ font-family:'Anton',sans-serif; font-size:7.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.toc-total .sum{ font-family:'Anton',sans-serif; font-size:19pt; color:var(--bone); position:relative; }
+.toc-total .sum::after{ content:''; position:absolute; left:-5%; right:-5%; top:50%; height:1.2mm; background:var(--orange); transform:rotate(-6deg); }
+.toc-total .zero{ font-family:'Anton',sans-serif; font-size:26pt; color:var(--orange); }
+
+/* ---------- Generic panels ---------- */
+.panel{ background:var(--card); border-radius:5mm; padding:5.5mm 6.5mm; margin:4mm 0; }
+.panel.brand{ background:var(--orange-wash); }
+.panel h3{ margin-top:0; }
+.panel.brand h3{ color:var(--orange-soft); }
+ul.tight, ol.tight{ margin:1mm 0 3mm 5mm; }
+ul.tight li, ol.tight li{ margin-bottom:1.8mm; }
+
+.twocol{ display:grid; grid-template-columns:1fr 1fr; gap:7mm; }
+
+/* ---------- CRAFT framework ---------- */
+.craft{ border-top:2px solid var(--orange); }
+.craft-row{ display:grid; grid-template-columns:13mm 26mm 1fr; gap:5mm; padding:3.6mm 0; border-bottom:1px solid var(--line); align-items:start; }
+.craft-row .ltr{ font-family:'Anton',sans-serif; font-size:17pt; color:var(--orange); line-height:1; }
+.craft-row .word{ font-weight:800; color:var(--bone); font-size:10.5pt; padding-top:.8mm; }
+.craft-row .expl{ font-size:9.3pt; color:var(--body); padding-top:.8mm; }
+.craft-row .expl .eg{ display:block; font-family:'IBM Plex Mono',monospace; font-size:7.8pt; color:var(--orange-soft); margin-top:1.2mm; }
+
+.beforeafter{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:5mm; }
+.ba-card{ border:1px solid var(--line); border-radius:4mm; padding:4.5mm 5mm; font-size:9pt; background:var(--card); }
+.ba-card.good{ border:1.5px solid var(--orange); background:var(--orange-wash); }
+.ba-card .ba-label{ font-family:'Anton',sans-serif; font-size:6.8pt; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm; }
+.ba-card.good .ba-label{ color:var(--orange-soft); }
+.ba-card .mono{ font-size:8.2pt; line-height:1.55; }
+
+/* ---------- Prompt cards ---------- */
+.pcard{
+  border:1.2px dashed var(--hair); border-radius:4mm; padding:3.6mm 5mm; margin-bottom:3.4mm;
+  background:var(--card); position:relative;
+}
+.pcard-head{ display:flex; align-items:center; gap:3mm; margin-bottom:2mm; }
+.pcard-head .pnum{ font-family:'Anton',sans-serif; color:var(--orange); font-size:10.5pt; }
+.pcard-head .ptitle{ font-weight:800; color:var(--bone); font-size:10pt; }
+.pcard-head .tag{ margin-left:auto; }
+.pcard .prompt{ font-family:'IBM Plex Mono',monospace; font-size:7.9pt; line-height:1.52; color:var(--body); }
+.pcard .prompt .var{ color:var(--orange-soft); font-weight:600; }
+
+/* ---------- Engine table / toolstack ---------- */
+table{ width:100%; border-collapse:collapse; font-size:9pt; }
+th{ font-family:'Anton',sans-serif; font-size:6.8pt; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); text-align:left; padding:0 3mm 2mm 0; border-bottom:1.5px solid var(--hair); font-weight:400; }
+td{ padding:2.8mm 3mm 2.8mm 0; border-bottom:1px solid var(--line); vertical-align:top; }
+td.day{ font-family:'Anton',sans-serif; color:var(--orange); white-space:nowrap; }
+td b{ color:var(--bone); }
+
+/* ---------- Money plays ---------- */
+.play{ display:grid; grid-template-columns:11mm 1fr; gap:4mm; padding:4mm 0; border-bottom:1px solid var(--line); align-items:start; }
+.play .pn{ font-family:'Anton',sans-serif; font-size:14pt; color:var(--orange); line-height:1.1; }
+.play h3{ margin:0 0 1.2mm; font-size:10.5pt; letter-spacing:.03em; }
+.play p{ font-size:9.2pt; margin-bottom:1.4mm; }
+.play .first{ font-family:'IBM Plex Mono',monospace; font-size:7.6pt; color:var(--orange-soft); }
+.play .first::before{ content:'→ first step: '; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+
+/* ---------- 30 day plan ---------- */
+.week{ margin-bottom:4.5mm; }
+.week h3{ display:flex; align-items:baseline; gap:3mm; margin:0 0 2mm; font-size:11pt; }
+.week h3 .range{ font-family:'IBM Plex Mono',monospace; font-size:7pt; color:var(--muted); letter-spacing:.1em; font-weight:500; text-transform:none; }
+.check{ margin-left:1mm; }
+.check li{ list-style:none; padding-left:7mm; position:relative; margin-bottom:1.7mm; font-size:9.4pt; }
+.check li::before{ content:''; position:absolute; left:0; top:1mm; width:3.4mm; height:3.4mm; border:1.4px solid var(--orange); border-radius:1mm; }
+
+/* ---------- Closing ---------- */
+.close-page .big{ font-family:'Anton',sans-serif; font-size:23pt; line-height:1.12; color:var(--bone); text-transform:uppercase; letter-spacing:.01em; max-width:158mm; margin-bottom:6mm; }
+.close-page .big .accent{ color:var(--orange); }
+.smallprint{ font-size:7.6pt; color:var(--muted); line-height:1.55; margin-top:6mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 · COVER ============ -->
+<section class="page cover">
+  <div class="topline"><span>Buhle Makaula · Free Masterclass</span><span>Better your brand.</span></div>
+  <div class="cover-main">
+    <div class="free-line">100% free — no card, no catch, no upsell inside</div>
+    <h1>The AI Leverage <span class="accent">Masterclass</span></h1>
+    <p class="sub">The complete system for turning AI into your <b>content team, copywriter and research assistant</b> — the same material creators charge hundreds for, compressed into one booklet you can finish this weekend.</p>
+    <div class="bigtag">
+      <span class="was">$500</span>
+      <span class="now">FREE</span>
+      <span class="why">the full course · nothing held back for a paid tier</span>
+    </div>
+  </div>
+  <div class="bottomline"><span>6 modules · 10 copy-paste prompts · 30-day plan</span><span>2026 edition</span></div>
+</section>
+
+<!-- ============ PAGE 2 · WHY FREE ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="letter">
+    <p class="big">Let's address it before you even ask: why would anyone give away a $500 masterclass for free?</p>
+    <p>Simple. The best marketing I can do is to actually help you. If this booklet saves you ten hours a week or helps you land your first AI-assisted client, you'll remember where you learned it — and you'll stick around. That's the whole trade. There is no locked chapter, no "the real secrets are in the paid tier." <b>This is the full course.</b></p>
+    <p>The $500 number isn't decoration either. Courses covering exactly this material — prompt frameworks, a content repurposing engine, monetization playbooks — routinely sell for $300–$800. I've priced each module honestly on the next page so you can see where the value sits.</p>
+    <p>One promise from me, one from you. Mine: everything in here is practical — you can use every prompt today, with free AI tools. Yours: don't just read it. <b>Pick one module and act on it within 24 hours.</b> Information you don't use is worth exactly $0, no matter what the cover says.</p>
+    <p class="sig">Let's get you leveraged — Buhle ⚡</p>
+  </div>
+  <div class="howto">
+    <h3>How to use this booklet</h3>
+    <ol class="tight">
+      <li><b>Skim all six modules once</b> (20 minutes) so you know what's here.</li>
+      <li><b>Steal the prompts in Module 3</b> — they're written to copy, paste and fill in.</li>
+      <li><b>Run the 30-day plan</b> at the back. It sequences everything for you.</li>
+    </ol>
+  </div>
+  <div class="runfoot"><span>Read this first</span><span>02</span></div>
+</section>
+
+<!-- ============ PAGE 3 · WHAT'S INSIDE ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><h2>What's inside — and what it's worth</h2></div>
+  <p class="lede">Each module is priced against what comparable paid courses and workshops charge for the same material. Add it up, then look at what you paid.</p>
+  <div class="toc">
+    <div class="toc-row">
+      <span class="n">01</span>
+      <span><span class="t">Think in leverage</span><div class="d">The mindset shift that separates people who play with AI from people who profit from it.</div></span>
+      <span class="price">$45</span>
+    </div>
+    <div class="toc-row">
+      <span class="n">02</span>
+      <span><span class="t">The C.R.A.F.T. prompt framework</span><div class="d">A five-part formula that upgrades any prompt from vague to professional-grade.</div></span>
+      <span class="price">$95</span>
+    </div>
+    <div class="toc-row">
+      <span class="n">03</span>
+      <span><span class="t">The prompt vault</span><div class="d">10 copy-paste prompts for content, copy, research and strategy — each replacing paid work.</div></span>
+      <span class="price">$150</span>
+    </div>
+    <div class="toc-row">
+      <span class="n">04</span>
+      <span><span class="t">The 7-day content engine</span><div class="d">Turn one idea into a full week of posts, emails and videos — in about 90 minutes.</div></span>
+      <span class="price">$90</span>
+    </div>
+    <div class="toc-row">
+      <span class="n">05</span>
+      <span><span class="t">Five ways to get paid</span><div class="d">The realistic monetization paths for AI skills in 2026, with the exact first step for each.</div></span>
+      <span class="price">$75</span>
+    </div>
+    <div class="toc-row">
+      <span class="n">06</span>
+      <span><span class="t">The lean toolstack + 30-day plan</span><div class="d">The short list of tools worth your time, and a week-by-week execution calendar.</div></span>
+      <span class="price">$45</span>
+    </div>
+    <div class="toc-total">
+      <span class="label">Total value</span>
+      <span class="sum">$500</span>
+      <span class="label">You pay</span>
+      <span class="zero">$0</span>
+    </div>
+  </div>
+  <div class="runfoot"><span>Contents &amp; value breakdown</span><span>03</span></div>
+</section>
+
+<!-- ============ PAGE 4 · MODULE 1 ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">01</span><h2>Think in leverage</h2><span class="tag"><span class="was">$45</span>&nbsp;value</span></div>
+  <p class="lede">Most people use AI like a search engine: ask a question, get an answer, move on. The people getting real results use it like <strong>a talented employee</strong> — briefed properly, given real work, and reviewed like a manager would.</p>
+
+  <h3>The oracle trap vs. the delegation mindset</h3>
+  <p>Ask AI "what should I post?" and you get generic mush — that's the <b>oracle trap</b>: treating AI as a magic answer machine. Instead, <b>delegate</b>: hand over a defined task, with context, standards and an example of what "good" looks like. The quality of what you get back is a mirror of the brief you gave.</p>
+
+  <div class="panel brand">
+    <h3>The 80/20 of AI in one sentence</h3>
+    <p style="margin:0">80% of AI's value comes from 20% of use cases: <b>drafting, repurposing, summarizing, researching, and critiquing your work</b>. Master those five before chasing anything shinier.</p>
+  </div>
+
+  <h3>Exercise: the delegation audit (10 minutes)</h3>
+  <p>Write down everything you did for your business or content last week. Then mark each task:</p>
+  <ul class="tight">
+    <li><b>A — AI does it, I review.</b> First drafts, captions, outlines, research summaries, repurposing.</li>
+    <li><b>B — AI assists, I drive.</b> Strategy, offers, anything with your personal story or taste.</li>
+    <li><b>C — Only me.</b> Relationships, appearing on camera, final judgement calls.</li>
+  </ul>
+  <p>Most people discover 40–60% of their week is sitting in column A. That's your recovered time — and everything in the next five modules is about spending it well.</p>
+
+  <div class="panel">
+    <h3>Rule to keep</h3>
+    <p style="margin:0">AI produces the <b>first 80%</b>. You produce the <b>final 20%</b> — the taste, the stories, the opinions only you have. Never ship the raw output; that final pass is where your brand lives.</p>
+  </div>
+  <div class="runfoot"><span>Module 01 · Think in leverage</span><span>04</span></div>
+</section>
+
+<!-- ============ PAGE 5 · MODULE 2 ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">02</span><h2>The C.R.A.F.T. prompt framework</h2><span class="tag"><span class="was">$95</span>&nbsp;value</span></div>
+  <p class="lede">Every high-performing prompt in this booklet is built from five parts. Learn the formula once and you can write prompts for <strong>anything</strong> — no cheat sheet needed.</p>
+
+  <div class="craft">
+    <div class="craft-row"><span class="ltr">C</span><span class="word">Context</span><span class="expl">What's the situation, who's the audience, what do they care about?<span class="eg">"I run a fitness page for busy professionals over 30…"</span></span></div>
+    <div class="craft-row"><span class="ltr">R</span><span class="word">Role</span><span class="expl">Who should the AI act as? A role loads expertise and standards.<span class="eg">"Act as a direct-response copywriter who writes conversational hooks…"</span></span></div>
+    <div class="craft-row"><span class="ltr">A</span><span class="word">Action</span><span class="expl">The specific task, with numbers. Vague asks get vague answers.<span class="eg">"Write 10 hooks under 12 words each for this topic…"</span></span></div>
+    <div class="craft-row"><span class="ltr">F</span><span class="word">Format</span><span class="expl">Exactly how the output should be structured.<span class="eg">"Numbered list. For each: the hook + one line on why it works."</span></span></div>
+    <div class="craft-row"><span class="ltr">T</span><span class="word">Tone</span><span class="expl">The voice. Paste a sample of your writing for best results.<span class="eg">"Confident, warm, zero corporate jargon. Match this sample: […]"</span></span></div>
+  </div>
+
+  <div class="beforeafter">
+    <div class="ba-card">
+      <div class="ba-label">Before — the oracle trap</div>
+      <p class="mono">"Give me some Instagram post ideas about fitness."</p>
+      <p style="margin:2mm 0 0; font-size:8.4pt; color:var(--muted)">Result: the same 10 generic ideas everyone else gets.</p>
+    </div>
+    <div class="ba-card good">
+      <div class="ba-label">After — C.R.A.F.T. applied</div>
+      <p class="mono">"I coach desk workers over 30 who have 30 min/day <b>[C]</b>. Act as a fitness content strategist <b>[R]</b>. Give me 10 reel ideas that challenge a common myth <b>[A]</b>, as a table: myth → truth → hook line <b>[F]</b>. Tone: blunt but encouraging <b>[T]</b>."</p>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:5mm">
+    <h3>The follow-up multiplier</h3>
+    <p style="margin:0">The first output is never the final output. Push back like you would with a junior teammate: <span class="mono" style="font-size:8pt">"Make #3 punchier."</span> · <span class="mono" style="font-size:8pt">"Rewrite in my voice — sample attached."</span> · <span class="mono" style="font-size:8pt">"Now critique your own answer and fix the weakest part."</span> Two follow-ups typically double the quality.</p>
+  </div>
+  <div class="runfoot"><span>Module 02 · The C.R.A.F.T. framework</span><span>05</span></div>
+</section>
+
+<!-- ============ PAGE 6 · MODULE 3a ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">03</span><h2>The prompt vault</h2><span class="tag"><span class="was">$150</span>&nbsp;value</span></div>
+  <p class="lede">Ten battle-ready prompts. Copy, replace the <span class="mono" style="color:var(--orange-soft); font-weight:600">[bracketed parts]</span>, paste into your AI tool of choice. Each tag shows the paid work it replaces.</p>
+
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P1</span><span class="ptitle">The 30-day content calendar</span><span class="tag">replaces a $200 strategy session</span></div>
+    <p class="prompt">Act as a content strategist for <span class="var">[niche]</span>. My audience struggles with <span class="var">[top 3 pain points]</span>. Build a 30-day content calendar: for each day give topic, format (reel / carousel / story / text), a hook under 12 words, and the single takeaway. Mix 60% value, 30% connection, 10% promotion of <span class="var">[your offer]</span>. Output as a table.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P2</span><span class="ptitle">The hook machine</span><span class="tag">replaces a $150 copywriter brief</span></div>
+    <p class="prompt">Act as a short-form copywriter. Topic: <span class="var">[topic]</span>. Audience: <span class="var">[audience]</span>. Write 15 scroll-stopping hooks under 12 words: 5 curiosity-based, 5 contrarian, 5 outcome-based. Then mark your top 3 and explain in one line each why they'll stop the scroll.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P3</span><span class="ptitle">The carousel scripter</span><span class="tag">replaces a $100 design brief</span></div>
+    <p class="prompt">Turn this idea into an 8-slide Instagram carousel: <span class="var">[idea or paste a draft]</span>. Slide 1: bold hook. Slides 2–7: one point each, max 25 words per slide, each slide creating a reason to swipe. Slide 8: recap + tell readers to <span class="var">[follow / save / comment a keyword]</span>. Give me slide-by-slide text plus a one-line visual direction per slide.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P4</span><span class="ptitle">The repurposing engine</span><span class="tag">replaces a $250/mo content assistant</span></div>
+    <p class="prompt">Here is one piece of long-form content: <span class="var">[paste video script, newsletter or blog post]</span>. Repurpose it into: 3 reel scripts (30–45s, spoken-word style with hook + payoff), 1 carousel outline, 5 tweet-length posts, and 1 email to my list. Keep my exact phrases where they're strong; flag anything that needs a personal story from me with <span class="var">[STORY]</span>.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P5</span><span class="ptitle">The voice cloner</span><span class="tag">replaces a $120 brand-voice workshop</span></div>
+    <p class="prompt">Analyze these 3 samples of my writing: <span class="var">[paste samples]</span>. Produce a "voice guide": tone in 5 adjectives, sentence rhythm, words/phrases I overuse, words I'd never use, and 3 rules for writing as me. End with a 100-word sample paragraph written in my voice about <span class="var">[topic]</span> so I can verify the match.</p>
+  </div>
+  <div class="runfoot"><span>Module 03 · The prompt vault (1 of 2)</span><span>06</span></div>
+</section>
+
+<!-- ============ PAGE 7 · MODULE 3b ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">03</span><h2>The prompt vault, continued</h2></div>
+
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P6</span><span class="ptitle">The market X-ray</span><span class="tag">replaces $300 of market research</span></div>
+    <p class="prompt">Act as a market researcher for <span class="var">[niche]</span>. Map: the 5 biggest problems my audience says they have (in their own words), the 5 problems they actually have underneath, objections that stop them buying, and 3 underserved sub-niches. For each sub-niche: one content angle and one offer idea. Be specific.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P7</span><span class="ptitle">The offer sharpener</span><span class="tag">replaces a $200 positioning consult</span></div>
+    <p class="prompt">Here's my offer: <span class="var">[describe offer + price]</span>. Audience: <span class="var">[audience]</span>. Rewrite the positioning 3 ways: (1) outcome-first, (2) enemy-first (against the old way), (3) speed/ease-first. For each: a one-sentence pitch, a 50-word description, and the strongest objection with a one-line rebuttal.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P8</span><span class="ptitle">The 5-email welcome sequence</span><span class="tag">replaces a $350 email copy package</span></div>
+    <p class="prompt">Write a 5-email welcome sequence for people who downloaded <span class="var">[your freebie]</span>. Email 1: deliver + quick win. 2: my story — insert <span class="var">[STORY]</span> markers where I should add personal detail. 3: the big mistake my audience makes. 4: case study or method walkthrough. 5: soft pitch for <span class="var">[offer]</span>. Subject lines under 6 words; emails under 200 words.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P9</span><span class="ptitle">The talking-head script</span><span class="tag">replaces a $150 scriptwriter</span></div>
+    <p class="prompt">Write a 60-second talking-head video script about <span class="var">[topic]</span> for <span class="var">[audience]</span>. Structure: hook (first 3 seconds, no intro, no "hey guys"), stakes (why this matters now), 3 rapid points, payoff, and a CTA to <span class="var">[action]</span>. Write it as spoken — short sentences, contractions. Add [PAUSE] and [B-ROLL: …] markers.</p>
+  </div>
+  <div class="pcard">
+    <div class="pcard-head"><span class="pnum">P10</span><span class="ptitle">The brutal editor</span><span class="tag">replaces a $100 content audit</span></div>
+    <p class="prompt">Act as a brutally honest editor who optimizes for attention and clarity. Here's my draft: <span class="var">[paste draft]</span>. Score it /10 on hook, flow, specificity, and CTA. List the 3 weakest lines and rewrite each. Cut 20% of the words without losing meaning. Then show the final improved version.</p>
+  </div>
+
+  <div class="panel brand" style="padding:4mm 6mm">
+    <p style="margin:0; font-size:9.2pt"><b>Make the vault yours:</b> these ten are templates, not scripture. Each time a prompt works, save your filled-in version to a note called <b>"Prompt Vault"</b> — within a month you'll own a library tuned to your niche.</p>
+  </div>
+  <div class="runfoot"><span>Module 03 · The prompt vault (2 of 2)</span><span>07</span></div>
+</section>
+
+<!-- ============ PAGE 8 · MODULE 4 ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">04</span><h2>The 7-day content engine</h2><span class="tag"><span class="was">$90</span>&nbsp;value</span></div>
+  <p class="lede">One idea in, a full week of content out — in roughly <strong>90 minutes of your time</strong>. This is the exact assembly line, using prompts P1–P4 and P9 from the vault.</p>
+
+  <table>
+    <tr><th style="width:20mm">Day</th><th style="width:34mm">You publish</th><th>How it gets made</th></tr>
+    <tr><td class="day">Sun</td><td><b>Nothing — build day</b></td><td>Pick one pillar idea (a question your audience keeps asking). Record yourself talking about it for 5 minutes, or write 300 messy words. This raw material is the engine's fuel — it's where <i>you</i> live in the content.</td></tr>
+    <tr><td class="day">Mon</td><td>Talking-head reel</td><td>Feed your raw material into <b>P9</b>. Film in one take. Done is better than cinematic.</td></tr>
+    <tr><td class="day">Tue</td><td>Carousel</td><td>Run <b>P3</b> on the same material. Design from a template you reuse weekly — never from scratch.</td></tr>
+    <tr><td class="day">Wed</td><td>Story sequence</td><td>Ask AI for a 4-frame story arc: poll → insight → example → question box. Two minutes of tapping.</td></tr>
+    <tr><td class="day">Thu</td><td>Second reel, new angle</td><td>From your <b>P4</b> repurposing output — pick the contrarian angle so it doesn't feel repeated.</td></tr>
+    <tr><td class="day">Fri</td><td>Text post + email</td><td><b>P4</b> already wrote both. Add one personal line at the top; that line is why people read yours.</td></tr>
+    <tr><td class="day">Sat</td><td>Engagement only</td><td>No posting. Reply to every comment and DM. AI can draft replies — the relationship part is yours.</td></tr>
+  </table>
+
+  <div class="twocol" style="margin-top:5mm">
+    <div class="panel" style="margin:0">
+      <h3>Why this works</h3>
+      <p style="margin:0; font-size:9.2pt">Every piece comes from <b>one</b> idea, so your message compounds instead of scattering. Repetition across formats is not lazy — it's how audiences actually learn who you are.</p>
+    </div>
+    <div class="panel brand" style="margin:0">
+      <h3>The 90-minute rule</h3>
+      <p style="margin:0; font-size:9.2pt">Batch everything on Sunday: run the prompts, film both reels, schedule the week. If it takes over 90 minutes, your pillar idea is too complicated — shrink it.</p>
+    </div>
+  </div>
+  <div class="runfoot"><span>Module 04 · The 7-day content engine</span><span>08</span></div>
+</section>
+
+<!-- ============ PAGE 9 · MODULE 5 ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">05</span><h2>Five ways to get paid</h2><span class="tag"><span class="was">$75</span>&nbsp;value</span></div>
+  <p class="lede">AI skills only turn into income when they're attached to an <strong>outcome someone already pays for</strong>. These are the five realistic paths — ordered from fastest cash to biggest ceiling.</p>
+
+  <div class="play">
+    <span class="pn">1</span>
+    <div>
+      <h3>AI-boosted freelancing</h3>
+      <p>Sell a service you can already do passably — captions, emails, product descriptions, research decks — and use the vault to deliver it 5× faster. Clients pay for the outcome; the speed is your margin.</p>
+      <p class="first">use P2 + P10 to build 3 portfolio samples tonight, then pitch 5 small businesses this week.</p>
+    </div>
+  </div>
+  <div class="play">
+    <span class="pn">2</span>
+    <div>
+      <h3>The content-management retainer</h3>
+      <p>Run Module 4's engine for a busy founder or local business: they record 5 messy minutes, you deliver their whole week of content. Recurring revenue, and one system serves many clients.</p>
+      <p class="first">offer the first week free to one business you already follow; convert to monthly after they see it.</p>
+    </div>
+  </div>
+  <div class="play">
+    <span class="pn">3</span>
+    <div>
+      <h3>Digital products</h3>
+      <p>Package what you know — templates, guides, mini-courses, notion systems. AI collapses production from months to days (P6 finds the gap, P7 positions it, P8 sells it). Made once, sold repeatedly.</p>
+      <p class="first">run P6 on your niche today and shortlist one product idea under $50.</p>
+    </div>
+  </div>
+  <div class="play">
+    <span class="pn">4</span>
+    <div>
+      <h3>Audience-first (this booklet's own model)</h3>
+      <p>Give away genuinely valuable content free, grow trust at scale, monetize later with offers, affiliates or sponsorship. Slowest path, biggest compounding — and yes, a free "$500" PDF is a classic move in it.</p>
+      <p class="first">ship the 7-day engine for 4 straight weeks before judging any numbers.</p>
+    </div>
+  </div>
+  <div class="play" style="border-bottom:none">
+    <span class="pn">5</span>
+    <div>
+      <h3>Teaching AI itself</h3>
+      <p>Every industry is scrambling to adopt AI. If you're two chapters ahead of a specific audience — estate agents, coaches, restaurants — you can run paid workshops on exactly what you've learned here.</p>
+      <p class="first">post one "here's how I use AI for [niche task]" tutorial and watch who asks questions.</p>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:4mm">
+    <p style="margin:0; font-size:9pt"><b>Honesty checkpoint:</b> none of these are passive or guaranteed. They're real work made dramatically faster. Anyone promising "$10k/month with 3 prompts" is selling you the dream instead of the skill — you now have the skill.</p>
+  </div>
+  <div class="runfoot"><span>Module 05 · Five ways to get paid</span><span>09</span></div>
+</section>
+
+<!-- ============ PAGE 10 · MODULE 6 TOOLSTACK ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><span class="num">06</span><h2>The lean toolstack</h2><span class="tag"><span class="was">$45</span>&nbsp;value</span></div>
+  <p class="lede">Tool-hopping is procrastination in a productivity costume. You need <strong>one tool per job</strong>, and almost everything here has a free tier that's enough to start.</p>
+
+  <table>
+    <tr><th style="width:34mm">The job</th><th style="width:38mm">Reach for</th><th>Notes</th></tr>
+    <tr><td><b>Thinking, writing, prompts</b></td><td>Claude or ChatGPT</td><td>Your daily driver — every prompt in this booklet works in either. Pick one, learn it deeply.</td></tr>
+    <tr><td><b>Design &amp; carousels</b></td><td>Canva</td><td>Build one carousel template, reuse it forever. Its AI features handle resizing and variations.</td></tr>
+    <tr><td><b>Video editing</b></td><td>CapCut</td><td>Auto-captions alone justify it. Templates make edits a 10-minute job.</td></tr>
+    <tr><td><b>Images</b></td><td>Midjourney or built-in generators</td><td>Nice-to-have, not need-to-have. Faces and personality beat AI art for engagement.</td></tr>
+    <tr><td><b>Organization</b></td><td>Notion (or any notes app)</td><td>Home of your Prompt Vault, voice guide and content calendar. The system matters, not the app.</td></tr>
+    <tr><td><b>Scheduling</b></td><td>Meta Business Suite / Buffer</td><td>Batch on Sunday, schedule the week, protect your mornings.</td></tr>
+    <tr><td><b>Automation (later)</b></td><td>Zapier or Make</td><td>Only once something works manually. Automating a broken process just breaks it faster.</td></tr>
+  </table>
+
+  <div class="panel brand" style="margin-top:5mm">
+    <h3>The one-month rule</h3>
+    <p style="margin:0">No new tools for your first 30 days. Every hour comparing apps is an hour not building the engine. The stack above — mostly free — is enough to execute every module in this booklet.</p>
+  </div>
+  <div class="panel">
+    <h3>Total monthly cost to start</h3>
+    <p style="margin:0">Free tiers of a chat AI + Canva + CapCut + a notes app = <b>$0 to begin</b>. Upgrade the chat AI first (~$20/mo) once it's saving you real hours — it's the highest-ROI subscription in the stack.</p>
+  </div>
+  <div class="runfoot"><span>Module 06 · The lean toolstack</span><span>10</span></div>
+</section>
+
+<!-- ============ PAGE 11 · 30 DAY PLAN ============ -->
+<section class="page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <div class="mod"><h2>Your 30-day action plan</h2></div>
+  <p class="lede">Knowledge without a calendar is entertainment. Save this page where you'll see it every day, and tick the boxes.</p>
+
+  <div class="week">
+    <h3>Week 1 — Foundations <span class="range">days 1–7</span></h3>
+    <ul class="check">
+      <li>Do the <b>delegation audit</b> (Module 1) — know your column-A tasks.</li>
+      <li>Run <b>P5</b> to build your voice guide; save it to your Prompt Vault note.</li>
+      <li>Run <b>P6</b> on your niche — write down the 3 pain points everything will target.</li>
+      <li>Rewrite one old post using <b>C.R.A.F.T.</b> + <b>P10</b> and feel the difference.</li>
+    </ul>
+  </div>
+  <div class="week">
+    <h3>Week 2 — First engine run <span class="range">days 8–14</span></h3>
+    <ul class="check">
+      <li>Sunday: pick a pillar idea, record 5 messy minutes, run the prompts (90 min max).</li>
+      <li>Publish every day Mon–Fri following the Module 4 schedule.</li>
+      <li>Saturday: reply to every comment and DM personally.</li>
+    </ul>
+  </div>
+  <div class="week">
+    <h3>Week 3 — Engine + iteration <span class="range">days 15–21</span></h3>
+    <ul class="check">
+      <li>Run the engine again with a new pillar idea.</li>
+      <li>Check your numbers once: double down on the best format, drop the worst.</li>
+      <li>Save every prompt that worked into your Vault, filled in.</li>
+    </ul>
+  </div>
+  <div class="week">
+    <h3>Week 4 — Monetization groundwork <span class="range">days 22–30</span></h3>
+    <ul class="check">
+      <li>Pick <b>one</b> path from Module 5 (just one).</li>
+      <li>Take its "first step" this week — samples pitched, freebie offered, or product shortlisted.</li>
+      <li>Run the engine a third time. Three weeks in, it should feel routine.</li>
+      <li>Day 30: review — hours saved, content shipped, first money conversation started?</li>
+    </ul>
+  </div>
+
+  <div class="panel brand">
+    <p style="margin:0; font-size:9.2pt"><b>The only metric that matters this month is consistency.</b> Three full engine runs beats one viral post — you're building a machine, not buying a lottery ticket.</p>
+  </div>
+  <div class="runfoot"><span>The 30-day action plan</span><span>11</span></div>
+</section>
+
+<!-- ============ PAGE 12 · CLOSING ============ -->
+<section class="page close-page">
+  <div class="runhead"><span>The AI Leverage Masterclass</span><span class="val"><span style="text-decoration:line-through; opacity:.55">$500</span>&nbsp;· yours free</span></div>
+  <p class="big">That's the whole course. Every framework, every prompt, every play — <span class="accent">nothing held back.</span></p>
+  <p style="max-width:150mm; font-size:10.8pt; line-height:1.65">Most people will read this, feel productive, and change nothing. The booklet was free either way — but the <b>value</b> only exists if you execute. You're one delegation audit, one C.R.A.F.T. prompt, and one Sunday batch session away from being ahead of 95% of people talking about AI.</p>
+
+  <div class="panel brand" style="max-width:150mm; margin-top:7mm">
+    <h3>If this was worth even $50 to you (let alone $500)</h3>
+    <ul class="tight" style="margin-bottom:0">
+      <li><b>Send it to one person</b> who keeps saying they "should really figure out AI."</li>
+      <li><b>Start week 1 today</b> — the delegation audit takes ten minutes.</li>
+      <li><b>Follow along</b> at <b>buhlemakaula.github.io/zero-double-three</b> for what comes next.</li>
+    </ul>
+  </div>
+
+  <div class="bigtag" style="margin-top:12mm; transform:rotate(-1.2deg); box-shadow:none">
+    <span class="was" style="font-size:18pt">$500</span>
+    <span class="now" style="font-size:26pt">FREE</span>
+    <span class="why">and it stays free — that was the whole point</span>
+  </div>
+
+  <p class="smallprint">The stated value reflects typical pricing of comparable paid courses and coaching covering the same material; it is a marketing comparison, not an appraisal. Nothing in this booklet is financial advice, and no income outcome is guaranteed — results depend on your effort, niche and consistency. AI tools mentioned are examples, not sponsorships; their features and free tiers change often, so check current terms. Always review AI output before publishing: you are responsible for what you ship.</p>
+  <div class="runfoot"><span>Buhle Makaula · Better your brand</span><span>12</span></div>
+</section>
+
+</body>
+</html>
