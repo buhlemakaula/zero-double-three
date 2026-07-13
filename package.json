@@ -4,7 +4,11 @@
   "description": "Dark, editorial one-page portfolio: big Anton display type, Urbanist body text, orange accent pills, grain texture, animated cover and scroll reveals.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "21st": "21st",
+    "ui:login": "21st login",
+    "ui:search": "21st search",
+    "ui:add": "21st add"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "playwright-core": "^1.61.1"
+  },
+  "devDependencies": {
+    "@21st-dev/cli": "^1.6.0"
   }
 }
