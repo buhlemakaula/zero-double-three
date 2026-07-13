@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Manrope"; src: url("http://localhost:8322/assets/fonts/manrope-normal.woff2") format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Cormorant"; font-style: italic; src: url("http://localhost:8322/assets/fonts/cormorant-italic.woff2") format("woff2"); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #333; }
+
+  #stage {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #f6f4f1 0%, #ece9e4 100%);
+  }
+  .silk { position: absolute; pointer-events: none; filter: blur(26px); opacity: .55; }
+  .silk.a {
+    left: -420px; top: -560px; width: 1600px; height: 1600px;
+    background: repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.9) 0 46px, rgba(224,220,213,.55) 46px 96px);
+    transform: rotate(18deg);
+  }
+  .silk.b {
+    right: -560px; bottom: -640px; width: 1700px; height: 1700px;
+    background: repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.85) 0 52px, rgba(221,217,209,.5) 52px 106px);
+    transform: rotate(-14deg);
+  }
+
+  .layer { position: absolute; inset: 0; }
+
+  .h {
+    font-family: "Manrope", sans-serif; font-weight: 800; font-size: 92px;
+    letter-spacing: -0.01em; color: #131210; line-height: 1.05;
+  }
+  .h .w2 {
+    background: linear-gradient(135deg, #c9a24b 0%, #9a7a2f 70%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub {
+    font-family: "Manrope", sans-serif; font-weight: 600; font-size: 40px;
+    color: #7e7a72; line-height: 1.35; margin-top: 22px;
+  }
+  .email { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 38px; color: #9a7a2f; margin-top: 30px; }
+
+  .card {
+    position: absolute; border-radius: 18px; overflow: hidden;
+    background: #fff; box-shadow: 0 40px 90px rgba(19,18,16,.28), 0 8px 24px rgba(19,18,16,.12);
+  }
+  .shot { width: 100%; height: 100%; background-image: url("../ridges-shots/desktop-full.png"); background-size: 100% auto; background-repeat: no-repeat; }
+
+  /* S1 */
+  #s1h { position: absolute; top: 150px; left: 0; right: 0; text-align: center; }
+  #s1card { left: 90px; width: 900px; height: 980px; top: 340px; }
+
+  /* S2 carousel */
+  .s2card { top: 260px; width: 620px; height: 830px; }
+
+  /* S3 store/menu */
+  #s3card { left: 60px; top: 200px; width: 470px; height: 950px; perspective-origin: center; }
+  #s3txt { position: absolute; right: 70px; top: 480px; width: 460px; }
+  #s3txt .h { font-size: 78px; }
+  #s3txt .sub { font-size: 34px; }
+
+  /* S4 responsive phones */
+  #s4h { position: absolute; top: 120px; left: 0; right: 0; text-align: center; z-index: 5; }
+  #s4h .sub { font-size: 34px; }
+  .phonewrap { position: absolute; }
+  .phone {
+    width: 270px; height: 570px; border-radius: 40px; padding: 9px; background: #fdfdfc;
+    box-shadow: 0 30px 60px rgba(19,18,16,.3);
+  }
+  .phone .scr { width: 100%; height: 100%; border-radius: 32px; overflow: hidden;
+    background-image: url("../ridges-shots/mobile-full.png"); background-size: 100% auto; background-repeat: no-repeat; background-color: #070706; }
+
+  /* S5 laid back page */
+  #s5wrap { position: absolute; inset: 0; perspective: 1400px; }
+  #s5card { left: 50px; top: -80px; width: 980px; height: 1500px; }
+
+  /* S6 fan */
+  .fan { top: 250px; left: 240px; width: 600px; height: 820px; }
+
+  /* S7 contact */
+  #s7h { position: absolute; top: 130px; left: 120px; right: 120px; text-align: center; }
+  #s7wrap { position: absolute; inset: 0; perspective: 1500px; }
+  #s7card { left: 120px; top: 660px; width: 840px; height: 900px; }
+  #s7credit {
+    position: absolute; bottom: 46px; left: 0; right: 0; text-align: center;
+    font-family: "Manrope", sans-serif; font-weight: 800; font-size: 26px;
+    letter-spacing: 0.22em; color: #b0aca3; text-transform: uppercase;
+  }
+  #s7credit em { font-style: normal; color: #c9a24b; }
+
+  #fadein, #fadeout { position: absolute; inset: 0; background: #f4f2ef; opacity: 0; z-index: 80; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="silk a"></div>
+  <div class="silk b"></div>
+
+  <div class="layer" id="s1">
+    <div id="s1h" class="h"><span class="w1">New</span> <span class="w2">Website</span></div>
+    <div class="card" id="s1card"><div class="shot" id="s1shot"></div></div>
+  </div>
+
+  <div class="layer" id="s2">
+    <div class="card s2card" id="s2a"><div class="shot" style="background-position:0 0"></div></div>
+    <div class="card s2card" id="s2b"><div class="shot" style="background-position:0 -968px"></div></div>
+    <div class="card s2card" id="s2c"><div class="shot" style="background-position:0 -1854px"></div></div>
+  </div>
+
+  <div class="layer" id="s3">
+    <div class="card" id="s3card"><div class="shot" id="s3shot"></div></div>
+    <div id="s3txt">
+      <div class="h">Digital <span class="w2">Menu</span></div>
+      <div class="sub">Every dish and price on the page, with the full PDF menu one tap away.</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s4">
+    <div id="s4h">
+      <div class="h"><span class="w2">Responsive</span></div>
+      <div class="sub">Designed for phones first,<br />sharp on every screen.</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s5">
+    <div id="s5wrap"><div class="card" id="s5card"><div class="shot" id="s5shot" style="background-size:100% auto"></div></div></div>
+  </div>
+
+  <div class="layer" id="s6"></div>
+
+  <div class="layer" id="s7">
+    <div id="s7h">
+      <div class="h">Contact <span class="w2">Us</span></div>
+      <div class="sub">Get in touch about building your new website.</div>
+      <div class="email">buhlemakaula@gmail.com &middot; WhatsApp 071 182 4885</div>
+    </div>
+    <div id="s7wrap"><div class="card" id="s7card"><div class="shot" id="s7shot"></div></div></div>
+    <div id="s7credit">WEBSITE BY BUHLE<em>.</em></div>
+  </div>
+
+  <div id="fadeout"></div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const seg = (t, a, b) => clamp01((t - a) / (b - a));
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const outQuint = (x) => 1 - Math.pow(1 - x, 5);
+  const inOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+
+  // desktop image: 1440 natural width. In a card of width W, scale = W/1440.
+  const D = { doc: 11849, menu: 2249, events: 4307, gallery: 6964, reserve: 8221, contact: 10193 };
+  const M = { menu: 3049, events: 5653, gallery: 9341, reserve: 10233, contact: 12896 }; // css px, image 390 css wide
+
+  // build S4 phones
+  const phoneOffsets = [0, M.menu, M.events, M.gallery, M.reserve, M.contact];
+  const s4 = $("s4");
+  const grid = [
+    { x: 60, y: 430 }, { x: 400, y: 380 }, { x: 740, y: 330 },
+    { x: 230, y: 1000 }, { x: 570, y: 950 }, { x: 910, y: 900 },
+  ];
+  const phones = grid.map((g, i) => {
+    const w = document.createElement("div");
+    w.className = "phonewrap";
+    w.style.left = g.x + "px"; w.style.top = g.y + "px";
+    const scale = 252 / 390;
+    w.innerHTML = `<div class="phone"><div class="scr" style="background-position:0 ${-phoneOffsets[i] * scale}px"></div></div>`;
+    s4.appendChild(w);
+    return w;
+  });
+
+  // build S6 fan
+  const fanOffsets = [0, D.menu, D.events, D.gallery, D.reserve];
+  const s6 = $("s6");
+  const fans = fanOffsets.map((off, i) => {
+    const c = document.createElement("div");
+    c.className = "card fan";
+    const scale = 600 / 1440;
+    c.innerHTML = `<div class="shot" style="background-position:0 ${-off * scale}px"></div>`;
+    s6.appendChild(c);
+    return c;
+  });
+
+  function vis(id, on) { $(id).style.opacity = on ? 1 : 0; $(id).style.visibility = on ? "visible" : "hidden"; }
+
+  window.setTime = function (t) {
+    ["s1","s2","s3","s4","s5","s6","s7"].forEach(s => vis(s, false));
+
+    if (t < 7.0) { // S1: heading words + rising, scrolling homepage card
+      vis("s1", true);
+      const w1 = outCubic(seg(t, 0.3, 1.0));
+      const w2 = outCubic(seg(t, 0.9, 1.7));
+      const h = $("s1h");
+      h.children[0].style.opacity = w1;
+      h.children[1].style.opacity = w2;
+      h.children[1].style.filter = `blur(${(1 - w2) * 6}px)`;
+      const up = outQuint(seg(t, 0.6, 2.0));
+      const scroll = inOutCubic(seg(t, 2.2, 6.6));
+      const scale = 900 / 1440;
+      $("s1card").style.transform = `translateY(${(1 - up) * 1200}px)`;
+      $("s1shot").style.backgroundPosition = `0 ${-scroll * (D.menu + 500) * scale}px`;
+      $("s1").style.opacity = t > 6.5 ? 1 - seg(t, 6.5, 7.0) : 1;
+    }
+
+    if (t >= 7.0 && t < 11.2) { // S2: three page cards sliding across
+      vis("s2", true);
+      const slide = inOutCubic(seg(t, 7.0, 10.8));
+      const sweep = 1500 - slide * 2400;
+      $("s2a").style.left = (sweep - 700) + "px";
+      $("s2b").style.left = (sweep + 0) + "px";
+      $("s2c").style.left = (sweep + 700) + "px";
+      $("s2").style.opacity = Math.min(seg(t, 7.0, 7.4), 1 - seg(t, 10.8, 11.2));
+    }
+
+    if (t >= 11.2 && t < 16.0) { // S3: tall tilted menu card + text
+      vis("s3", true);
+      const inn = outQuint(seg(t, 11.3, 12.2));
+      const scroll = inOutCubic(seg(t, 12.0, 15.6));
+      $("s3card").style.transform = `perspective(1400px) rotateY(${18 - inn * 6}deg) rotateX(2deg) translateX(${(1 - inn) * -700}px)`;
+      const scale = 470 / 1440;
+      $("s3shot").style.backgroundPosition = `0 ${-(D.menu * scale + scroll * 700 * scale)}px`;
+      const tx = outCubic(seg(t, 12.0, 12.7));
+      $("s3txt").style.opacity = tx;
+      $("s3txt").style.transform = `translateY(${(1 - tx) * 70}px)`;
+      $("s3").style.opacity = Math.min(seg(t, 11.2, 11.6), 1 - seg(t, 15.6, 16.0));
+    }
+
+    if (t >= 16.0 && t < 21.0) { // S4: responsive phone grid drifting
+      vis("s4", true);
+      const hIn = outCubic(seg(t, 16.2, 16.9));
+      $("s4h").style.opacity = hIn;
+      const drift = seg(t, 16.0, 21.0) * 70;
+      phones.forEach((w, i) => {
+        const dir = i % 2 === 0 ? 1 : -1;
+        const inn = outQuint(seg(t, 16.1 + i * 0.08, 17.0 + i * 0.08));
+        w.style.transform = `rotate(-16deg) translate(${(1 - inn) * 500 * dir + drift * 0.4}px, ${(1 - inn) * 600 - drift}px)`;
+        w.style.opacity = inn;
+      });
+      $("s4").style.opacity = Math.min(seg(t, 16.0, 16.3), 1 - seg(t, 20.6, 21.0));
+    }
+
+    if (t >= 21.0 && t < 25.6) { // S5: laid-back scrolling page
+      vis("s5", true);
+      const scroll = inOutCubic(seg(t, 21.0, 25.4));
+      $("s5card").style.transform = `rotateX(52deg) rotateZ(-9deg) translateY(120px)`;
+      const scale = 980 / 1440;
+      $("s5shot").style.backgroundPosition = `0 ${-(D.events * scale * 0.4 + scroll * (D.gallery - D.events) * scale)}px`;
+      $("s5").style.opacity = Math.min(seg(t, 21.0, 21.5), 1 - seg(t, 25.2, 25.6));
+    }
+
+    if (t >= 25.6 && t < 30.4) { // S6: page fan
+      vis("s6", true);
+      const breathe = Math.sin((t - 25.6) * 1.1) * 8;
+      fans.forEach((c, i) => {
+        const k = i - 2;
+        const inn = outQuint(seg(t, 25.7 + Math.abs(k) * 0.12, 26.7 + Math.abs(k) * 0.12));
+        const x = k * (185 + breathe);
+        const sc = 1 - Math.abs(k) * 0.07;
+        c.style.transform = `translateX(${x * inn + (1 - inn) * k * 800}px) scale(${sc})`;
+        c.style.zIndex = 10 - Math.abs(k);
+        c.style.opacity = inn;
+      });
+      $("s6").style.opacity = Math.min(seg(t, 25.6, 26.0), 1 - seg(t, 30.0, 30.4));
+    }
+
+    if (t >= 30.4) { // S7: contact
+      vis("s7", true);
+      const h = outCubic(seg(t, 30.6, 31.4));
+      $("s7h").style.opacity = h;
+      $("s7h").style.transform = `translateY(${(1 - h) * 60}px)`;
+      const up = outQuint(seg(t, 31.0, 32.0));
+      const scroll = inOutCubic(seg(t, 32.0, 37.4));
+      $("s7card").style.transform = `rotateX(18deg) rotateZ(-4deg) translateY(${(1 - up) * 900}px)`;
+      const scale = 840 / 1440;
+      $("s7shot").style.backgroundPosition = `0 ${-(D.reserve * scale + scroll * 900 * scale)}px`;
+      $("s7credit").style.opacity = outCubic(seg(t, 32.6, 33.4));
+    }
+
+    $("fadeout").style.opacity = seg(t, 38.3, 38.9);
+  };
+  window.setTime(0);
+</script>
+</body>
+</html>
