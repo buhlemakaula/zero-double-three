@@ -1,4 +1,51 @@
-# 21 Ridges — Launch Video Prompts
+# 21 Ridges — Launch Video
+
+Two things live here:
+
+1. **A rendered launch film** — `21-ridges-launch-8k.mp4`, a real 8K clip built
+   from code (no AI-video service needed). See [Rendered film](#rendered-film).
+2. **Ready-to-paste prompts** for an AI video generator (Veo 3, Sora, Runway
+   Gen-3, Kling, Luma), if you want a photoreal cinematic version — the reel
+   shows a website **building itself** and resolving into the real 21 Ridges
+   site as the payoff.
+
+## Rendered film
+
+`21-ridges-launch-8k.mp4` — **7680×4320 (8K UHD), H.264 MP4, 12s @ 24fps.**
+A cool emerald→blue "agent" interface types "21 RIDGES", a loading pulse fires,
+a glassy wireframe assembles top-to-bottom (nav → hero → menu tabs → gallery),
+then **one hard cut** blooms the finished, candlelit 21 Ridges site — gold
+wordmark, "Good food. Great vibes.", a gold *Reserve a Table* button — and ends
+on "Built by an AI agent". Deep near-black grade, film grain, one reserved cut.
+
+It's a self-contained HTML/CSS animation rendered frame-by-frame, so it's fully
+editable — change the copy, colours, or timing and re-render.
+
+**Files**
+- `launch.html` — the animation (deterministic `window.seek(t)` timeline; uses
+  the repo's self-hosted Anton + Urbanist fonts).
+- `render-frames.js` — Playwright script that seeks each frame and writes JPEGs.
+
+**Re-render (needs Node + Playwright's Chromium + ffmpeg):**
+```bash
+# 1) render 288 frames (script renders at 4K for speed)
+PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers node render-frames.js
+# 2) encode + upscale to true 8K
+ffmpeg -y -framerate 24 -i frames/f_%04d.jpg \
+  -vf "scale=7680:4320:flags=lanczos,format=yuv420p" \
+  -c:v libx264 -profile:v high -preset medium -crf 17 \
+  -x264-params "level=6.2:keyint=48" -pix_fmt yuv420p -movflags +faststart \
+  -r 24 21-ridges-launch-8k.mp4
+```
+The film master is finished at 8K from a 4K render (lanczos) — standard for
+vector/gradient/type motion graphics and visually indistinguishable from native
+8K, while keeping render time to minutes. To render natively at 8K, set
+`W=7680, H=4320` in `render-frames.js` (much slower — the large blur radii are
+expensive at 33MP).
+
+---
+
+## AI-video prompt package
 
 Ready-to-paste prompts for an AI video generator (Veo 3, Sora, Runway Gen-3,
 Kling, Luma). The reel shows a website **building itself** and resolving into a

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>21 Ridges — Launch</title>
+<style>
+  @font-face{font-family:"Anton";src:url("../../assets/fonts/anton-latin.woff2") format("woff2");font-weight:400;font-display:block;}
+  @font-face{font-family:"Urbanist";src:url("../../assets/fonts/urbanist-latin.woff2") format("woff2");font-weight:400 900;font-display:block;}
+
+  :root{
+    --emerald:#10B981; --blue:#2563EB;
+    --gold:#c9a24b; --gold-lite:#e6cd93; --gold-deep:#9a7a2f;
+    --gold-grad:linear-gradient(135deg,#f0dca5 0%,#c9a24b 46%,#9a7a2f 100%);
+    --tech-grad:linear-gradient(120deg,#10B981 0%,#2563EB 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;height:100%;overflow:hidden;background:#0A0A0A;}
+  #stage{position:fixed;inset:0;background:#0A0A0A;font-family:"Urbanist",system-ui,sans-serif;}
+
+  /* generic layers */
+  .layer{position:absolute;inset:0;}
+  .center{display:flex;align-items:center;justify-content:center;flex-direction:column;}
+
+  /* ---------- ambient ---------- */
+  #warmglow{position:absolute;inset:0;opacity:0;
+    background:radial-gradient(60% 50% at 50% 44%, rgba(201,162,75,0.22), rgba(120,80,20,0.06) 42%, transparent 72%);}
+  #coolglow{position:absolute;inset:0;opacity:0;
+    background:radial-gradient(70% 60% at 50% 46%, rgba(37,99,235,0.16), rgba(16,185,129,0.05) 46%, transparent 74%);}
+  #vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(125% 105% at 50% 48%, transparent 52%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.82) 100%);}
+  #grain{position:absolute;inset:-40px;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* ---------- P1 prompt ---------- */
+  #eyebrow{position:absolute;top:14%;left:0;right:0;text-align:center;opacity:0;
+    font-weight:700;letter-spacing:0.42em;text-transform:uppercase;color:var(--emerald);
+    font-size:1.4vw;}
+  #eyebrow::before,#eyebrow::after{content:"";display:inline-block;width:3.2vw;height:1px;
+    background:var(--emerald);vertical-align:middle;margin:0 1.1vw;opacity:0.7;}
+  #prompt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  #promptline{font-family:"Anton";letter-spacing:0.04em;color:#f3f5f4;
+    font-size:9vw;line-height:1;text-shadow:0 0 6vw rgba(16,185,129,0.25);}
+  #caret{display:inline-block;width:0.14em;height:0.92em;vertical-align:-0.06em;margin-left:0.06em;
+    background:var(--emerald);box-shadow:0 0 2vw rgba(16,185,129,0.9);}
+  #pulse{position:absolute;left:50%;top:50%;width:22vw;height:22vw;margin:-11vw 0 0 -11vw;border-radius:50%;
+    border:0.5vw solid transparent;opacity:0;
+    background:var(--tech-grad) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;}
+
+  /* wireframe grid */
+  #grid{position:absolute;inset:0;opacity:0;
+    background-image:linear-gradient(rgba(37,99,235,0.14) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.14) 1px,transparent 1px);
+    background-size:5vw 5vw;-webkit-mask:radial-gradient(60% 60% at 50% 50%,#000,transparent 78%);mask:radial-gradient(60% 60% at 50% 50%,#000,transparent 78%);}
+
+  /* ---------- P2 wireframe build ---------- */
+  #build{position:absolute;inset:0;display:none;}
+  #frame{position:absolute;left:50%;top:50%;width:74vw;height:73vh;transform:translate(-50%,-50%);
+    border:2px solid rgba(37,99,235,0.5);border-radius:0.9vw;overflow:hidden;
+    background:linear-gradient(180deg,rgba(20,28,44,0.55),rgba(8,12,20,0.62));
+    box-shadow:0 4vw 9vw -3vw rgba(0,0,0,0.85),inset 0 0 0 1px rgba(120,160,255,0.06);}
+  .wf{position:relative;opacity:0;}
+  .glass{background:linear-gradient(135deg,rgba(16,185,129,0.10),rgba(37,99,235,0.12));
+    border:1.5px solid rgba(120,180,255,0.30);border-radius:0.5vw;}
+  #wfnav{position:absolute;top:0;left:0;right:0;height:8vh;display:flex;align-items:center;gap:2vw;padding:0 3vw;
+    border-bottom:1.5px solid rgba(120,180,255,0.22);background:rgba(37,99,235,0.06);}
+  #wfnav .brandbox{width:9vw;height:3vh;border-radius:0.3vw;background:var(--tech-grad);opacity:0.85;}
+  #wfnav .navpill{width:5.5vw;height:1.5vh;border-radius:1vh;background:rgba(150,190,255,0.28);}
+  #wfnav .navpill.spacer{flex:1;background:transparent;}
+  #wfhero{position:absolute;top:10vh;left:3vw;right:3vw;height:34vh;}
+  #wfhero .hbar{position:absolute;left:4vw;border-radius:0.4vw;background:rgba(160,200,255,0.34);}
+  #wfhero .hbar.t1{top:9vh;width:44%;height:5vh;background:rgba(180,210,255,0.5);}
+  #wfhero .hbar.t2{top:16vh;width:30%;height:3vh;background:rgba(140,190,255,0.24);}
+  #wfhero .hbar.btn{top:23vh;width:14vw;height:5vh;background:var(--tech-grad);opacity:0.9;}
+  #wftabs{position:absolute;top:47vh;left:3vw;right:3vw;height:5vh;display:flex;gap:2vw;justify-content:center;}
+  #wftabs .tab{width:9vw;height:3.2vh;border-radius:1.6vh;}
+  #wfgrid{position:absolute;top:55vh;left:3vw;right:3vw;bottom:3vh;display:grid;
+    grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:1.4vw;}
+  #wfgrid .cell{border-radius:0.5vw;}
+  #lowerthird{position:absolute;left:0;right:0;bottom:5%;text-align:center;opacity:0;
+    font-family:"Anton";letter-spacing:0.06em;text-transform:uppercase;color:#eaf1ff;
+    font-size:4.2vw;text-shadow:0 0 3vw #000,0 0.4vw 1.4vw rgba(0,0,0,0.9),0 0 6vw rgba(37,99,235,0.5);}
+
+  /* ---------- P3/P4 reveal ---------- */
+  #reveal{position:absolute;inset:0;display:none;}
+  #dish{position:absolute;inset:0;
+    background:
+      radial-gradient(38% 30% at 50% 40%, rgba(214,164,74,0.30), transparent 70%),
+      radial-gradient(90% 80% at 50% 42%, rgba(60,40,16,0.55), rgba(8,7,6,0.2) 55%, transparent 80%),
+      radial-gradient(120% 120% at 50% 120%, rgba(0,0,0,0.9), transparent 60%),
+      #070706;}
+  #goldframe{position:absolute;inset:1.6vw;border:1.5px solid rgba(201,162,75,0.34);pointer-events:none;}
+  #goldframe .tick{position:absolute;width:1.6vw;height:1.6vw;border:2px solid var(--gold);}
+  #goldframe .tl{top:-1px;left:-1px;border-right:0;border-bottom:0;}
+  #goldframe .br{bottom:-1px;right:-1px;border-left:0;border-top:0;}
+  #rvinner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  #wordmark{font-family:"Anton";font-size:15vw;line-height:0.9;letter-spacing:0.02em;
+    background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0.6vw 3vw rgba(201,162,75,0.35));opacity:0;}
+  #sub{margin-top:1.4vh;font-weight:700;letter-spacing:0.5em;text-transform:uppercase;
+    color:var(--gold-lite);font-size:1.5vw;opacity:0;}
+  #flourish{display:flex;align-items:center;gap:1vw;margin:2.6vh 0;opacity:0;color:var(--gold);}
+  #flourish::before,#flourish::after{content:"";height:1px;width:5vw;background:linear-gradient(90deg,transparent,var(--gold));}
+  #flourish::after{background:linear-gradient(90deg,var(--gold),transparent);}
+  #flourish span{font-size:1.4vw;}
+  #tagline{font-family:"Urbanist";font-style:italic;font-weight:500;color:#f6f2ea;
+    font-size:3.4vw;opacity:0;text-shadow:0 0.4vw 3vw rgba(0,0,0,0.6);}
+  #cta{margin-top:4vh;padding:1.6vh 3.4vw;background:var(--gold-grad);color:#120d04;
+    font-weight:800;letter-spacing:0.22em;text-transform:uppercase;font-size:1.5vw;border-radius:2px;
+    opacity:0;box-shadow:0 2vw 4vw -1.4vw rgba(201,162,75,0.55);}
+  #payoff{position:absolute;left:0;right:0;bottom:11%;text-align:center;opacity:0;
+    font-family:"Anton";letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lite);
+    font-size:3vw;text-shadow:0 0 5vw rgba(201,162,75,0.4);}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="coolglow"></div>
+  <div id="warmglow"></div>
+
+  <!-- P1 -->
+  <div id="grid"></div>
+  <div id="eyebrow">Watch an AI build a restaurant</div>
+  <div id="prompt"><div id="promptline"><span id="typed"></span><span id="caret"></span></div></div>
+  <div id="pulse"></div>
+
+  <!-- P2 -->
+  <div id="build">
+    <div id="frame">
+      <div id="wfnav" class="wf"><div class="brandbox"></div><div class="navpill"></div><div class="navpill"></div><div class="navpill"></div><div class="navpill spacer"></div><div class="navpill"></div></div>
+      <div id="wfhero">
+        <div class="hbar t1 wf"></div><div class="hbar t2 wf"></div><div class="hbar btn wf"></div>
+      </div>
+      <div id="wftabs">
+        <div class="tab wf glass"></div><div class="tab wf glass"></div><div class="tab wf glass"></div><div class="tab wf glass"></div><div class="tab wf glass"></div>
+      </div>
+      <div id="wfgrid">
+        <div class="cell wf glass"></div><div class="cell wf glass"></div><div class="cell wf glass"></div>
+        <div class="cell wf glass"></div><div class="cell wf glass"></div><div class="cell wf glass"></div>
+      </div>
+    </div>
+    <div id="lowerthird">Zero code. One afternoon.</div>
+  </div>
+
+  <!-- P3/P4 -->
+  <div id="reveal">
+    <div id="dish"></div>
+    <div id="rvinner">
+      <div id="wordmark">21&nbsp;RIDGES</div>
+      <div id="sub">Bistro &amp; Bar</div>
+      <div id="flourish"><span>✦</span></div>
+      <div id="tagline">Good food. Great vibes.</div>
+      <div id="cta">Reserve a Table</div>
+    </div>
+    <div id="goldframe"><span class="tick tl"></span><span class="tick br"></span></div>
+    <div id="payoff">Built by an AI agent</div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="grain"></div>
+</div>
+
+<script>
+/* ---------- deterministic timeline (all times in seconds) ---------- */
+const FPS = 24, DUR = 12;
+const CUT = 6.40;           // the single reserved hard cut
+const el = id => document.getElementById(id);
+
+const clamp01 = x => x<0?0:x>1?1:x;
+const lerp = (a,b,t)=>a+(b-a)*t;
+const easeOut = t => 1-Math.pow(1-t,3);
+const easeInOut = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+// eased 0->1 ramp over [s, s+d]
+const ramp = (t,s,d)=>easeOut(clamp01((t-s)/d));
+// fade in then out: up over [s,s+din], hold, down over [e-dout,e]
+const band = (t,s,e,din=0.4,dout=0.4)=>Math.min(ramp(t,s,din), 1-easeOut(clamp01((t-(e-dout))/dout)));
+
+const TYPED = "21 RIDGES";
+
+function seek(t){
+  const frame = Math.round(t*FPS);
+  // animated grain to dither gradients / kill banding
+  el('grain').style.backgroundPosition = `${(frame*11)%160}px ${(frame*7)%160}px`;
+
+  const inBuild = t < CUT;
+  el('build').style.display  = (t>=3.0 && t<CUT) ? 'block' : 'none';
+  el('reveal').style.display = (t>=CUT) ? 'block' : 'none';
+
+  /* ===== PHASE 1 — prompt (0 → 3.0) ===== */
+  // eyebrow
+  el('eyebrow').style.opacity = band(t,0.5,2.7,0.5,0.4);
+  // typing
+  const nChars = Math.max(0, Math.min(TYPED.length, Math.floor((t-0.35)/0.16)));
+  el('typed').textContent = TYPED.slice(0,nChars);
+  const typingDone = nChars>=TYPED.length;
+  const blink = (Math.floor(t/0.5)%2===0);
+  el('caret').style.opacity = (t<2.0 && (!typingDone || blink)) || (t>=2.0&&t<2.2) ? 1 : (typingDone && blink && t<2.0 ? 1 : (t<2.0?1:0));
+  // prompt group fade out as we approach build
+  const p1out = 1-easeOut(clamp01((t-2.5)/0.6));
+  el('prompt').style.opacity = p1out;
+  // loading pulse (2.0 → 3.0)
+  const pu = clamp01((t-2.0)/1.0);
+  el('pulse').style.opacity = t>=2.0 && t<3.0 ? (0.85*(1-pu)) : 0;
+  el('pulse').style.transform = `scale(${lerp(0.25,3.4,easeOut(pu))})`;
+  // wireframe grid fades in late P1, stays through P2
+  el('grid').style.opacity = inBuild ? band(t,2.3,CUT,0.7,0.001)*0.9 : 0;
+  el('coolglow').style.opacity = inBuild ? ramp(t,2.2,1.4)*0.9 : 0;
+
+  /* ===== PHASE 2 — wireframe build (3.0 → CUT) ===== */
+  if (t>=3.0 && t<CUT){
+    // frame container appears + slow camera push/pan
+    const fin = ramp(t,3.0,0.5);
+    const push = ramp(t,3.0,CUT-3.0);
+    el('frame').style.opacity = fin;
+    el('frame').style.transform = `translate(-50%,-50%) scale(${lerp(0.985,1.03,push)}) translateY(${lerp(1.6,-1.2,push)}vh)`;
+    // element locks with rise + rim glow flash
+    const lock = (node, s)=>{
+      const a = ramp(t,s,0.45);
+      const flash = Math.max(0, 1-Math.abs((t-(s+0.35))/0.35)); // peak just after arrival
+      node.style.opacity = a;
+      node.style.transform = `translateY(${lerp(2.4,0,a)}vh)`;
+      node.style.boxShadow = `0 0 ${lerp(0,3.2,flash)}vw rgba(120,180,255,${0.5*flash})`;
+    };
+    lock(el('wfnav'), 3.15);
+    document.querySelectorAll('#wfhero .hbar').forEach((n,i)=>lock(n, 3.55+i*0.16));
+    document.querySelectorAll('#wftabs .tab').forEach((n,i)=>lock(n, 4.15+i*0.12));
+    // gallery: bottom-left -> top-right stagger
+    const cells = document.querySelectorAll('#wfgrid .cell'); // row0 top, row1 bottom
+    const order = [3,4,5,0,1,2]; // bottom row first
+    order.forEach((idx,k)=>lock(cells[idx], 4.85+k*0.13));
+    el('lowerthird').style.opacity = band(t,4.2,CUT,0.5,0.25);
+  }
+
+  /* ===== PHASE 3/4 — reveal + payoff (CUT → 12) ===== */
+  if (t>=CUT){
+    el('warmglow').style.opacity = ramp(t,CUT,1.2);
+    // slow push-in on the whole reveal + Ken-Burns on the ambient
+    const push = clamp01((t-CUT)/(DUR-CUT));
+    el('rvinner').style.transform = `scale(${lerp(1.0,1.035,easeOut(push))})`;
+    el('dish').style.transform = `scale(${lerp(1.06,1.14,push)})`;
+    // staggered warm entrance
+    const rv = (node, s, dy=3)=>{ const a=ramp(t,s,0.7); node.style.opacity=a; node.style.transform=`translateY(${lerp(dy,0,a)}vh)`; };
+    rv(el('wordmark'), CUT+0.10, 3.2);
+    rv(el('sub'),      CUT+0.42, 2.2);
+    el('flourish').style.opacity = ramp(t,CUT+0.6,0.7);
+    rv(el('tagline'),  CUT+0.78, 2.2);
+    // cta appears then gives a slow glow pulse in payoff
+    const ctaA = ramp(t,CUT+1.05,0.6);
+    const pulse = 0.5+0.5*Math.sin((t-9.9)*2.2); // gentle
+    const glow = t>9.9 ? lerp(2.0,3.6, (pulse)) : 2.0;
+    el('cta').style.opacity = ctaA;
+    el('cta').style.boxShadow = `0 ${glow*0.6}vw ${glow}vw -1.2vw rgba(201,162,75,${0.5+0.25*(t>9.9?pulse:0)})`;
+    el('cta').style.transform = `translateY(${lerp(2.2,0,ctaA)}vh)`;
+    // gold frame draws in
+    el('goldframe').style.opacity = ramp(t,CUT+0.2,1.0);
+    // payoff line rises near the end; tagline eases back slightly to make room
+    el('payoff').style.opacity = band(t,9.9,DUR+0.2,0.7,0.001);
+    if (t>9.9){ el('tagline').style.opacity = lerp(ramp(t,CUT+0.78,0.7), 0.55, clamp01((t-9.9)/0.8)); }
+  }
+}
+window.seek = seek;
+window.__ready = true;
+</script>
+</body>
+</html>
