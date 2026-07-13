@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buhle | Links</title>
+  <meta name="description" content="Buhle Makaula. Book design work, see the portfolio, follow the AI Made Simple series." />
+  <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/urbanist-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F4622E'/><text x='50' y='72' font-size='62' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%230D0D0C'>B</text></svg>" />
+  <style>
+    .hub {
+      max-width: 560px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(1.5rem, 4vw, 3rem) 1.25rem;
+      gap: 0;
+      text-align: center;
+    }
+    .hub-photo {
+      width: 108px; height: 108px; border-radius: 50%;
+      object-fit: cover; margin: 0 auto 1.2rem;
+      border: 3px solid var(--orange);
+    }
+    .hub-name {
+      font-family: "Anton", sans-serif; font-weight: 400;
+      font-size: 2.6rem; line-height: 1; text-transform: uppercase;
+    }
+    .hub-name em { font-style: normal; color: var(--orange); }
+    .hub-tag { color: var(--muted); margin-top: 0.6rem; font-weight: 600; }
+
+    .hub-buttons { display: grid; gap: 0.8rem; margin-top: 2.2rem; }
+    .hub-btn {
+      display: block; padding: 1.05rem 1.4rem;
+      border-radius: 999px; font-weight: 800; font-size: 1.05rem;
+      border: 1px solid var(--line); background: var(--panel);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .hub-btn:hover { transform: translateY(-2px); border-color: var(--orange); }
+    .hub-btn.primary { background: var(--orange); color: var(--ink); border-color: var(--orange); }
+    .hub-btn.primary:hover { background: var(--bone); }
+    .hub-btn span { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-top: 0.15rem; }
+    .hub-btn.primary span { color: rgba(13,13,12,.7); }
+
+    .hub-foot { margin-top: 2.4rem; color: var(--muted); font-size: 0.85rem; }
+    .hub-foot a { text-decoration: underline; text-underline-offset: 3px; }
+    .hub-foot a:hover { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="hub">
+    <img class="hub-photo" src="assets/buhle.jpg" alt="Buhle Makaula" />
+    <h1 class="hub-name">BUHLE<em>.</em></h1>
+    <p class="hub-tag">Creative designer. An AI agent runs my page, I show the receipts.</p>
+
+    <div class="hub-buttons">
+      <a class="hub-btn primary" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project.">
+        Book me on WhatsApp
+        <span>Branding, social media, design projects</span>
+      </a>
+      <a class="hub-btn" href="assets/buhle-website-packages.pdf">
+        Website packages &amp; pricing
+        <span>5–20 page sites · promo from R2000 till 31 July</span>
+      </a>
+      <a class="hub-btn" href="assets/buhle-ai-masterclass.pdf">
+        Free AI masterclass
+        <span>$500 value, free · 6 modules, 10 prompts, 30-day plan</span>
+      </a>
+      <a class="hub-btn" href="assets/brand/buhle-ai-starter-kit.pdf">
+        Free AI starter kit
+        <span>The prompt formula, 5 prompts to steal, the honesty test</span>
+      </a>
+      <a class="hub-btn" href="index.html">
+        View my portfolio
+        <span>Client work: branding, packaging, apparel</span>
+      </a>
+      <a class="hub-btn" href="brand.html">
+        The brand kit
+        <span>Logos, colors and type, built with AI in a day</span>
+      </a>
+      <a class="hub-btn" href="mailto:buhlemakaula@gmail.com">
+        Email me
+        <span>buhlemakaula@gmail.com</span>
+      </a>
+    </div>
+
+    <p class="hub-foot">AI, Made Simple &middot; daily posts &middot; <a href="calendar.html">the content calendar</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/packages", "destination": "/assets/buhle-website-packages.pdf" },
+    { "source": "/masterclass", "destination": "/assets/buhle-ai-masterclass.pdf" }
+  ]
+}

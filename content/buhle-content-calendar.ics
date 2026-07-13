@@ -1,0 +1,367 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Buhle Makaula//AI Made Simple//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:AI Made Simple - posting schedule
+X-WR-TIMEZONE:Africa/Johannesburg
+BEGIN:VEVENT
+UID:2026-07-13-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260713T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: An AI runs this page
+DESCRIPTION:Format: carousel | Pillar: story | Status: ready\n\nCAPTION:\nConfession: an AI agent plans\, writes and designs every post on this page. I set it up in one afternoon and it cost me R0.\n\nI am a designer\, not a programmer. If I can build this\, you can.\n\nThis account is now a live experiment: can an AI run a page to 10K followers? I will publish the real numbers\, including the flops.\n\nComment SYSTEM and I will send you the exact breakdown. Guess what it cost before you swipe to slide 6.\n\n#ai #aiagent #claudeai #buildinpublic #automation #contentcreator #aiforbeginners #digitalskills #techsouthafrica #learnai
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: An AI runs this page
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-14-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260714T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: Same task\, two prompts\, wildly different results
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: ready\n\nCAPTION:\nA client asked me to halve my price. I gave the exact same problem to AI twice. Slide 3 folded instantly. Slide 4 is the reply I actually sent.\n\nThe difference was never the AI. It was the brief.\n\nA or B on slide 6? Answer in the comments\, I want the honest one.\n\nSend this to a freelancer who needs it today.\n\n#freelance #pricing #aiprompts #claudeai #freelancetips #smallbusiness #promptengineering #ai #designbusiness #techsouthafrica
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Same task\, two prompts\, wildly different results
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-15-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260715T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: The AI fluency quiz
+DESCRIPTION:Format: carousel | Pillar: basics | Status: ready\n\nCAPTION:\nMost people using AI daily score 2 out of 4 on this. The words are easy. The mechanics behind them are what save you from embarrassing mistakes.\n\nRules: guess before you swipe\, count honestly\, comment your score.\n\nMy favourite wrong answer so far: AI lies because it got bored. It did not. Slide 4 explains what actually happens.\n\nTag someone who needs this quiz.\n\n#aiquiz #ai #aiforbeginners #learnai #claudeai #artificialintelligence #techtok #aiexplained #digitalskills #techsouthafrica
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: The AI fluency quiz
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-16-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260716T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: The ten minute AI test drive
+DESCRIPTION:Format: carousel | Pillar: claude | Status: ready\n\nCAPTION:\nDo not pick your AI because a YouTuber shouted about it. Run the ten minute test drive on your own real work.\n\nThree rounds: your longest document\, your voice\, and the honesty test on slide 5 that almost nobody runs.\n\nI ran it. My result and the round that decided it are on slide 7.\n\nComment which AI wins YOUR test. Genuinely curious about round 3 results.\n\n#claudeai #chatgpt #aitools #ai #aicomparison #learnai #promptengineering #aiforbeginners #digitalskills #aitips
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: The ten minute AI test drive
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-17-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260717T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: One day\, R0\, full brand: the receipts
+DESCRIPTION:Format: carousel | Pillar: story | Status: ready\n\nCAPTION:\nOne day. R0. This exact brand: the site you can visit\, the logo on this post\, the kit behind every slide.\n\nHour by hour receipts inside\, including the actual brief I typed at 09:00.\n\nThe checklist on slide 7 is your weekend version. Screenshot it\, build yours\, tag me in the result. I will share the best ones on my story.\n\nComment BRAND for the exact prompts\, word for word.\n\n#buildinpublic #aidesign #branding #claudeai #graphicdesign #freelancedesigner #sidehustle #southafricandesigner #aitools #designtips
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: One day\, R0\, full brand: the receipts
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-18-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260718T100000
+DTEND;TZID=Africa/Johannesburg:101500
+SUMMARY:POST: Unpopular opinion: most AI content is noise
+DESCRIPTION:Format: quote | Pillar: brand | Status: ready\n\nCAPTION:\nUnpopular opinion for your Saturday.\n\nMost AI content is recycled tips nobody tested\, posted by people who have never shipped anything with the tools they praise.\n\nThe fix is receipts. Show the task\, show the failure\, show the result. That is the standard I am holding this page to\, and you should hold me to it too.\n\nAgree or disagree? And tell me: what should the agent and I break down next week? Top comment gets built.\n\n#ai #contentcreator #buildinpublic #hottake #aitools #claudeai #creativity #digitalskills #makeitloud #techsouthafrica
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Unpopular opinion: most AI content is noise
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-19-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260719T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: Why your prompts fail
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: ready\n\nCAPTION:\nAI is a mirror. Weak brief in\, weak work out. Watch one real prompt grow from generic poison to the bio in my profile right now\, versions on slides 3 to 5.\n\nThen the challenge on slide 7: rewrite one of your own prompts tonight and comment the before and after. Best upgrade gets featured on my story this week.\n\nWeek one of the AI run page: done. The experiment continues.\n\n#promptengineering #aiprompts #ai #claudeai #learnai #aiforbeginners #digitalskills #contentcreation #buildinpublic #aitips
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Why your prompts fail
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-20-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260720T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: I tested 7 hidden Claude powers so you do not have to
+DESCRIPTION:Format: carousel | Pillar: claude | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: I tested 7 hidden Claude powers so you do not have to
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-21-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260721T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: I tried to make AI lie to me\, here is what caught it
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: I tried to make AI lie to me\, here is what caught it
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-22-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260722T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: A real logo project with my AI assistant\, start to finish
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: A real logo project with my AI assistant\, start to finish
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-23-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260723T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: The memory experiment: why long chats go stupid
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: The memory experiment: why long chats go stupid
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-24-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260724T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: I set up AI for a one chair salon\, the whole system
+DESCRIPTION:Format: carousel | Pillar: business | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: I set up AI for a one chair salon\, the whole system
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-25-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260725T100000
+DTEND;TZID=Africa/Johannesburg:101500
+SUMMARY:POST: Quote: taste is the job now
+DESCRIPTION:Format: quote | Pillar: brand | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Quote: taste is the job now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-26-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260726T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: The 30 day AI roadmap with daily assignments
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: The 30 day AI roadmap with daily assignments
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-27-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260727T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: I do not code. I shipped a website. Claude Code explained
+DESCRIPTION:Format: carousel | Pillar: claude | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: I do not code. I shipped a website. Claude Code explained
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-28-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260728T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: 5 things I stopped believing after 6 months of daily AI
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: 5 things I stopped believing after 6 months of daily AI
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-29-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260729T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: Turning make it pop into a real brief\, live
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Turning make it pop into a real brief\, live
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-30-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260730T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: Why AI cut you off mid sentence: the token math
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Why AI cut you off mid sentence: the token math
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-07-31-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260731T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: Two and a half weeks of an AI run page: the real numbers
+DESCRIPTION:Format: carousel | Pillar: story | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Two and a half weeks of an AI run page: the real numbers
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-01-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260801T100000
+DTEND;TZID=Africa/Johannesburg:101500
+SUMMARY:POST: Quote: loud ideas\, clean execution
+DESCRIPTION:Format: quote | Pillar: brand | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Quote: loud ideas\, clean execution
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-02-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260802T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: The study kit that teaches instead of cheats
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: The study kit that teaches instead of cheats
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-03-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260803T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: Autopsy of a mid AI answer
+DESCRIPTION:Format: carousel | Pillar: prompts | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Autopsy of a mid AI answer
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-04-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260804T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: My WhatsApp booking flow runs itself\, the exact setup
+DESCRIPTION:Format: carousel | Pillar: business | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: My WhatsApp booking flow runs itself\, the exact setup
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-05-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260805T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: Chat\, project\, agent: the three levels of AI power
+DESCRIPTION:Format: carousel | Pillar: basics | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Chat\, project\, agent: the three levels of AI power
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-06-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260806T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: I rewrote a real CV with AI\, before and after
+DESCRIPTION:Format: carousel | Pillar: business | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: I rewrote a real CV with AI\, before and after
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-07-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260807T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: What I refuse to automate
+DESCRIPTION:Format: carousel | Pillar: story | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: What I refuse to automate
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-08-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260808T100000
+DTEND;TZID=Africa/Johannesburg:101500
+SUMMARY:POST: Quote: the better the brief\, the better the machine
+DESCRIPTION:Format: quote | Pillar: brand | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Quote: the better the brief\, the better the machine
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-09-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260809T190000
+DTEND;TZID=Africa/Johannesburg:191500
+SUMMARY:POST: Under the hood of the agent that posts this page
+DESCRIPTION:Format: carousel | Pillar: claude | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Under the hood of the agent that posts this page
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-10-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260810T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: Nobody pays for prompts. What they pay for
+DESCRIPTION:Format: carousel | Pillar: business | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: Nobody pays for prompts. What they pay for
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-08-11-buhle-ai-made-simple
+DTSTART;TZID=Africa/Johannesburg:20260811T110000
+DTEND;TZID=Africa/Johannesburg:111500
+SUMMARY:POST: 30 days\, one save: everything the experiment taught
+DESCRIPTION:Format: carousel | Pillar: recap | Status: outline
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Post in 30 min: 30 days\, one save: everything the experiment taught
+END:VALARM
+END:VEVENT
+END:VCALENDAR

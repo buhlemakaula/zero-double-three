@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Cormorant"; src: url("http://localhost:8322/assets/fonts/cormorant-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Cormorant"; font-style: italic; src: url("http://localhost:8322/assets/fonts/cormorant-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Manrope"; src: url("http://localhost:8322/assets/fonts/manrope-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin.woff2") format("woff2"); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; }
+
+  #stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: #070706; }
+  .glow {
+    position: absolute; left: 50%; top: 42%; width: 1600px; height: 1600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(201,162,75,0.16) 0%, rgba(201,162,75,0.05) 38%, transparent 65%);
+  }
+  .layer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  .kicker {
+    font-family: "Manrope", sans-serif; font-weight: 700; font-size: 34px;
+    letter-spacing: 0.45em; text-indent: 0.45em; text-transform: uppercase; color: #c9a24b;
+  }
+  .serif-line {
+    font-family: "Cormorant", serif; font-style: italic; font-size: 84px;
+    color: #f6f2ea; text-align: center; line-height: 1.15;
+  }
+  .chip {
+    display: inline-block; font-family: "Manrope", sans-serif; font-weight: 700;
+    font-size: 34px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #070706; padding: 20px 52px; border-radius: 999px;
+    background: linear-gradient(135deg, #f0dca5 0%, #c9a24b 46%, #9a7a2f 100%);
+  }
+  .chip.ghost { background: none; border: 2px solid rgba(201,162,75,.5); color: #e6cd93; }
+
+  .caption { position: absolute; left: 0; right: 0; bottom: 200px; text-align: center; }
+  .caption .serif-line { font-size: 72px; }
+  .caption .sub { font-family: "Manrope", sans-serif; font-size: 32px; color: #b6b1a8; margin-top: 22px; letter-spacing: 0.08em; }
+
+  /* intro */
+  #s0 img { width: 480px; }
+  #s0 .serif-line { margin-top: 60px; }
+  #s0 .kicker { margin-bottom: 50px; }
+
+  /* browser frame */
+  .browser {
+    width: 960px; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 60px 120px rgba(0,0,0,.6); border: 1px solid rgba(201,162,75,.25);
+  }
+  .browser .bar { height: 54px; background: #131210; display: flex; align-items: center; gap: 12px; padding: 0 26px; }
+  .browser .bar i { width: 16px; height: 16px; border-radius: 50%; background: #2a2620; }
+  .browser .bar i:first-child { background: #c9a24b; }
+  .browser img { width: 100%; display: block; }
+
+  /* phone frame */
+  .phone {
+    width: 476px; height: 1000px; border-radius: 66px; padding: 12px;
+    background: #131210; border: 1px solid rgba(201,162,75,.35);
+    box-shadow: 0 60px 120px rgba(0,0,0,.65);
+  }
+  .phone .screen { width: 100%; height: 100%; border-radius: 54px; overflow: hidden; position: relative; background: #070706; }
+  .phone .screen img { width: 452px; display: block; }
+
+  /* events posters */
+  .posters { display: flex; gap: 40px; }
+  .poster {
+    width: 460px; height: 620px; border-radius: 28px; overflow: hidden;
+    border: 1px solid rgba(201,162,75,.3); box-shadow: 0 50px 100px rgba(0,0,0,.6);
+  }
+  .poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* gallery mosaic */
+  .mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; width: 1000px; }
+  .mosaic .cell { border-radius: 24px; overflow: hidden; height: 440px; border: 1px solid rgba(201,162,75,.2); }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* end card */
+  #s6 img { width: 420px; }
+  #s6 .serif-line { margin-top: 50px; font-size: 66px; }
+  #s6 .chip { margin-top: 70px; }
+  #s6 .credit { margin-top: 120px; font-family: "Anton", sans-serif; font-size: 34px; color: #7e7a72; letter-spacing: 0.06em; }
+  #s6 .credit em { font-style: normal; color: #c9a24b; }
+
+  #fade { position: absolute; inset: 0; background: #070706; opacity: 0; z-index: 90; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="glow"></div>
+
+  <div class="layer" id="s0">
+    <div class="kicker">Pietermaritzburg</div>
+    <img src="http://localhost:8322/assets/logo/logo-white.png" alt="" />
+    <div class="serif-line">The new website is live.</div>
+  </div>
+
+  <div class="layer" id="s1">
+    <div class="browser" id="s1b">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <img src="ridges-shots/desktop-hero.png" />
+    </div>
+    <div class="caption" id="s1c">
+      <div class="serif-line">Menu &middot; Events &middot; Gallery<br />&middot; Reservations &middot;</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s2">
+    <div class="phone" style="margin-bottom:230px"><div class="screen"><img id="s2img" src="ridges-shots/mobile-full.png" /></div></div>
+    <div class="caption" id="s2c">
+      <div class="serif-line">The full menu, one tap.</div>
+      <div class="sub">Every dish, with the complete PDF menu built in</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s3">
+    <div class="posters" style="margin-bottom:230px">
+      <div class="poster" id="p1"><img src="http://localhost:8322/assets/img/events/sat-poster.jpg" /></div>
+      <div class="poster" id="p2"><img src="http://localhost:8322/assets/img/events/sun-poster.jpg" /></div>
+    </div>
+    <div class="caption" id="s3c">
+      <div class="serif-line">Weekly events &amp; specials.</div>
+      <div class="sub">Saturdays and Sundays, always up to date</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s4">
+    <div style="height:1250px; overflow:hidden; display:flex; align-items:center; margin-bottom:230px;">
+      <div class="mosaic" id="mosaic">
+        <div class="cell"><img src="http://localhost:8322/assets/img/g1.jpg" /></div>
+        <div class="cell"><img src="http://localhost:8322/assets/img/g2.jpg" /></div>
+        <div class="cell"><img src="http://localhost:8322/assets/img/g3.jpg" /></div>
+        <div class="cell"><img src="http://localhost:8322/assets/img/g4.jpg" /></div>
+        <div class="cell"><img src="http://localhost:8322/assets/img/g5.jpg" /></div>
+        <div class="cell"><img src="http://localhost:8322/assets/img/g6.jpg" /></div>
+      </div>
+    </div>
+    <div class="caption" id="s4c">
+      <div class="serif-line">A look inside, in one scroll.</div>
+      <div class="sub">The gallery, straight from the floor</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s5">
+    <div class="phone" style="margin-bottom:230px"><div class="screen"><img id="s5img" src="ridges-shots/mobile-full.png" /></div></div>
+    <div class="caption" id="s5c">
+      <div class="serif-line">Reserve a table on WhatsApp.</div>
+      <div class="sub">Date, time and party size, sent in one tap</div>
+    </div>
+  </div>
+
+  <div class="layer" id="s6">
+    <img src="http://localhost:8322/assets/logo/logo-white.png" alt="" />
+    <div class="serif-line">Good food. Great vibes.</div>
+    <div class="chip">The new site is live &middot; link in bio</div>
+    <div class="credit">WEBSITE BY BUHLE<em>.</em></div>
+  </div>
+
+  <div id="fade"></div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const seg = (t, a, b) => clamp01((t - a) / (b - a));
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const outQuint = (x) => 1 - Math.pow(1 - x, 5);
+  const inOutQuint = (x) => x < 0.5 ? 16 * x ** 5 : 1 - Math.pow(-2 * x + 2, 5) / 2;
+  const outBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+
+  // site scroll targets (CSS px at 390 wide), scaled to 452px-wide phone screen
+  const SCALE = 452 / 390;
+  const POS = { menu: 3049, reserve: 10233 };
+  const SCREEN_H = 976;
+
+  function showOnly(t, ranges) {
+    Object.entries(ranges).forEach(([id, [a, b]]) => {
+      $(id).style.opacity = (t >= a && t < b) ? 1 : 0;
+    });
+  }
+
+  window.setTime = function (t) {
+    $("glow").style.transform = `translate(-50%,-50%) scale(${1 + 0.06 * Math.sin(t * 0.9)})`;
+
+    showOnly(t, {
+      s0: [0, 3.4], s1: [3.4, 8.4], s2: [8.4, 13.2], s3: [13.2, 17.8],
+      s4: [17.8, 22.4], s5: [22.4, 26.8], s6: [26.8, 30.01],
+    });
+
+    // S0 intro
+    if (t < 3.6) {
+      const k = outCubic(seg(t, 0.15, 0.7));
+      const lg = outBack(seg(t, 0.45, 1.15));
+      const ln = outCubic(seg(t, 1.2, 1.8));
+      const s0 = $("s0");
+      s0.querySelector(".kicker").style.opacity = k;
+      s0.querySelector("img").style.transform = `scale(${Math.max(lg, 0.01)})`;
+      s0.querySelector("img").style.opacity = seg(t, 0.45, 0.7);
+      s0.querySelector(".serif-line").style.opacity = ln;
+      s0.querySelector(".serif-line").style.transform = `translateY(${(1 - ln) * 50}px)`;
+      const out = seg(t, 3.0, 3.4);
+      s0.style.opacity = t < 3.0 ? 1 : 1 - out;
+    }
+
+    // S1 browser
+    if (t >= 3.3 && t < 8.5) {
+      const up = outQuint(seg(t, 3.5, 4.4));
+      $("s1b").style.transform = `translateY(${(1 - up) * 900}px) rotate(${(1 - up) * 3}deg) scale(${0.94 + 0.06 * up})`;
+      const drift = seg(t, 4.4, 8.4) * 40;
+      if (up >= 1) $("s1b").style.transform = `translateY(${-drift * 0.4}px) scale(${1 + drift * 0.001})`;
+      const c = outCubic(seg(t, 4.6, 5.2));
+      $("s1c").style.opacity = c;
+      $("s1c").style.transform = `translateY(${(1 - c) * 60}px)`;
+    }
+
+    // S2 phone scroll to menu
+    if (t >= 8.3 && t < 13.3) {
+      const inn = outQuint(seg(t, 8.5, 9.3));
+      $("s2").style.transform = `translateY(${(1 - inn) * 120}px)`;
+      const scroll = inOutQuint(seg(t, 9.1, 12.4));
+      const target = POS.menu * SCALE - 180;
+      $("s2img").style.transform = `translateY(${-scroll * target}px)`;
+      const c = outCubic(seg(t, 9.4, 10.0));
+      $("s2c").style.opacity = c;
+      $("s2c").style.transform = `translateY(${(1 - c) * 60}px)`;
+    }
+
+    // S3 posters
+    if (t >= 13.1 && t < 17.9) {
+      const a = outQuint(seg(t, 13.3, 14.1));
+      const b2 = outQuint(seg(t, 13.5, 14.3));
+      $("p1").style.transform = `translateX(${(1 - a) * -900}px) rotate(${(1 - a) * -6}deg)`;
+      $("p2").style.transform = `translateX(${(1 - b2) * 900}px) rotate(${(1 - b2) * 6}deg)`;
+      const breathe = 1 + 0.015 * Math.sin((t - 14) * 1.4);
+      if (a >= 1) { $("p1").style.transform = `scale(${breathe})`; $("p2").style.transform = `scale(${breathe})`; }
+      const c = outCubic(seg(t, 14.3, 14.9));
+      $("s3c").style.opacity = c;
+      $("s3c").style.transform = `translateY(${(1 - c) * 60}px)`;
+    }
+
+    // S4 mosaic pan
+    if (t >= 17.7 && t < 22.5) {
+      const inn = outCubic(seg(t, 17.9, 18.6));
+      $("s4").style.opacity = Math.min($("s4").style.opacity, inn);
+      const pan = seg(t, 17.9, 22.4);
+      $("mosaic").style.transform = `translateY(${90 - pan * 180}px)`;
+      const c = outCubic(seg(t, 18.6, 19.2));
+      $("s4c").style.opacity = c;
+      $("s4c").style.transform = `translateY(${(1 - c) * 60}px)`;
+    }
+
+    // S5 phone scroll to reserve
+    if (t >= 22.3 && t < 26.9) {
+      const scroll = inOutQuint(seg(t, 22.5, 25.2));
+      const start = POS.menu * SCALE - 180;
+      const target = POS.reserve * SCALE - 120;
+      $("s5img").style.transform = `translateY(${-(start + scroll * (target - start))}px)`;
+      const c = outCubic(seg(t, 23.2, 23.8));
+      $("s5c").style.opacity = c;
+      $("s5c").style.transform = `translateY(${(1 - c) * 60}px)`;
+    }
+
+    // S6 end card
+    if (t >= 26.7) {
+      const lg = outBack(seg(t, 26.9, 27.6));
+      const s6 = $("s6");
+      s6.querySelector("img").style.transform = `scale(${Math.max(lg, 0.01)})`;
+      s6.querySelector("img").style.opacity = seg(t, 26.9, 27.15);
+      const ln = outCubic(seg(t, 27.4, 28.0));
+      s6.querySelector(".serif-line").style.opacity = ln;
+      s6.querySelector(".serif-line").style.transform = `translateY(${(1 - ln) * 50}px)`;
+      const ch = outBack(seg(t, 27.9, 28.5));
+      s6.querySelector(".chip").style.opacity = seg(t, 27.9, 28.1);
+      s6.querySelector(".chip").style.transform = `scale(${Math.max(ch, 0.01)})`;
+      s6.querySelector(".credit").style.opacity = outCubic(seg(t, 28.5, 29.1));
+    }
+
+    $("fade").style.opacity = seg(t, 29.5, 30);
+  };
+  window.setTime(0);
+</script>
+</body>
+</html>
