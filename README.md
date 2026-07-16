@@ -83,11 +83,20 @@ Availability → Change passcode). No email account needed.
   DB trigger, never the client); late strikes forfeit the stamp and reset Trusted status;
   stamps expire after 12 months; rewards aren't stackable.
 
-## Deploy
+## Guides
 
-Configured for Vercel (`vercel.json`): `framework: vite`, output `dist/`, with a
-rewrite so the `/book` deep link resolves. Add the two `VITE_SUPABASE_*`
-environment variables in the Vercel project to go live against Supabase.
+- **[`docs/BACKEND.md`](docs/BACKEND.md)** — step-by-step guide to the Supabase
+  backend: logging in, the tables, everyday tasks, editing services, looking up
+  loyalty, security model, backups, troubleshooting.
+- **[`docs/DEPLOY.md`](docs/DEPLOY.md)** — deploying to Vercel (GitHub connect or
+  CLI) and setting the environment variables.
+
+## Deploy (short version)
+
+Configured for Vercel (`vercel.json`): `framework: vite`, output `dist/`, with
+rewrites so the `/book` and `/admin` routes resolve. Connect the GitHub repo in
+Vercel and add the two `VITE_SUPABASE_*` environment variables to go live against
+Supabase. Full steps in `docs/DEPLOY.md`.
 
 ---
 
