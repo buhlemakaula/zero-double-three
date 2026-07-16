@@ -62,7 +62,7 @@ export const SERVICES = [
     duration_min: null,
     photo: '/photos/hero-leather.jpg',
     description:
-      'Minimum of 3 people. Client is responsible for transportation to and from — I do organise my own (Bolt rates). Arrival time depends on the start time of the event.',
+      'Minimum of 3 people. Client is responsible for transportation to and from. I do organise my own (Bolt rates). Arrival time depends on the start time of the event.',
     highlight: 'Minimum 3 people.',
   },
 ]

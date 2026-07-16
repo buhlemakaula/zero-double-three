@@ -9,18 +9,18 @@ export const FAQS = [
   },
   {
     q: 'Do makeup looks include lashes?',
-    a: 'Yes — every makeup look includes foundation, contour and highlight, brows, an eyeshadow look of your choice, eyeliner and a lip. Lashes are included.',
+    a: 'Yes. Every makeup look includes foundation, contour and highlight, brows, an eyeshadow look of your choice, eyeliner and a lip. Lashes are included.',
   },
   {
     q: 'What do you need for a wig installation?',
-    a: 'Your unit needs to be customised and clean before your appointment. Middle or side parting. A basic install does not include snoopy. Prefer it done for you? Add Customisation — my units come customised.',
+    a: 'Your unit needs to be customised and clean before your appointment. Middle or side parting. A basic install does not include snoopy. Prefer it done for you? Add Customisation, my units come customised.',
   },
   {
     q: 'How do call-outs work?',
-    a: 'Call-outs (house calls) are a minimum of 3 people. You cover transport to and from — I organise my own travel at Bolt rates. Arrival time depends on the start time of your event.',
+    a: 'Call-outs (house calls) are a minimum of 3 people. You cover transport to and from. I organise my own travel at Bolt rates. Arrival time depends on the start time of your event.',
   },
   {
     q: 'What is the Glam Card?',
-    a: 'My loyalty card. Every completed booking earns a stamp — 6 stamps unlock R250 off or a free customisation. Weekday-morning slots earn double, referrals earn you both a stamp, and reliable regulars unlock Trusted Client status with a reduced 25% deposit.',
+    a: 'My loyalty card. Every completed booking earns a stamp, and 6 stamps unlock R250 off or a free customisation. Weekday-morning slots earn double, referrals earn you both a stamp, and reliable regulars unlock Trusted Client status with a reduced 25% deposit.',
   },
 ]

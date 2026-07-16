@@ -28,7 +28,7 @@ const PERKS = [
     title: 'Stamp per booking',
     body: `Every completed, paid booking earns a stamp. ${STAMPS_PER_REWARD} stamps = ${rand(
       REWARD_VALUE,
-    )} off or a free customisation — your pick.`,
+    )} off or a free customisation, your pick.`,
   },
   {
     title: 'Double on quiet slots',
@@ -40,7 +40,7 @@ const PERKS = [
   },
   {
     title: 'Group bonus',
-    body: 'Call-outs earn a stamp for every person in the group — one trip, many faces.',
+    body: 'Call-outs earn a stamp for every person in the group. One trip, many faces.',
   },
 ]
 
@@ -87,7 +87,7 @@ export default function GlamCard() {
           </span>
           <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-ink/75">
             Show up {TRUSTED_AFTER} times with no late cancellations and no
-            10-minute-late arrivals to unlock Trusted Client status — your
+            10-minute-late arrivals to unlock Trusted Client status. Your
             deposit drops to <strong className="font-semibold">25%</strong> and
             you get priority on the waitlist for cancelled peak slots.
           </p>

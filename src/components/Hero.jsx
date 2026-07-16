@@ -17,7 +17,7 @@ export default function Hero({ onBook }) {
 
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink/70">
             Makeup artistry and wig installations by NZ&nbsp;Myeni. Soft glam,
-            clean installs, and a beat that lasts — booked online in a few taps.
+            clean installs, and a beat that lasts, booked online in a few taps.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">

@@ -2,10 +2,10 @@ import { whatsappLink } from '../lib/whatsapp.js'
 
 const HOURS = [
   ['Sun', 'Closed'],
-  ['Mon – Wed', '08:00 – 17:00'],
-  ['Thursday', '08:00 – 18:00'],
-  ['Friday', '07:00 – 19:00'],
-  ['Saturday', '07:00 – 16:00'],
+  ['Mon to Wed', '08:00 to 17:00'],
+  ['Thursday', '08:00 to 18:00'],
+  ['Friday', '07:00 to 19:00'],
+  ['Saturday', '07:00 to 16:00'],
 ]
 
 export default function HoursContact({ settings }) {

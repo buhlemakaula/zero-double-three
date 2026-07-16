@@ -28,7 +28,7 @@ export default function Nav({ onBook }) {
       }`}
     >
       <div className="shell flex items-center justify-between py-3">
-        <a href="#top" className="shrink-0" aria-label="Glammified by Kwannz — home">
+        <a href="#top" className="shrink-0" aria-label="Glammified by Kwannz home">
           <Wordmark size="sm" />
         </a>
 

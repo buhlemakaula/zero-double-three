@@ -16,7 +16,7 @@ export default function Policies({ settings }) {
       body: (
         <>
           A <strong className="font-semibold">non-refundable</strong> booking
-          fee secures all appointments — <strong className="font-semibold">50%</strong>{' '}
+          fee secures all appointments. It is <strong className="font-semibold">50%</strong>{' '}
           of the service total. The remaining balance is paid on the day.{' '}
           <strong className="font-semibold">A speed point is available.</strong>
         </>

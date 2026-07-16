@@ -6,7 +6,8 @@ export function whatsappBookingLink(booking, settings) {
   const { service, dateIso, time, total, deposit, name } = booking
   const msg =
     `Hi Kwannz! Booking: ${service} on ${prettyDate(dateIso)} at ${time}. ` +
-    `Total ${rand(total)}, deposit ${rand(deposit)}. Name: ${name}. POP attached.`
+    `Total ${rand(total)}, deposit ${rand(deposit)}. Name: ${name}. ` +
+    `I'm attaching my proof of payment now.`
   return `https://wa.me/${settings.business.phone_e164.replace('+', '')}?text=${encodeURIComponent(msg)}`
 }
 

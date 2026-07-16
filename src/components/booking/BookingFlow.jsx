@@ -23,7 +23,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
   const [dateIso, setDateIso] = useState(null)
   const [time, setTime] = useState(null)
   const [details, setDetails] = useState({ name: '', phone: '', email: '', referral: '', notes: '' })
-  const [popName, setPopName] = useState('')
+  const [acknowledged, setAcknowledged] = useState(false)
   const [booked, setBooked] = useState([])
   const [saved, setSaved] = useState(null)
 
@@ -65,7 +65,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
     2: Boolean(dateIso),
     3: Boolean(time),
     4: details.name.trim() && details.phone.trim(),
-    5: Boolean(popName),
+    5: acknowledged,
   }
 
   async function confirm() {
@@ -185,7 +185,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
                     className="w-28 rounded-xl border border-ink/20 px-4 py-2.5 text-sm"
                   />
                   <p className="mt-2 text-[12px] text-ink/55">
-                    Call-outs earn a Glam Card stamp per person — that’s{' '}
+                    Call-outs earn a Glam Card stamp per person, that’s{' '}
                     {Math.max(groupSize, 3)} stamps.
                   </p>
                 </div>
@@ -220,7 +220,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
             <Step title="Pick a time" subtitle={dateIso ? prettyDate(dateIso) : ''}>
               {slots.length === 0 ? (
                 <p className="text-sm text-ink/60">
-                  No open slots on this date — try another day.
+                  No open slots on this date. Try another day.
                 </p>
               ) : (
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
@@ -236,7 +236,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
                       {s.quiet && (
                         <span
                           className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[9px] font-bold text-paper"
-                          title="Quiet slot — earns a double stamp"
+                          title="Quiet slot: earns a double stamp"
                         >
                           2×
                         </span>
@@ -247,7 +247,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
               )}
               {quiet && (
                 <p className="mt-4 text-[13px] font-semibold text-ink">
-                  ✦ Quiet slot — this booking earns a double Glam Card stamp.
+                  ✦ Quiet slot: this booking earns a double Glam Card stamp.
                 </p>
               )}
             </Step>
@@ -287,7 +287,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
                     className="input"
                     value={details.referral}
                     onChange={(e) => setDetails({ ...details, referral: e.target.value })}
-                    placeholder="A friend’s code — you both earn a stamp"
+                    placeholder="A friend’s code, you both earn a stamp"
                   />
                 </Field>
                 <Field label="Notes (optional)">
@@ -315,7 +315,7 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
               />
 
               <div className="mt-6 rounded-2xl bg-greige/60 p-5 text-sm">
-                <p className="label mb-3">Deposit — pay to</p>
+                <p className="label mb-3">Deposit: pay to</p>
                 <dl className="space-y-1.5">
                   <Row k="Bank" v={settings.business.bank.bank} />
                   <Row k="Account name" v={settings.business.bank.account_name} />
@@ -328,21 +328,29 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
                 </p>
               </div>
 
-              <div className="mt-5">
-                <label className="label mb-2 block">Upload proof of payment</label>
-                <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-ink/30 px-4 py-6 text-sm text-ink/60 hover:border-ink/50">
-                  <input
-                    type="file"
-                    accept="image/*,application/pdf"
-                    className="sr-only"
-                    onChange={(e) => setPopName(e.target.files?.[0]?.name || '')}
-                  />
-                  {popName ? `✓ ${popName}` : 'Tap to attach your POP (image or PDF)'}
-                </label>
-                <p className="mt-2 text-[12px] text-ink/45">
-                  You can also send your POP with the WhatsApp confirmation on the next step.
+              <div className="mt-5 rounded-2xl border hairline p-5">
+                <p className="label mb-3">How to send your proof of payment</p>
+                <ol className="space-y-2 text-[13.5px] leading-relaxed text-ink/75">
+                  <li>1. Pay the {rand(deposit)} deposit using the details above.</li>
+                  <li>2. Tap Confirm below to open a ready-made WhatsApp message to Kwannz.</li>
+                  <li>3. Attach your proof of payment straight to that chat.</li>
+                </ol>
+                <p className="mt-3 text-[12px] text-ink/50">
+                  Your slot is held once Kwannz receives your proof of payment on WhatsApp.
                 </p>
               </div>
+
+              <label className="mt-5 flex cursor-pointer items-start gap-3 text-[13.5px] text-ink/80">
+                <input
+                  type="checkbox"
+                  checked={acknowledged}
+                  onChange={(e) => setAcknowledged(e.target.checked)}
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-ink"
+                />
+                <span>
+                  I understand the {rand(deposit)} deposit is non-refundable and secures my booking.
+                </span>
+              </label>
             </Step>
           )}
 
@@ -353,8 +361,8 @@ export default function BookingFlow({ settings, initialServiceId, onClose }) {
               </div>
               <h2 className="display-title text-4xl">You’re booked in</h2>
               <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-ink/70">
-                Almost there — send your confirmation and proof of payment to
-                Kwannz on WhatsApp to lock it in.
+                One last step. Open the WhatsApp message below, then attach your
+                proof of payment to that chat to lock in your slot.
               </p>
               <div className="mx-auto mt-6 max-w-md">
                 <Summary

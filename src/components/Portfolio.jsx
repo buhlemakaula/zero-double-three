@@ -34,7 +34,7 @@ export default function Portfolio() {
         </div>
 
         <p className="mt-8 text-center text-[13px] text-ink/55">
-          More on Instagram —{' '}
+          More on Instagram:{' '}
           <a
             href="https://instagram.com/Glamified_byKwannz"
             target="_blank"

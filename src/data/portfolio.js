@@ -4,14 +4,14 @@ export const PORTFOLIO = [
   {
     id: 'p1',
     src: '/photos/hero-leather.jpg',
-    alt: 'Client in a black leather jacket with a full glam beat — soft smokey eye, fluttery lashes and a glossy nude lip, hair in a sleek straight middle part.',
+    alt: 'Client in a black leather jacket with a full glam beat, soft smokey eye, fluttery lashes and a glossy nude lip, hair in a sleek straight middle part.',
     span: 'tall',
     sort: 1,
   },
   {
     id: 'p2',
     src: '/photos/glam-curly.jpg',
-    alt: 'Client with a curly middle-part install and a warm glam look — bronzed lids, defined lashes and a soft glossy lip.',
+    alt: 'Client with a curly middle-part install and a warm glam look, bronzed lids, defined lashes and a soft glossy lip.',
     span: 'wide',
     sort: 2,
   },

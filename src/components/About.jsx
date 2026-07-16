@@ -25,7 +25,7 @@ export default function About() {
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink/75">
             I’m <strong className="font-semibold">NZ&nbsp;Myeni</strong>, the
             hands behind Glammified by Kwannz. From my studio in Pietermaritzburg
-            I do soft-glam beats and clean wig installs — for graduations,
+            I do soft-glam beats and clean wig installs for graduations,
             shoots, weddings and everyday self-love. Every face gets the same
             care: skin that glows, lashes that flutter, and a finish that lasts
             all day.
@@ -34,7 +34,7 @@ export default function About() {
           <p className="mt-8 font-serif text-3xl italic text-ink/80">
             Let your face be my canvas.
           </p>
-          <p className="mt-2 label">— Kwannz</p>
+          <p className="mt-2 label">Kwannz</p>
         </div>
       </div>
     </section>
