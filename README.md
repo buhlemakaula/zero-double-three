@@ -21,21 +21,44 @@ The site runs **with no backend** out of the box: without Supabase credentials
 it falls back to seeded in-memory data, so every page and the full booking flow
 work immediately. No `localStorage` is used.
 
-## Connect Supabase (optional)
+## Supabase (already provisioned)
 
-1. Create a project at [supabase.com](https://supabase.com).
-2. Run the SQL in order:
-   - `supabase/migrations/0001_init.sql` — tables, RLS, the stamp-issuance trigger
-   - `supabase/seed.sql` — services, portfolio, settings
-3. Copy `.env.example` → `.env` and fill in:
+A live free-tier project (`glammified-by-kwannz`, region eu-west-1) backs this
+site. To point the app at it, copy `.env.example` → `.env` and fill in the
+project URL + anon key from the Supabase dashboard (Project settings → API):
 
-   ```
-   VITE_SUPABASE_URL=...
-   VITE_SUPABASE_ANON_KEY=...
-   ```
+```
+VITE_SUPABASE_URL=https://<project-ref>.supabase.co
+VITE_SUPABASE_ANON_KEY=<anon key>
+```
 
 The site auto-detects the credentials and switches from seed data to the live
-tables.
+tables. Without them it runs on in-memory seed data (demo mode).
+
+To recreate the schema from scratch, run in order:
+- `supabase/migrations/0001_init.sql` — tables, RLS, stamp-issuance trigger
+- `supabase/migrations/0002_rpcs_and_admin.sql` — booking RPCs + admin functions
+- `supabase/seed.sql` — services, portfolio, settings
+
+### Security model
+
+The public site never reads client PII. All writes go through `SECURITY DEFINER`
+RPCs: `booked_slots(date)` returns busy ranges only, and `book_appointment(…)`
+de-dupes the client by phone and inserts a pending booking. Tables have RLS
+enabled with no client policies (deny-all direct access).
+
+## Admin dashboard — `/admin`
+
+The artist manages the business from `/admin`, gated by a passcode (bcrypt-hashed
+in the `admin_config` table — **change it on first login** via the dashboard,
+Availability → Change passcode). No email account needed.
+
+- **Bookings** — see upcoming bookings grouped by day; Confirm / Mark complete /
+  No-show / Cancel. Marking a booking **complete** is what issues the Glam Card
+  stamp (via the DB trigger). Client phone numbers are tap-to-WhatsApp.
+- **Availability** — edit working hours per day, buffer, slot interval, max
+  bookings/day, min lead time, deposit %, quiet-slot rules, and blackout dates.
+  Changes flow straight into the public availability engine.
 
 ## How it fits together
 

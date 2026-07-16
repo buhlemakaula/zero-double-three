@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { DEFAULT_SETTINGS } from './lib/settings.js'
+import { fetchSettings } from './lib/data.js'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import IconNav from './components/IconNav.jsx'
@@ -14,41 +15,52 @@ import FAQ from './components/FAQ.jsx'
 import Testimonials from './components/Testimonials.jsx'
 import Footer from './components/Footer.jsx'
 import BookingFlow from './components/booking/BookingFlow.jsx'
+import AdminApp from './components/admin/AdminApp.jsx'
 
 export default function App() {
-  const settings = DEFAULT_SETTINGS
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS)
   const [booking, setBooking] = useState(null) // null | { serviceId }
+  const [isAdmin, setIsAdmin] = useState(window.location.pathname.startsWith('/admin'))
 
-  // Lightweight routing: the /book route (or #book hash) opens the flow.
+  // Live settings from Supabase (falls back to defaults with no backend).
+  useEffect(() => {
+    let alive = true
+    fetchSettings().then((s) => alive && s && setSettings(s))
+    return () => {
+      alive = false
+    }
+  }, [])
+
   const openBooking = useCallback((serviceId = null) => {
     setBooking({ serviceId: typeof serviceId === 'string' ? serviceId : null })
-    if (window.location.pathname !== '/book') {
-      window.history.pushState({}, '', '/book')
-    }
+    if (window.location.pathname !== '/book') window.history.pushState({}, '', '/book')
   }, [])
 
   const closeBooking = useCallback(() => {
     setBooking(null)
-    if (window.location.pathname === '/book') {
-      window.history.pushState({}, '', '/')
-    }
+    if (window.location.pathname === '/book') window.history.pushState({}, '', '/')
   }, [])
 
-  // Honour deep links to /book and browser back/forward.
+  // Routing: /admin → dashboard, /book → booking overlay, else the site.
   useEffect(() => {
-    if (window.location.pathname === '/book') setBooking({ serviceId: null })
-    const onPop = () => setBooking(window.location.pathname === '/book' ? { serviceId: null } : null)
-    window.addEventListener('popstate', onPop)
-    return () => window.removeEventListener('popstate', onPop)
+    const sync = () => {
+      const path = window.location.pathname
+      setIsAdmin(path.startsWith('/admin'))
+      setBooking(path === '/book' ? { serviceId: null } : null)
+    }
+    sync()
+    window.addEventListener('popstate', sync)
+    return () => window.removeEventListener('popstate', sync)
   }, [])
 
-  // Lock body scroll while the flow is open.
   useEffect(() => {
     document.body.style.overflow = booking ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
   }, [booking])
+
+  if (isAdmin) return <AdminApp />
 
   return (
     <>
@@ -69,11 +81,7 @@ export default function App() {
       <Footer settings={settings} onBook={() => openBooking()} />
 
       {booking && (
-        <BookingFlow
-          settings={settings}
-          initialServiceId={booking.serviceId}
-          onClose={closeBooking}
-        />
+        <BookingFlow settings={settings} initialServiceId={booking.serviceId} onClose={closeBooking} />
       )}
     </>
   )
