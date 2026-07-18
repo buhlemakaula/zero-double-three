@@ -15,13 +15,21 @@ is directly editable.
 
 Regenerate any time: `python3 scripts/generate_pond_pattern.py`
 
+## What it reproduces
+
+A faithful copy of the engraving: top & bottom frame lines, a border of
+outlined hexagons (flat top/bottom, pointed ends) tiled with small **solid**
+diamonds at every junction, and a central boxed reserve reading
+**P · ◇(O) · N · D · ◇** where the "O" and the trailing flourish are outline
+diamonds with a centre dot.
+
 ## Editable structure (SVG groups / ids)
 
 ```
 engraving
 ├─ frame          top & bottom framing lines
-├─ border-left    diamonds + hexagon chevron cells
-├─ pond           reserve rectangle + "POND" (live editable text)
+├─ border-left    solid diamonds + outlined hexagons (5 hexes)
+├─ reserve        box walls, "P" "N" "D" (live text), diamond-dot O + flourish
 └─ border-right   mirror of the left border
 ```
 

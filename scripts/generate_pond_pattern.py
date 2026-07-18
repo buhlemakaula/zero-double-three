@@ -1,195 +1,228 @@
 #!/usr/bin/env python3
 """
-Generate editable vector art of the POND engraved brass band.
+Generate an editable vector copy of the POND engraved brass band.
 
-Reconstructs the tribal/aztec-style chevron-and-diamond border seen on the
-brass ruler, plus the central "POND" reserve. Output is clean geometric SVG
-(plain polygons / polylines / live text, grouped and id-named) so it imports
-fully editable into CorelDRAW and Photoshop — no messy auto-trace nodes.
+Faithful reconstruction of the engraving on the brass ruler:
+  * top & bottom frame lines
+  * a border of outlined hexagons (flat top/bottom, pointed left/right ends)
+    tiled edge-to-edge, with small SOLID diamonds at every junction
+  * a central reserve reading  P (diamond-dot) N D  flanked by large
+    outline diamond-with-dot separators
 
-Outputs (written to ../assets/brand/pond/):
-  pond-engraving-lineart.svg  full band, black line-art on transparent
-  pond-engraving-brass.svg    full band on a gold brass plate (brand colours)
-  pond-border-tile.svg        one seamless repeat of the border (no text)
+Output is clean geometric SVG (plain polygons / polylines / lines / live text,
+grouped and id-named) so it imports fully editable into CorelDRAW and Photoshop.
+
+Outputs -> ../assets/brand/pond/ :
+  pond-engraving-lineart.svg   black line-art on transparent
+  pond-engraving-brass.svg     on a gold brass plate (brand colours)
+  pond-border-tile.svg         one seamless repeat of the border (no text)
 """
 
 import os
 
 # ---- brand palette -------------------------------------------------------
 GOLD_HI = "#c9a24b"
+GOLD_MD = "#d8b866"
 GOLD_LO = "#9a7a2f"
-INK     = "#131210"      # engraving colour on brass
-STROKE  = 3.0            # engraving line weight
+INK     = "#141210"          # engraving colour
 
-# ---- geometry ------------------------------------------------------------
-BAND_H   = 120.0         # engraving band height
-CY       = BAND_H / 2.0  # vertical centre
-MARGIN_X = 46.0
+# ---- geometry (units ~= px on the original photo) ------------------------
+BH   = 56.0                  # band height, top frame to bottom frame
+MID  = BH / 2.0
+SW   = 2.4                   # engraving line weight
+
+# hexagon cell
+HW      = 50.0               # point-to-point width
+HEX_E   = 12.0               # horizontal run of each angled end
+HEX_INS = 10.0              # flat top/bottom inset from the frame lines
+# junction diamond (solid)
+DW      = 15.0               # width
+DH      = 28.0               # height
+GAP     = 3.0                # small gold gap between neighbouring elements
+
+HEXES_PER_SIDE = 5
+
+# central reserve
+SEP_W   = 30.0               # large separator diamond width
+SEP_H   = 42.0               # large separator diamond height
+DOT_W   = 7.0                # centre dot of an outline diamond
+PANEL   = 192.0              # POND text panel width (inside the box walls)
+O_W     = 32.0              # diamond-"O" width
+O_H     = 42.0              # diamond-"O" height
+MARGIN_X = 34.0
 MARGIN_Y = 22.0
 
-HEX_W    = 96.0          # hexagon cell width
-HEX_CI   = 20.0          # hexagon corner inset
-HEX_HH   = 34.0          # hexagon half-height
-DIA_HW   = 13.0          # separator diamond half-width
-DIA_HH   = 26.0          # separator diamond half-height
-POND_W   = 208.0         # central reserve width
-GAP      = 6.0
 
-HEXES_PER_SIDE = 3
-
-
-def poly(points, fill="none", stroke=INK, sw=STROKE, extra=""):
+# ---- primitives ----------------------------------------------------------
+def poly(points, fill="none", stroke=INK, sw=SW):
     pts = " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
     return (f'<polygon points="{pts}" fill="{fill}" stroke="{stroke}" '
-            f'stroke-width="{sw}" stroke-linejoin="round" {extra}/>')
+            f'stroke-width="{sw}" stroke-linejoin="miter"/>')
 
 
-def pline(points, stroke=INK, sw=STROKE):
-    pts = " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
-    return (f'<polyline points="{pts}" fill="none" stroke="{stroke}" '
-            f'stroke-width="{sw}" stroke-linejoin="round" stroke-linecap="round"/>')
+def line(x1, y1, x2, y2, stroke=INK, sw=SW):
+    return (f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" '
+            f'stroke="{stroke}" stroke-width="{sw}" stroke-linecap="square"/>')
 
 
-def diamond(cx, cy, hw, hh, fill=INK, stroke="none"):
-    pts = [(cx - hw, cy), (cx, cy - hh), (cx + hw, cy), (cx, cy + hh)]
-    return poly(pts, fill=fill, stroke=stroke, sw=STROKE)
+def diamond_pts(cx, cy, w, h):
+    return [(cx - w / 2, cy), (cx, cy - h / 2), (cx + w / 2, cy), (cx, cy + h / 2)]
 
 
-def hexagon_cell(x0, ink=INK):
-    """A hexagon frame with outward chevrons and a centre diamond."""
-    cx = x0 + HEX_W / 2.0
-    top, bot = CY - HEX_HH, CY + HEX_HH
-    frame = [
-        (x0, CY), (x0 + HEX_CI, top), (x0 + HEX_W - HEX_CI, top),
-        (x0 + HEX_W, CY), (x0 + HEX_W - HEX_CI, bot), (x0 + HEX_CI, bot),
+def solid_diamond(cx, cy=MID, w=DW, h=DH, ink=INK):
+    return poly(diamond_pts(cx, cy, w, h), fill=ink, stroke="none")
+
+
+def outline_diamond_dot(cx, cy, w, h, ink=INK):
+    return (poly(diamond_pts(cx, cy, w, h), fill="none", stroke=ink) +
+            solid_diamond(cx, cy, DOT_W, DOT_W, ink))
+
+
+def hexagon(cx, ink=INK):
+    top = HEX_INS
+    bot = BH - HEX_INS
+    hw = HW / 2.0
+    pts = [
+        (cx - hw, MID),
+        (cx - hw + HEX_E, top),
+        (cx + hw - HEX_E, top),
+        (cx + hw, MID),
+        (cx + hw - HEX_E, bot),
+        (cx - hw + HEX_E, bot),
     ]
-    parts = [poly(frame, stroke=ink)]
-    # left chevron  <   and right chevron  >   pointing outward
-    parts.append(pline([(cx - 18, CY - 20), (cx - 30, CY), (cx - 18, CY + 20)], stroke=ink))
-    parts.append(pline([(cx + 18, CY - 20), (cx + 30, CY), (cx + 18, CY + 20)], stroke=ink))
-    # centre diamond
-    parts.append(diamond(cx, CY, 11, 18, fill=ink))
-    return "\n      ".join(parts), cx
+    return poly(pts, fill="none", stroke=ink)
 
 
-def side_sequence(x_start, ink=INK):
-    """D H D H D H D  — returns (svg, end_x)."""
+# ---- border block --------------------------------------------------------
+def border_block(x_start, ink=INK, lead_diamond=True):
+    """Alternating diamonds and hexagons.
+
+    lead_diamond=True  -> D H D H ... D H   (starts diamond, ends hexagon)
+    lead_diamond=False -> H D H D ... H D   (starts hexagon, ends diamond)
+    Either way: HEXES_PER_SIDE hexagons and HEXES_PER_SIDE diamonds.
+    """
     parts = []
     x = x_start
-    # leading diamond
-    parts.append(diamond(x + DIA_HW, CY, DIA_HW, DIA_HH, fill=ink))
-    x += DIA_HW * 2 + GAP
     for i in range(HEXES_PER_SIDE):
-        hexsvg, _ = hexagon_cell(x, ink=ink)
-        parts.append(hexsvg)
-        x += HEX_W + GAP
-        parts.append(diamond(x + DIA_HW, CY, DIA_HW, DIA_HH, fill=ink))
-        x += DIA_HW * 2 + GAP
+        if lead_diamond:
+            parts.append(solid_diamond(x + DW / 2, ink=ink)); x += DW + GAP
+            parts.append(hexagon(x + HW / 2, ink=ink));       x += HW + GAP
+        else:
+            parts.append(hexagon(x + HW / 2, ink=ink));       x += HW + GAP
+            parts.append(solid_diamond(x + DW / 2, ink=ink)); x += DW + GAP
     return "\n      ".join(parts), x - GAP
 
 
-def content_width():
-    seq_w = DIA_HW * 2 + HEXES_PER_SIDE * (GAP + HEX_W + GAP + DIA_HW * 2)
-    return seq_w * 2 + GAP + POND_W + GAP
+def block_width():
+    return HEXES_PER_SIDE * (DW + GAP + HW + GAP) - GAP
 
 
-def build_band(ink=INK, with_frame=True, text_fill=INK):
-    """Full band group centred inside the drawing."""
-    total_w = content_width()
-    x = MARGIN_X
+# ---- POND letters (live, editable text) ----------------------------------
+def pond_reserve(x0, ink=INK):
+    """Outlined box holding  P (diamond-dot O) N D  evenly spaced."""
+    parts = []
+    # box walls (top/bottom come from the frame lines)
+    parts.append(line(x0, 0, x0, BH, stroke=ink))
+    parts.append(line(x0 + PANEL, 0, x0 + PANEL, BH, stroke=ink))
+    fs = 44
+    common = (f'font-family="Arial,\'Helvetica Neue\',sans-serif" '
+              f'font-size="{fs}" font-weight="700" fill="{ink}" '
+              f'text-anchor="middle" dominant-baseline="central"')
+    # evenly spaced P  O  N  D
+    xP = x0 + 26
+    xO = x0 + 63
+    xN = x0 + 100
+    xD = x0 + 133
+    xF = x0 + 168                 # trailing diamond flourish after D
+    parts.append(f'<text x="{xP:.1f}" y="{MID:.1f}" {common}>P</text>')
+    parts.append(outline_diamond_dot(xO, MID, O_W, O_H, ink))
+    parts.append(f'<text x="{xN:.1f}" y="{MID:.1f}" {common}>N</text>')
+    parts.append(f'<text x="{xD:.1f}" y="{MID:.1f}" {common}>D</text>')
+    parts.append(outline_diamond_dot(xF, MID, O_W, O_H, ink))
+    return "\n      ".join(parts)
+
+
+# ---- assemble the full band ----------------------------------------------
+def build_band(ink=INK):
+    bw = block_width()
+    total = bw * 2 + GAP * 2 + PANEL
     g = ['<g id="engraving">']
 
-    if with_frame:
-        # top & bottom framing lines across the whole reserve
-        fx0, fx1 = MARGIN_X - 10, MARGIN_X + total_w + 10
-        ty, by = CY - HEX_HH - 10, CY + HEX_HH + 10
-        g.append('<g id="frame">')
-        g.append(pline([(fx0, ty), (fx1, ty)], stroke=ink, sw=STROKE))
-        g.append(pline([(fx0, by), (fx1, by)], stroke=ink, sw=STROKE))
-        g.append('</g>')
+    # frame lines
+    g.append('<g id="frame">')
+    g.append(line(0, 0, total, 0, stroke=ink))
+    g.append(line(0, BH, total, BH, stroke=ink))
+    g.append('</g>')
 
-    left_svg, x = side_sequence(x, ink=ink)
+    x = 0.0
+    left_svg, x = border_block(x, ink=ink, lead_diamond=True)   # ends with hexagon
     g.append('<g id="border-left">\n      ' + left_svg + '\n      </g>')
 
-    # central POND reserve
-    box_x = x + GAP
-    box_y0, box_y1 = CY - HEX_HH, CY + HEX_HH
-    g.append('<g id="pond">')
-    g.append(f'<rect x="{box_x:.2f}" y="{box_y0:.2f}" width="{POND_W:.2f}" '
-             f'height="{(box_y1-box_y0):.2f}" fill="none" stroke="{ink}" '
-             f'stroke-width="{STROKE}"/>')
-    g.append(f'<text x="{box_x + POND_W/2:.2f}" y="{CY:.2f}" '
-             f'font-family="Arial, \'Helvetica Neue\', sans-serif" '
-             f'font-size="46" font-weight="700" letter-spacing="6" '
-             f'fill="{text_fill}" text-anchor="middle" '
-             f'dominant-baseline="central">POND</text>')
-    g.append('</g>')
-    x = box_x + POND_W + GAP
+    x += GAP
+    g.append('<g id="reserve">\n      ' + pond_reserve(x, ink=ink) + '\n      </g>')
+    x += PANEL + GAP
 
-    right_svg, x = side_sequence(x, ink=ink)
+    right_svg, x = border_block(x, ink=ink, lead_diamond=False)  # starts with hexagon
     g.append('<g id="border-right">\n      ' + right_svg + '\n      </g>')
 
     g.append('</g>')
-    return "\n    ".join(g), total_w
+    return "\n    ".join(g), total
 
 
-def svg_doc(width, height, body, defs=""):
+def svg_doc(width, height, body, defs="", scale=4):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" '
-            f'width="{width:.0f}" height="{height:.0f}" '
-            f'viewBox="0 0 {width:.2f} {height:.2f}">\n'
-            f'{defs}\n  {body}\n</svg>\n')
+            f'width="{width*scale:.0f}" height="{height*scale:.0f}" '
+            f'viewBox="0 0 {width:.2f} {height:.2f}">\n{defs}\n  {body}\n</svg>\n')
 
 
 def main():
-    out_dir = os.path.join(os.path.dirname(__file__), "..", "assets", "brand", "pond")
-    out_dir = os.path.abspath(out_dir)
+    out_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                           "..", "assets", "brand", "pond"))
     os.makedirs(out_dir, exist_ok=True)
 
-    total_w = content_width()
-    doc_w = total_w + MARGIN_X * 2
-    doc_h = BAND_H + MARGIN_Y * 2
+    band, total = build_band()
+    doc_w = total + MARGIN_X * 2
+    doc_h = BH + MARGIN_Y * 2
 
-    # translate band group down by MARGIN_Y
     def wrap(body):
-        return f'<g transform="translate(0,{MARGIN_Y:.2f})">\n    {body}\n  </g>'
+        return (f'<g transform="translate({MARGIN_X:.2f},{MARGIN_Y:.2f})">\n'
+                f'    {body}\n  </g>')
 
-    # 1) line-art -----------------------------------------------------------
-    band, _ = build_band(ink=INK, with_frame=True, text_fill=INK)
-    open(os.path.join(out_dir, "pond-engraving-lineart.svg"), "w").write(
-        svg_doc(doc_w, doc_h, wrap(band)))
+    # 1) line-art
+    with open(os.path.join(out_dir, "pond-engraving-lineart.svg"), "w") as f:
+        f.write(svg_doc(doc_w, doc_h, wrap(band)))
 
-    # 2) brass plate --------------------------------------------------------
+    # 2) brass plate
     defs = ('<defs>\n'
-            f'  <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">\n'
+            '  <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">\n'
             f'    <stop offset="0" stop-color="{GOLD_HI}"/>\n'
-            f'    <stop offset="0.5" stop-color="#d8b866"/>\n'
+            f'    <stop offset="0.5" stop-color="{GOLD_MD}"/>\n'
             f'    <stop offset="1" stop-color="{GOLD_LO}"/>\n'
-            f'  </linearGradient>\n'
-            '</defs>')
+            '  </linearGradient>\n</defs>')
     bar = (f'<rect x="0" y="0" width="{doc_w:.2f}" height="{doc_h:.2f}" '
            f'rx="{doc_h/2:.2f}" ry="{doc_h/2:.2f}" fill="url(#brass)"/>')
-    band_b, _ = build_band(ink=INK, with_frame=True, text_fill=INK)
-    body = bar + "\n  " + wrap(band_b)
-    open(os.path.join(out_dir, "pond-engraving-brass.svg"), "w").write(
-        svg_doc(doc_w, doc_h, body, defs))
+    with open(os.path.join(out_dir, "pond-engraving-brass.svg"), "w") as f:
+        f.write(svg_doc(doc_w, doc_h, bar + "\n  " + wrap(band), defs))
 
-    # 3) seamless border tile (one D+H repeat, no text) ---------------------
-    tile_w = HEX_W + GAP + DIA_HW * 2 + GAP
-    th = BAND_H + MARGIN_Y * 2
-    parts = [f'<g transform="translate(0,{MARGIN_Y:.2f})">']
-    # half diamond at each edge so tiles butt seamlessly
-    parts.append(diamond(0, CY, DIA_HW, DIA_HH, fill=INK))
-    hexsvg, _ = hexagon_cell(DIA_HW + GAP)
-    parts.append(hexsvg)
-    parts.append(diamond(tile_w, CY, DIA_HW, DIA_HH, fill=INK))
-    parts.append('</g>')
-    open(os.path.join(out_dir, "pond-border-tile.svg"), "w").write(
-        svg_doc(tile_w, th, "\n  ".join(parts)))
+    # 3) seamless border tile: one hexagon + a diamond at each edge
+    tw = GAP + HW + GAP + DW
+    th = BH + MARGIN_Y * 2
+    tile = [f'<g transform="translate(0,{MARGIN_Y:.2f})">']
+    tile.append(line(0, 0, tw, 0))
+    tile.append(line(0, BH, tw, BH))
+    tile.append(solid_diamond(0))
+    tile.append(hexagon(tw / 2))
+    tile.append(solid_diamond(tw))
+    tile.append('</g>')
+    with open(os.path.join(out_dir, "pond-border-tile.svg"), "w") as f:
+        f.write(svg_doc(tw, th, "\n  ".join(tile)))
 
-    print("wrote:")
-    for f in ("pond-engraving-lineart.svg", "pond-engraving-brass.svg", "pond-border-tile.svg"):
-        p = os.path.join(out_dir, f)
-        print(f"  {p}  ({os.path.getsize(p)} bytes)")
+    print("band units:", round(total, 1), "x", BH,
+          "| doc:", round(doc_w, 1), "x", round(doc_h, 1))
+    for fn in ("pond-engraving-lineart.svg", "pond-engraving-brass.svg",
+               "pond-border-tile.svg"):
+        p = os.path.join(out_dir, fn)
+        print(" ", fn, os.path.getsize(p), "bytes")
 
 
 if __name__ == "__main__":
