@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1168" height="164" viewBox="0 0 1168.00 164.00">
+
+  <g transform="translate(0,22.00)">
+    <g id="engraving">
+    <g id="frame">
+    <polyline points="36.00,16.00 1132.00,16.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="36.00,104.00 1132.00,104.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <g id="border-left">
+      <polygon points="46.00,60.00 59.00,34.00 72.00,60.00 59.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="78.00,60.00 98.00,26.00 154.00,26.00 174.00,60.00 154.00,94.00 98.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="108.00,40.00 96.00,60.00 108.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="144.00,40.00 156.00,60.00 144.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="115.00,60.00 126.00,42.00 137.00,60.00 126.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="180.00,60.00 193.00,34.00 206.00,60.00 193.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="212.00,60.00 232.00,26.00 288.00,26.00 308.00,60.00 288.00,94.00 232.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="242.00,40.00 230.00,60.00 242.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="278.00,40.00 290.00,60.00 278.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="249.00,60.00 260.00,42.00 271.00,60.00 260.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="314.00,60.00 327.00,34.00 340.00,60.00 327.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="346.00,60.00 366.00,26.00 422.00,26.00 442.00,60.00 422.00,94.00 366.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="376.00,40.00 364.00,60.00 376.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="412.00,40.00 424.00,60.00 412.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="383.00,60.00 394.00,42.00 405.00,60.00 394.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="448.00,60.00 461.00,34.00 474.00,60.00 461.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      </g>
+    <g id="pond">
+    <rect x="480.00" y="26.00" width="208.00" height="68.00" fill="none" stroke="#131210" stroke-width="3.0"/>
+    <text x="584.00" y="60.00" font-family="Arial, 'Helvetica Neue', sans-serif" font-size="46" font-weight="700" letter-spacing="6" fill="#131210" text-anchor="middle" dominant-baseline="central">POND</text>
+    </g>
+    <g id="border-right">
+      <polygon points="694.00,60.00 707.00,34.00 720.00,60.00 707.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="726.00,60.00 746.00,26.00 802.00,26.00 822.00,60.00 802.00,94.00 746.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="756.00,40.00 744.00,60.00 756.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="792.00,40.00 804.00,60.00 792.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="763.00,60.00 774.00,42.00 785.00,60.00 774.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="828.00,60.00 841.00,34.00 854.00,60.00 841.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="860.00,60.00 880.00,26.00 936.00,26.00 956.00,60.00 936.00,94.00 880.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="890.00,40.00 878.00,60.00 890.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="926.00,40.00 938.00,60.00 926.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="897.00,60.00 908.00,42.00 919.00,60.00 908.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="962.00,60.00 975.00,34.00 988.00,60.00 975.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="994.00,60.00 1014.00,26.00 1070.00,26.00 1090.00,60.00 1070.00,94.00 1014.00,94.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" />
+      <polyline points="1024.00,40.00 1012.00,60.00 1024.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="1060.00,40.00 1072.00,60.00 1060.00,80.00" fill="none" stroke="#131210" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="1031.00,60.00 1042.00,42.00 1053.00,60.00 1042.00,78.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      <polygon points="1096.00,60.00 1109.00,34.00 1122.00,60.00 1109.00,86.00" fill="#131210" stroke="none" stroke-width="3.0" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>
