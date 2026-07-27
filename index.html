@@ -3,256 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buhle Makaula | Portfolio 2026</title>
-  <meta name="description" content="Portfolio of Buhle Makaula, creative designer. Branding, social media design, posters and layout. Book via WhatsApp." />
+  <title>Buhle Makaula — Creative Designer & Web Builds · Durban</title>
+  <meta name="description" content="Buhle Makaula, creative designer in Durban. Brand identity, packaging and hand-built websites. See the work, browse live web builds, and book on WhatsApp." />
+  <link rel="canonical" href="https://buhlemakaula.vercel.app/" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Buhle Makaula — Creative Designer & Web Builds" />
+  <meta property="og:description" content="Brand identity, packaging and hand-built websites, from Durban. See the work and the live web builds." />
+  <meta property="og:url" content="https://buhlemakaula.vercel.app/" />
+  <meta property="og:image" content="https://buhlemakaula.vercel.app/assets/brand/buhle-signature-static.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- fonts: self-hosted, no external request -->
   <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/urbanist-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F4622E'/><text x='50' y='72' font-size='62' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%230D0D0C'>B</text></svg>" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Buhle Makaula",
+    "jobTitle": "Creative Designer",
+    "url": "https://buhlemakaula.vercel.app/",
+    "email": "buhlemakaula@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Durban", "addressCountry": "ZA" },
+    "knowsLanguage": ["isiXhosa", "English"],
+    "sameAs": ["https://www.instagram.com/buhlemakaula"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip" href="#hero">Skip to content</a>
 
-  <div class="grain" aria-hidden="true"></div>
+  <!-- ambient light-art (behind everything, decorative) -->
+  <div class="ambient" aria-hidden="true">
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+    <svg class="rays" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="400" cy="400" r="120" /><circle cx="400" cy="400" r="220" />
+        <circle cx="400" cy="400" r="320" /><circle cx="400" cy="400" r="420" />
+      </g>
+    </svg>
+  </div>
 
-  <main class="page">
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="nav-mark" href="#hero" aria-label="Buhle, home">
+      <span>BUHLE</span><i>.</i>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about"><span class="idx">01</span> About</a>
+      <a href="#work"><span class="idx">02</span> Work</a>
+      <a href="#builds"><span class="idx">03</span> Web&nbsp;Builds</a>
+      <a href="#studio"><span class="idx">04</span> Studio</a>
+      <a href="#contact"><span class="idx">05</span> Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </header>
 
-    <!-- ============ COVER ============ -->
-    <section class="cover card" id="top">
-      <header class="cover-top reveal-load" style="--d:.15s">
-        <span class="eyebrow">Updated</span>
-        <nav class="cover-nav">
-          <a href="#hello">About</a>
-          <a href="#work">Work</a>
-          <a href="#book">Book me</a>
-        </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav aria-label="Sections">
+      <a href="#about"><span class="idx">01</span> About</a>
+      <a href="#work"><span class="idx">02</span> Work</a>
+      <a href="#builds"><span class="idx">03</span> Web Builds</a>
+      <a href="#studio"><span class="idx">04</span> Studio</a>
+      <a href="#contact"><span class="idx">05</span> Contact</a>
+    </nav>
+    <a class="pill pill-solid" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp</a>
+  </div>
+
+  <main>
+    <!-- ============ 00 HERO ============ -->
+    <section class="hero" id="hero">
+      <p class="eyebrow reveal" data-reveal><span class="mono">00 / Buhle Makaula</span> — Creative designer, Durban ZA</p>
+      <h1 class="hero-line">
+        <span class="hl" data-line>I build <em>brands</em></span>
+        <span class="hl" data-line>and the <em>websites</em></span>
+        <span class="hl" data-line>that carry them.</span>
+      </h1>
+      <div class="hero-foot reveal" data-reveal>
+        <a class="pill pill-solid big" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp</a>
+        <span class="mono hero-scroll">Scroll — 05 sections</span>
+      </div>
+    </section>
+
+    <!-- ============ 01 ABOUT ============ -->
+    <section class="section" id="about">
+      <header class="sec-head reveal" data-reveal>
+        <span class="mono sec-idx">01</span>
+        <h2 class="sec-title">About</h2>
       </header>
 
-      <div class="cover-title" aria-label="Portfolio 2026">
-        <h1 class="wordmark" aria-hidden="true">
-          <span class="w-line">
-            <span class="w-letter">P</span><span class="w-letter">O</span><span class="w-letter">R</span><span class="w-letter">T</span><span class="w-letter">F</span><span class="w-letter">O</span><span class="w-letter">L</span><span class="w-letter">I</span><span class="w-letter">O</span>
-          </span>
-        </h1>
-        <span class="year-pill pill pill-solid">2026</span>
-      </div>
-
-      <footer class="cover-bottom reveal-load" style="--d:.55s">
-        <span>Creative Design</span>
-        <span>Buhle Makaula</span>
-      </footer>
-    </section>
-
-    <!-- ============ COLOPHON ============ -->
-    <section class="colophon reveal">
-      <div>
-        <p class="name-line"><strong>Buhle Makaula</strong><br /><span class="muted">Creative Designer</span></p>
-        <p class="muted small">This portfolio contains some of my work<br />and client projects.</p>
-      </div>
-      <div class="colophon-right">
-        <p class="muted small">Text set in this portfolio,<br />Anton by Vernon Adams<br />Urbanist by Corey Hu</p>
-        <p class="small">Copyright &copy; 2026</p>
-      </div>
-    </section>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee reveal" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
-        <span>Branding</span><i>&#10022;</i><span>Logo Design</span><i>&#10022;</i><span>Social Media</span><i>&#10022;</i><span>Poster Design</span><i>&#10022;</i><span>Layout</span><i>&#10022;</i>
-      </div>
-    </div>
-
-    <!-- ============ HELLO ============ -->
-    <section class="hello card reveal" id="hello">
-      <figure class="hello-photo">
-        <img src="assets/buhle.jpg" alt="Portrait of Buhle Makaula" />
-      </figure>
-
-      <div class="hello-body">
-        <h2 class="hello-title" aria-label="Hello!">
-          <span aria-hidden="true">HELLO<em>!</em></span>
-        </h2>
-        <p>
-          My name is <strong>Buhle Makaula</strong>. I am a creative designer based in
-          South&nbsp;Africa. I love art and visual things, and I work with clients on projects
-          like branding, logo design, social media design, poster design and layout.
-          I am passionate about pushing the boundaries of design and exploring new skills.
-        </p>
-
-        <div class="contact-pills">
-          <a class="pill pill-solid" href="mailto:buhlemakaula@gmail.com">buhlemakaula@gmail.com</a>
-          <a class="pill pill-solid" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">WhatsApp &middot; 071&nbsp;182&nbsp;4885</a>
-          <a class="pill pill-outline" href="#work">See my work &darr;</a>
+      <div class="about-grid">
+        <div class="about-lead reveal" data-reveal>
+          <p>I'm <strong>Buhle Makaula</strong>, a creative designer based in Durban, South Africa. I work with clients on brand identity, packaging, social and — increasingly — the websites those brands live on. I care about work that is loud where it counts and clean everywhere else.</p>
+          <p class="mono about-langs">isiXhosa <span>native</span> · English <span>fluent</span></p>
         </div>
+
+        <dl class="specs reveal" data-reveal>
+          <div class="spec">
+            <dt class="mono">Education</dt>
+            <dd><strong>Web &amp; Graphic Design</strong><br /><span class="muted">Boston City Campus · 2019</span></dd>
+          </div>
+          <div class="spec">
+            <dt class="mono">Experience</dt>
+            <dd>
+              <strong>Freelance creative designer</strong> <span class="muted">since 2021</span><br />
+              <span class="muted">Client work — Lorenzo, Flexers, Kwen, Flame Yard</span><br />
+              <span class="muted">Own label — Zerodoublethree</span>
+            </dd>
+          </div>
+          <div class="spec">
+            <dt class="mono">Software</dt>
+            <dd>Adobe Creative Suite · SketchUp · WordPress · Canva</dd>
+          </div>
+          <div class="spec">
+            <dt class="mono">Discipline</dt>
+            <dd>Brand identity · Packaging · Social · Web builds</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <!-- ============ DETAIL GRID ============ -->
-    <section class="detail-grid">
-      <article class="card panel reveal">
-        <h3>Education</h3>
-        <p class="muted small">2019</p>
-        <p><strong>Web and Graphic Design</strong><br /><span class="muted">Boston City Campus</span></p>
-      </article>
-
-      <article class="card panel reveal" style="--d:.08s">
-        <h3>Experience</h3>
-        <ol class="timeline">
-          <li>
-            <span class="muted small">Since 2021</span>
-            <strong>Freelance</strong>
-            <span class="muted">Creative Designer</span>
-          </li>
-          <li>
-            <span class="muted small">Client work</span>
-            <strong>Lorenzo &middot; Flexers &middot; Kwen &middot; Flame Yard</strong>
-            <span class="muted">Selected work below</span>
-          </li>
-          <li>
-            <span class="muted small">Own label</span>
-            <strong>Zerodoublethree</strong>
-            <span class="muted">Streetwear &amp; apparel graphics</span>
-          </li>
-        </ol>
-      </article>
-
-      <article class="card panel reveal" style="--d:.16s">
-        <h3>Skills</h3>
-        <ul class="dash-list">
-          <li>Attention to detail</li>
-          <li>Love learning</li>
-          <li>Time management</li>
-          <li>Creative</li>
-        </ul>
-      </article>
-
-      <article class="card panel reveal" style="--d:.1s">
-        <h3>Software</h3>
-        <ul class="tool-list">
-          <li><span class="tool-badge">Cc</span><div><strong>Adobe Creative Suite</strong><span class="muted small">Photoshop, Illustrator, InDesign &amp; more</span></div></li>
-          <li><span class="tool-badge">Su</span><div><strong>SketchUp</strong><span class="muted small">3D modelling</span></div></li>
-          <li><span class="tool-badge">Wp</span><div><strong>WordPress</strong><span class="muted small">Websites</span></div></li>
-          <li><span class="tool-badge">Cv</span><div><strong>Canva</strong><span class="muted small">Fast layouts</span></div></li>
-        </ul>
-      </article>
-
-      <article class="card panel reveal" style="--d:.18s">
-        <h3>Language</h3>
-        <p>isiXhosa <span class="muted small">(native)</span><br />English <span class="muted small">(fluent)</span></p>
-      </article>
-
-      <article class="card panel panel-cta reveal" style="--d:.26s">
-        <h3>Bookings</h3>
-        <p class="muted">Open for freelance &amp; client projects.</p>
-        <a class="pill pill-solid" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp</a>
-      </article>
-    </section>
-
-    <!-- ============ WORK ============ -->
-    <section class="work" id="work">
-      <header class="work-head reveal">
-        <h2 class="section-title">SELECTED<br />WORK</h2>
-        <p class="muted">Branding, packaging and apparel from recent client work, plus my own label. Tap any image to view it full size.</p>
+    <!-- ============ 02 WORK ============ -->
+    <section class="section" id="work">
+      <header class="sec-head reveal" data-reveal>
+        <span class="mono sec-idx">02</span>
+        <h2 class="sec-title">Work</h2>
+        <p class="sec-note">Brand identity, packaging and apparel — recent client work plus my own label.</p>
       </header>
 
-      <article class="card project reveal">
-        <header class="project-head">
-          <div class="project-tags">
-            <span class="pill pill-outline">Brand Identity</span>
-            <span class="pill pill-outline">Packaging</span>
-          </div>
-          <h3 class="project-name">Lorenzo Skin&nbsp;Care</h3>
-          <p class="muted">A calm, editorial identity for a skincare line. The serif wordmark, flowing monogram and labels carry through onto the serum range.</p>
-        </header>
-        <div class="project-gallery">
-          <figure><img src="assets/work/lorenzo-serum.jpg" alt="Lorenzo Skin Care serum bottle with dropper on a stone pedestal" loading="lazy" /></figure>
-          <figure><img src="assets/work/lorenzo-logo.jpg" alt="Lorenzo Skin Care serif wordmark and circular monogram" loading="lazy" /></figure>
-        </div>
-      </article>
-
-      <article class="card project reveal">
-        <header class="project-head">
-          <div class="project-tags">
-            <span class="pill pill-outline">Brand Identity</span>
-            <span class="pill pill-outline">Packaging</span>
-            <span class="pill pill-outline">Social Media</span>
-          </div>
-          <h3 class="project-name">Flexers Fitness</h3>
-          <p class="muted">A bold wing monogram for a health &amp; wellness brand, carried through supplement packaging and a full Instagram presence.</p>
-        </header>
-        <div class="project-gallery cols-3">
-          <figure><img src="assets/work/flexers-packaging.jpg" alt="Flexers Fitness whey protein, fat flush powder and herbal tea packaging in purple and black" loading="lazy" /></figure>
-          <figure><img src="assets/work/flexers-logo.jpg" alt="Flexers Fitness wing monogram logo" loading="lazy" /></figure>
-          <figure><img src="assets/work/flexers-instagram.jpg" alt="Flexers Fitness Instagram profile mockup on a phone" loading="lazy" /></figure>
-        </div>
-      </article>
-
-      <article class="card project reveal">
-        <header class="project-head">
-          <div class="project-tags">
-            <span class="pill pill-outline">Brand Identity</span>
-            <span class="pill pill-outline">Packaging</span>
-          </div>
-          <h3 class="project-name">Kwen Essence</h3>
-          <p class="muted">Pulse of life. A botanical monogram and a quiet label system for a home and body essence brand, from reed diffusers to magnesium oil.</p>
-        </header>
-        <div class="project-gallery cols-3">
-          <figure><img src="assets/work/kwen-diffusers.jpg" alt="Two Kwen Essence amber reed diffusers with black labels" loading="lazy" /></figure>
-          <figure><img src="assets/work/kwen-logo.jpg" alt="Kwen Essence leaf monogram logo on sage green" loading="lazy" /></figure>
-          <figure><img src="assets/work/kwen-spray.jpg" alt="Kwen Essence magnesium oil spray in an amber bottle" loading="lazy" /></figure>
-        </div>
-      </article>
-
-      <article class="card project reveal">
-        <header class="project-head">
-          <div class="project-tags">
-            <span class="pill pill-outline">Logo Design</span>
-            <span class="pill pill-outline">Event Branding</span>
-          </div>
-          <h3 class="project-name">The Flame&nbsp;Yard</h3>
-          <p class="muted">A hand lettered badge for The Flame Yard, a fast foods brand where fire and flavor collide. The logo scales all the way up to a full branded gazebo.</p>
-        </header>
-        <div class="project-gallery">
-          <figure><img src="assets/work/flameyard-logo.jpg" alt="The Flame Yard circular script logo with flame icon" loading="lazy" /></figure>
-          <figure><img src="assets/work/flameyard-gazebo.jpg" alt="The Flame Yard branded black gazebo stall" loading="lazy" /></figure>
-        </div>
-      </article>
-
-      <article class="card project reveal">
-        <header class="project-head">
-          <div class="project-tags">
-            <span class="pill pill-solid">Own Brand</span>
-            <span class="pill pill-outline">Apparel</span>
-            <span class="pill pill-outline">Illustration</span>
-          </div>
-          <h3 class="project-name">Zerodoublethree</h3>
-          <p class="muted">My own streetwear label. A winged rose in barbed wire and flame, drawn for heavyweight tees and washed hoodies.</p>
-        </header>
-        <div class="project-gallery square">
-          <figure><img src="assets/work/zdt-tee.jpg" alt="Black Zerodoublethree tee with winged rose and barbed wire artwork" loading="lazy" /></figure>
-          <figure><img src="assets/work/zdt-hoodie.jpg" alt="Washed grey Zerodoublethree hoodie with winged rose artwork and flame sleeves" loading="lazy" /></figure>
-        </div>
-      </article>
+      <div class="filters reveal" data-reveal id="workFilters" role="group" aria-label="Filter work by discipline"></div>
+      <div class="work-list" id="workList"></div>
+      <noscript>
+        <p class="muted">Selected work: Lorenzo Skin Care, Flexers Fitness, Kwen Essence, The Flame Yard, Zerodoublethree.</p>
+      </noscript>
     </section>
 
-    <div class="lightbox" id="lightbox" hidden>
-      <button class="lightbox-close" aria-label="Close image">&times;</button>
-      <img alt="" />
-    </div>
+    <!-- ============ 03 WEB BUILDS — signature ============ -->
+    <section class="section builds" id="builds">
+      <header class="sec-head reveal" data-reveal>
+        <span class="mono sec-idx">03</span>
+        <h2 class="sec-title">Web Builds</h2>
+        <p class="sec-note">Live websites, hand-built for real businesses. Hover a row to preview it — open a row to read the build.</p>
+      </header>
 
-    <!-- ============ FOOTER / BOOK ============ -->
-    <footer class="card outro" id="book">
-      <h2 class="outro-title"><span>LET&rsquo;S</span> <span class="accent">WORK!</span></h2>
-      <p class="muted">Have a project in mind? Bookings are open.</p>
-      <div class="contact-pills center">
-        <a class="pill pill-solid big" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp &middot; 071&nbsp;182&nbsp;4885</a>
+      <div class="proof reveal" data-reveal id="proof"></div>
+
+      <div class="ledger-filters reveal" data-reveal id="buildFilters" role="group" aria-label="Filter builds by type"></div>
+      <div class="ledger" id="ledger"></div>
+      <noscript>
+        <ul class="muted">
+          <li>TMP Civils — tmpcivils.co.za (Corporate)</li>
+          <li>Glammified by Kwannz — glambykwannz.vercel.app (Booking)</li>
+          <li>Buhle Makaula Portfolio — buhlemakaula.vercel.app (Portfolio)</li>
+        </ul>
+      </noscript>
+    </section>
+
+    <!-- ============ 04 STUDIO ============ -->
+    <section class="section" id="studio">
+      <header class="sec-head reveal" data-reveal>
+        <span class="mono sec-idx">04</span>
+        <h2 class="sec-title">Studio</h2>
+        <p class="sec-note">Buhle Studio is a one-person shop that does more than logos. If it's how a brand shows up, I can build it.</p>
+      </header>
+
+      <ol class="services">
+        <li class="service reveal" data-reveal>
+          <span class="mono s-idx">S1</span>
+          <h3>Brand &amp; design</h3>
+          <p>Identity, packaging, social and print. The core craft — the thing everything else hangs off.</p>
+        </li>
+        <li class="service reveal" data-reveal>
+          <span class="mono s-idx">S2</span>
+          <h3>Web builds</h3>
+          <p>Bespoke, mobile-first websites — from a clean corporate site to a full shopping build. See section 03.</p>
+        </li>
+        <li class="service reveal" data-reveal>
+          <span class="mono s-idx">S3</span>
+          <h3>Automation &amp; lead gen</h3>
+          <p>WhatsApp and DM flows that answer, qualify and book — so enquiries don't sit unread overnight.</p>
+        </li>
+        <li class="service reveal" data-reveal>
+          <span class="mono s-idx">S4</span>
+          <h3>AI content</h3>
+          <p>A daily "AI, Made Simple" content engine — posts, carousels and a calendar that keeps the feed alive.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ 05 CONTACT — light flip ============ -->
+    <footer class="section contact" id="contact">
+      <span class="mono sec-idx dark">05</span>
+      <h2 class="contact-title">Let's build<br />something<span class="accent">.</span></h2>
+      <p class="contact-lead">Bookings are open for design and web work. WhatsApp is fastest — I read every message myself.</p>
+      <div class="contact-actions">
+        <a class="pill pill-solid big" href="https://wa.me/27711824885?text=Hi%20Buhle%2C%20I%27d%20like%20to%20book%20you%20for%20a%20project." target="_blank" rel="noopener">Book on WhatsApp · 071 182 4885</a>
         <a class="pill pill-outline big" href="mailto:buhlemakaula@gmail.com">buhlemakaula@gmail.com</a>
       </div>
-      <p class="small muted outro-copy">Buhle Makaula &middot; Portfolio &copy; 2026 &middot; <a class="footer-link" href="brand.html">Brand kit</a></p>
+      <div class="contact-foot">
+        <span class="mono">Buhle Makaula · Durban, ZA · © 2026</span>
+        <nav class="foot-links mono" aria-label="Elsewhere">
+          <a href="https://www.instagram.com/buhlemakaula" target="_blank" rel="noopener">Instagram</a>
+          <a href="links.html">All links</a>
+          <a href="brand.html">Brand kit</a>
+        </nav>
+      </div>
     </footer>
-
   </main>
 
-  <script src="js/main.js"></script>
+  <!-- expanding case-study lives inline; lightbox for work images -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" aria-label="Close image">&times;</button>
+    <img alt="" />
+  </div>
+
+  <script src="data/projects.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
