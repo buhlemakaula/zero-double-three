@@ -38,7 +38,7 @@ window.BUHLE_DATA = {
     {
       name: "The Flame Yard",
       tags: ["Logo", "Event Branding"],
-      blurb: "A hand-lettered badge for a fast-foods brand where fire and flavour collide. The logo scales all the way up to a full branded gazebo.",
+      blurb: "A hand lettered badge for The Flame Yard, a fast foods brand where fire and flavour collide. The logo scales all the way up to a full branded gazebo.",
       images: [
         { src: "assets/work/flameyard-logo.jpg", alt: "The Flame Yard circular script logo with flame icon" },
         { src: "assets/work/flameyard-gazebo.jpg", alt: "The Flame Yard branded black gazebo stall" }
@@ -68,8 +68,8 @@ window.BUHLE_DATA = {
       year: "2025",
       shot: "assets/builds/tmpcivils-desktop.png",
       problem: "TMP Civils takes on serious civil and construction work but had no credible online home to point clients, referrals and tender panels to.",
-      approach: "A corporate, no-nonsense build: clear service lines, project credentials and a direct contact path — structured so someone vetting a contractor finds the proof fast.",
-      stack: "Custom marketing site — front-end build",
+      approach: "A corporate build with no fluff: clear service lines, project credentials and a direct contact path, structured so someone vetting a contractor finds the proof fast.",
+      stack: "Custom marketing site, front end build",
       stackConfirm: false,
       outcome: "TMP Civils now has a professional site that matches the scale of the work they bid for."
     },
@@ -81,8 +81,8 @@ window.BUHLE_DATA = {
       type: "Booking",
       year: "2025",
       shot: "assets/builds/glambykwannz-desktop.png",
-      problem: "Glammified by Kwannz — a beauty and glam brand — was taking bookings through Instagram DMs, with no proper place for clients to see the services and book.",
-      approach: "A clean, glam-forward site that puts the services and the booking flow front and centre, so clients can book without the back-and-forth.",
+      problem: "Glammified by Kwannz, a beauty and glam brand, was taking bookings through Instagram DMs with no proper place for clients to see the services and book.",
+      approach: "A clean glam site that puts the services and the booking flow front and centre, so clients can book without the back and forth.",
       stack: "Web build · deployed on Vercel",
       stackConfirm: false,
       outcome: "Kwannz now has one link where clients book directly, instead of chasing enquiries through the DMs."
@@ -95,8 +95,8 @@ window.BUHLE_DATA = {
       year: "2026",
       shot: "assets/builds/buhle-portfolio-desktop.png",
       problem: "Buhle Studio needed a home that proves the work rather than describing it.",
-      approach: "A single-page dark editorial portfolio with a live web-builds ledger — the site is itself a sample of the build quality on offer. You're reading it.",
-      stack: "Static — hand-coded HTML, CSS & vanilla JS. Deployed on Vercel.",
+      approach: "A single page editorial portfolio with a live web builds ledger. The site is itself a sample of the build quality on offer. You are reading it.",
+      stack: "Static, hand coded HTML, CSS and vanilla JS. Deployed on Vercel.",
       stackConfirm: false,
       outcome: "One link that carries the brand, the design work and the web builds in a single scroll."
     }
