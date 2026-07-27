@@ -38,23 +38,36 @@
     rises.forEach(function (r, i) { setTimeout(function () { r.classList.add("in"); }, 640 + i * 120); });
   }
 
-  /* ---------- theme toggle ---------- */
+  /* ---------- theme toggle: dark → light → orange ---------- */
   function initTheme() {
+    var THEMES = ["dark", "light", "orange"];
+    var BAR = { dark: "#0d0d0c", light: "#e9e7e2", orange: "#f4622e" };
     var btns = document.querySelectorAll("[data-theme-toggle]");
-    function label() {
-      var light = document.documentElement.dataset.theme === "light";
-      btns.forEach(function (b) { b.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode"); });
+    var root = document.documentElement;
+    var meta = document.querySelector('meta[name="theme-color"]');
+
+    function current() { return root.dataset.theme || "dark"; }
+    function next() { return THEMES[(THEMES.indexOf(current()) + 1) % THEMES.length]; }
+    function sync() {
+      var n = next();
+      btns.forEach(function (b) { b.setAttribute("aria-label", "Switch to " + n + " mode"); });
+      if (meta) meta.setAttribute("content", BAR[current()]);
     }
+
     btns.forEach(function (b) {
       b.addEventListener("click", function () {
-        var root = document.documentElement;
-        var light = root.dataset.theme === "light";
-        if (light) delete root.dataset.theme; else root.dataset.theme = "light";
-        try { localStorage.theme = light ? "dark" : "light"; } catch (e) {}
-        label();
+        var t = next();
+        if (t === "dark") delete root.dataset.theme; else root.dataset.theme = t;
+        try { localStorage.theme = t; } catch (e) {}
+        if (!reduce) {
+          root.classList.add("theme-anim");
+          b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+          setTimeout(function () { root.classList.remove("theme-anim"); }, 450);
+        }
+        sync();
       });
     });
-    label();
+    sync();
   }
 
   /* ---------- rail + mobile menu ---------- */
