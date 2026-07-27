@@ -26,18 +26,35 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- hero load sequence (1.2s) ---------- */
+  /* ---------- hero load sequence ---------- */
   function initHero() {
-    var kick = $(".hero .hero-kick .rule");
     var lines = document.querySelectorAll(".hero h1 .l");
     var rises = document.querySelectorAll(".hero [data-rise]");
     if (reduce) {
-      [kick].concat([].slice.call(lines)).concat([].slice.call(rises)).forEach(function (el) { el && el.classList.add("in"); });
+      [].slice.call(lines).concat([].slice.call(rises)).forEach(function (el) { el.classList.add("in"); });
       return;
     }
-    if (kick) setTimeout(function () { kick.classList.add("in"); }, 80);
-    lines.forEach(function (l, i) { setTimeout(function () { l.classList.add("in"); }, 260 + i * 150); });
-    rises.forEach(function (r, i) { setTimeout(function () { r.classList.add("in"); }, 820 + i * 120); });
+    lines.forEach(function (l, i) { setTimeout(function () { l.classList.add("in"); }, 120 + i * 150); });
+    rises.forEach(function (r, i) { setTimeout(function () { r.classList.add("in"); }, 640 + i * 120); });
+  }
+
+  /* ---------- theme toggle ---------- */
+  function initTheme() {
+    var btns = document.querySelectorAll("[data-theme-toggle]");
+    function label() {
+      var light = document.documentElement.dataset.theme === "light";
+      btns.forEach(function (b) { b.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode"); });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var root = document.documentElement;
+        var light = root.dataset.theme === "light";
+        if (light) delete root.dataset.theme; else root.dataset.theme = "light";
+        try { localStorage.theme = light ? "dark" : "light"; } catch (e) {}
+        label();
+      });
+    });
+    label();
   }
 
   /* ---------- rail + mobile menu ---------- */
@@ -120,7 +137,7 @@
   function fallback(b) {
     return '<div class="stage-fallback"><span class="m">' + esc(b.client) + '</span>' +
       '<span class="u">' + esc(b.url) + '</span>' +
-      '<span class="note">Live preview — open ' + esc(b.url) + '</span></div>';
+      '<span class="note">Live preview. Open ' + esc(b.url) + '</span></div>';
   }
   function stage(b) {
     return '<div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
@@ -208,7 +225,7 @@
     });
   }
 
-  function boot() { initHero(); initNav(); initFlip(); initWork(); initBuilds(); initReveals(); }
+  function boot() { initHero(); initTheme(); initNav(); initFlip(); initWork(); initBuilds(); initReveals(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
