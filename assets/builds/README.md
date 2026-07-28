@@ -8,14 +8,14 @@ Expected filenames (referenced from `data/projects.js` → `builds[].shot`):
 
 | Build | Desktop file (used by the ledger) |
 |---|---|
-| TMP Civils | `tmpcivils-desktop.png` |
-| Glammified by Kwannz | `glambykwannz-desktop.png` |
-| Buhle Portfolio | `buhle-portfolio-desktop.png` |
+| TMP Civils | `tmpcivils-desktop.webp` |
+| Glammified by Kwannz | `glambykwannz-desktop.webp` |
+| Buhle Portfolio | `buhle-portfolio-desktop.webp` |
 
-Capture at **1440×900**, export as PNG (or WebP and update the `.shot` path),
-keep it reasonably compressed. The frame is `4:3`-ish and crops from the top,
-so capture the top of each page.
+Capture at **1440×900** and export WebP. Wider captures are fine: the frame
+is 1440×900 and crops from the top centre, so anything past roughly the outer
+11% on each side is trimmed. Keep the top of the page in shot.
 
-> These could not be auto-captured during the build: the session's network
-> policy blocks outbound access to the client domains. Capture them from any
-> normal browser and drop them in here.
+All three are in place. They were supplied as browser screenshots and
+normalised to 1440×900 WebP, because this session's network policy blocks
+outbound access to the client domains for automated capture.

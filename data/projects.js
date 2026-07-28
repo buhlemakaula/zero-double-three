@@ -57,7 +57,7 @@ window.BUHLE_DATA = {
 
   /* ---------- 03 WEB BUILDS — the ledger ----------
      shot: expected preview image. Drop a real capture at that path
-     (e.g. assets/builds/tmpcivils-desktop.png) and it appears automatically.
+     (e.g. assets/builds/tmpcivils-desktop.webp) and it appears automatically.
      Until then a branded frame shows. `stackConfirm: true` = verify before publishing.  */
   builds: [
     {
@@ -66,7 +66,7 @@ window.BUHLE_DATA = {
       href: "https://tmpcivils.co.za",
       type: "Corporate",
       year: "2025",
-      shot: "assets/builds/tmpcivils-desktop.png",
+      shot: "assets/builds/tmpcivils-desktop.webp",
       problem: "TMP Civils takes on serious civil and construction work but had no credible online home to point clients, referrals and tender panels to.",
       approach: "A corporate build with no fluff: clear service lines, project credentials and a direct contact path, structured so someone vetting a contractor finds the proof fast.",
       stack: "Custom marketing site, front end build",
@@ -80,7 +80,7 @@ window.BUHLE_DATA = {
       href: "https://glambykwannz.vercel.app",
       type: "Booking",
       year: "2025",
-      shot: "assets/builds/glambykwannz-desktop.png",
+      shot: "assets/builds/glambykwannz-desktop.webp",
       problem: "Glammified by Kwannz, a beauty and glam brand, was taking bookings through Instagram DMs with no proper place for clients to see the services and book.",
       approach: "A clean glam site that puts the services and the booking flow front and centre, so clients can book without the back and forth.",
       stack: "Web build · deployed on Vercel",
@@ -93,7 +93,7 @@ window.BUHLE_DATA = {
       href: "https://buhlemakaula.vercel.app",
       type: "Portfolio",
       year: "2026",
-      shot: "assets/builds/buhle-portfolio-desktop.png",
+      shot: "assets/builds/buhle-portfolio-desktop.webp",
       problem: "Buhle Studio needed a home that proves the work rather than describing it.",
       approach: "A single page editorial portfolio with a live web builds ledger. The site is itself a sample of the build quality on offer. You are reading it.",
       stack: "Static, hand coded HTML, CSS and vanilla JS. Deployed on Vercel.",
