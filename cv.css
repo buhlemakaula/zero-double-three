@@ -50,6 +50,8 @@
 /* ---------- skills ---------- */
 .cv-facts{ margin-top:.6rem; }
 .cv-facts .fact dt{ color:var(--accent); }
+.cv-facts a{ color:var(--accent); border-bottom:1px solid transparent; transition:border-color .2s var(--ease); }
+.cv-facts a:hover{ border-bottom-color:var(--accent); }
 
 /* ---------- close panel ---------- */
 .cv-close h2{ font-family:var(--display); font-weight:700; letter-spacing:-0.03em; line-height:.95;
