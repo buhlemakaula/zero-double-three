@@ -13,17 +13,30 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var sel = "[data-draw],[data-rise],[data-clip],[data-wipe],[data-type]";
 
-  /* ---------- generic reveals (everything outside the hero) ---------- */
+  /* ---------- generic reveals (everything outside the hero) ----------
+     A clip-path element reports zero intersection area, so observing it
+     directly deadlocks and the content never appears. Watch an unclipped
+     ancestor instead and reveal the element it stands for. */
   function initReveals() {
     var els = Array.prototype.slice.call(document.querySelectorAll(sel))
       .filter(function (el) { return !el.closest(".hero"); });
     if (reduce || !("IntersectionObserver" in window)) {
       els.forEach(function (el) { el.classList.add("in"); }); return;
     }
+    var watch = new Map();
+    els.forEach(function (el) {
+      var target = el.hasAttribute("data-clip") && el.parentElement ? el.parentElement : el;
+      if (!watch.has(target)) watch.set(target, []);
+      watch.get(target).push(el);
+    });
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        (watch.get(e.target) || [e.target]).forEach(function (el) { el.classList.add("in"); });
+        io.unobserve(e.target);
+      });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.14 });
-    els.forEach(function (el) { io.observe(el); });
+    watch.forEach(function (_list, target) { io.observe(target); });
   }
 
   /* ---------- hero load sequence ---------- */
@@ -89,6 +102,7 @@
       sections.forEach(function (s) { io.observe(s); });
     }
     var toggle = $("#navToggle"), menu = $("#mobileMenu");
+    if (!toggle || !menu) return;
     function setMenu(open) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
@@ -238,7 +252,14 @@
     });
   }
 
-  function boot() { initHero(); initTheme(); initNav(); initFlip(); initWork(); initBuilds(); initReveals(); }
+  /* ---------- print (CV page) ---------- */
+  function initPrint() {
+    document.querySelectorAll("[data-print]").forEach(function (b) {
+      b.addEventListener("click", function () { window.print(); });
+    });
+  }
+
+  function boot() { initHero(); initTheme(); initNav(); initFlip(); initWork(); initBuilds(); initPrint(); initReveals(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
